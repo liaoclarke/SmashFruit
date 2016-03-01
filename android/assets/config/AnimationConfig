@@ -1,0 +1,19 @@
+{
+  "type" : "AnimationConfig",
+  "data" : [
+    {
+      "key" : "logo",
+      "atlas" : "graphic/logo.txt",
+      "region" : "logo",
+      "duration" : 0.05,
+      "mode" : "NORMAL"
+    },
+    {
+      "key" : "logo2",
+      "atlas" : "graphic/logo.txt",
+      "region" : "logo",
+      "duration" : 0.1,
+      "mode" : "LOOP"
+    }
+  ]
+}

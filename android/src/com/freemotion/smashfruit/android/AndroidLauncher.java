@@ -3,14 +3,36 @@ package com.freemotion.smashfruit.android;
 import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
-import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.freemotion.smashfruit.android.SmashFruit;
+import com.freemotion.smashfruit.android.Game.GameView;
 
 public class AndroidLauncher extends AndroidApplication {
+
+	private GameView gameView;
+
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-		initialize(new SmashFruit(), config);
+
+        gameView = new SmashFruitGameView(this);
+        gameView.init();
+        setContentView(gameView.getLayout());
+
+		//AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
+		//initialize(new SmashFruit(), config);
 	}
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

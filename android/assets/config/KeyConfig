@@ -1,0 +1,13 @@
+{
+  "type" : "Key",
+  "data" : [
+    {
+      "key" : "APP_WIDTH",
+      "value" : 720
+    },
+    {
+      "key" : "APP_HEIGHT",
+      "value" : 1280
+    }
+  ]
+}
