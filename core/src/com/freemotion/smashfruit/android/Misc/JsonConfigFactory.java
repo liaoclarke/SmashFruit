@@ -26,57 +26,36 @@ public class JsonConfigFactory {
     }
 
     public void createAnimationConfigs(String filePath) {
-        FileHandle file = Gdx.files.internal(filePath);
+        createJsonConfigs(filePath, AnimationConfig.class);
+    }
+
+    public void createKeyConfigs(String filePath) {
+        createJsonConfigs(filePath, KeyConfig.class);
+    }
+
+    public void createJsonConfigs(String configFilePath, Class confiClass) {
+        FileHandle file = Gdx.files.internal(configFilePath);
         String text = file.readString();
 		Json json = new Json();
-        json.setElementType(JsonConfigArray.class, "data", AnimationConfig.class);
+        json.setElementType(JsonConfigArray.class, "data", confiClass);
 		JsonConfigArray array = json.fromJson(JsonConfigArray.class, text);
         jsonConfigMap.add(array);
     }
 
     public AnimationConfig getAnimationConfig(String key) {
-        for (JsonConfigArray array : jsonConfigMap) {
-            System.out.println("class type: " + AnimationConfig.class.getSimpleName());
-            if (AnimationConfig.class.getSimpleName().equals(array.type)) {
-                for (int i = 0; i < array.data.size(); i++) {
-                    if (key.equals(((AnimationConfig)array.data.get(i)).key)) {
-                        return (AnimationConfig) array.data.get(i);
-                    }
-                }
-            }
-        }
-        return null;
-    }
-
-    public void dumpAnimationJsonConfigs() {
-        for (JsonConfigArray array : jsonConfigMap) {
-            Gdx.app.log(LOG_TAG, "type: " + array.type);
-            for (int i = 0; i < array.data.size(); i++) {
-                try {
-                    AnimationConfig ac = (AnimationConfig) array.data.get(i);
-                    Gdx.app.log(LOG_TAG, "config : " + ac.key + " " + ac.atlas + " " + ac.region + " " + ac.duration + " " + ac.mode);
-                } catch (Exception e) {
-                    throw new RuntimeException("Can not create JsonConfig for" + array.type);
-                }
-            }
-        }
-    }
-
-    public void createKeyConfigs(String filePath) {
-        FileHandle file = Gdx.files.internal(filePath);
-        String text = file.readString();
-		Json json = new Json();
-        json.setElementType(JsonConfigArray.class, "data", KeyConfig.class);
-		JsonConfigArray array = json.fromJson(JsonConfigArray.class, text);
-        jsonConfigMap.add(array);
+        return (AnimationConfig) getJsonConfig(AnimationConfig.class.getSimpleName(), key);
     }
 
     public KeyConfig getKeyConfig(String key) {
-        for (JsonConfigArray array : jsonConfigMap) {
-            if (KeyConfig.class.getName().equals(array.type)) {
+        return (KeyConfig) getJsonConfig(KeyConfig.class.getSimpleName(), key);
+    }
+
+    public JsonConfig getJsonConfig(String type, String key) {
+         for (JsonConfigArray array : jsonConfigMap) {
+            if (type.equals(array.type)) {
                 for (int i = 0; i < array.data.size(); i++) {
-                    if (key.equals(((AnimationConfig)array.data.get(i)).key)) {
-                        return (KeyConfig) array.data.get(i);
+                    if (key.equals(((JsonConfig)array.data.get(i)).key)) {
+                        return (JsonConfig) array.data.get(i);
                     }
                 }
             }
@@ -85,12 +64,24 @@ public class JsonConfigFactory {
     }
 
     public void dumpKeyJsonConfigs() {
+        dumpJsonConfigs(KeyConfig.class.getSimpleName());
+    }
+
+    public void dumpAnimationJsonConfigs() {
+        dumpJsonConfigs(AnimationConfig.class.getSimpleName());
+    }
+
+    public void dumpJsonConfigs(String jsonConfigClass) {
         for (JsonConfigArray array : jsonConfigMap) {
-            Gdx.app.log(LOG_TAG, "type: " + array.type);
             for (int i = 0; i < array.data.size(); i++) {
                 try {
-                    KeyConfig kc = (KeyConfig) array.data.get(i);
-                    Gdx.app.log(LOG_TAG, "config : " + kc.key + " " + kc.value);
+                    if (KeyConfig.class.getSimpleName().equals(jsonConfigClass)) {
+                        KeyConfig kc = (KeyConfig) array.data.get(i);
+                        Gdx.app.log(LOG_TAG, "config : " + kc.key + " " + kc.getValue());
+                    } else if (AnimationConfig.class.getSimpleName().equals(jsonConfigClass)) {
+                        AnimationConfig ac = (AnimationConfig) array.data.get(i);
+                        Gdx.app.log(LOG_TAG, "config : " + ac.getKey() + " " + ac.getAtlas()+ " " + ac.getRegion() + " " + ac.getDuration() + " " + ac.getMode());
+                    }
                 } catch (Exception e) {
                     throw new RuntimeException("Can not create JsonConfig for" + array.type);
                 }

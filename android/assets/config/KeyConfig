@@ -1,5 +1,5 @@
 {
-  "type" : "Key",
+  "type" : "KeyConfig",
   "data" : [
     {
       "key" : "APP_WIDTH",

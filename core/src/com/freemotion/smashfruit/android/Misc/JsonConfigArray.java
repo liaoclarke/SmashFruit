@@ -8,4 +8,12 @@ import java.util.ArrayList;
 public class JsonConfigArray {
     public String type;
     public ArrayList data;
+
+    public String getType() {
+        return type;
+    }
+
+    public ArrayList getData() {
+        return data;
+    }
 }

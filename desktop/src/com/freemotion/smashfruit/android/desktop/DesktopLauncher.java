@@ -3,6 +3,7 @@ package com.freemotion.smashfruit.android.desktop;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.freemotion.smashfruit.android.Misc.Constants;
+import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.SmashFruit;
 
 public class DesktopLauncher {
