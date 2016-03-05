@@ -66,7 +66,7 @@ public class ResourceManager {
 
     public ResourceLoader findLoader(String textureName) {
         for (ResourceLoader loader : loaders) {
-            if (loader.getTextureAtlas() != null && loader.getLoaderName() != textureName) {
+            if (loader.getTextureAtlas() != null && loader.getLoaderName().equals(textureName)) {
                 return loader;
             }
         }

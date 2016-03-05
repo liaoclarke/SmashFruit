@@ -1,0 +1,17 @@
+{
+  "type" : "SceneConfig",
+  "data" : [
+    {
+      "key" : "background",
+      "origX" : 0,
+      "origY" : 0,
+      "positionX" : 0,
+      "positionY" : 0,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "rotation" : 0,
+      "atlas" : "graphic/game.txt",
+      "region" : "background",
+    }
+  ]
+}

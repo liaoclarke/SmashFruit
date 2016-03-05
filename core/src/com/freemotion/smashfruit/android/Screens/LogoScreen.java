@@ -22,11 +22,14 @@ public class LogoScreen extends ScreenBase {
     private String LOG_TAG;
     private SceneTextureLoader sceneTextureLoader;
     private LogoTextureLoader logoTextureLoader;
+    private GameScreen gameScreen;
     private SpriteBatch batch;
     private OrthographicCamera camera;
     private Animation logo;
     private Rectangle logoRectangle;
     private float stateTime;
+    private float delayTime;
+    private static final float MAX_DELAY_TIME = 1f;
     private float app_width;
     private float app_height;
 
@@ -40,14 +43,15 @@ public class LogoScreen extends ScreenBase {
         camera.setToOrtho(false, app_width, app_height);
         camera.update();
         logoTextureLoader = (LogoTextureLoader) ResourceManager.getInstance().findLoader(LogoTextureLoader.class.getSimpleName());
-        AnimationConfig ac = JsonConfigFactory.getInstance().getAnimationConfig("logo2");
+        AnimationConfig ac = JsonConfigFactory.getInstance().getAnimationConfig("logo");
         logo = new Animation(ac.getDuration(), logoTextureLoader.getTextureAtlas().findRegions(ac.getRegion()));
         logo.setPlayMode(ac.getMode());
         logoRectangle = new Rectangle((app_width - logo.getKeyFrame(0).getRegionWidth() * 1.5f) * 0.5f,
                                       (app_height- logo.getKeyFrame(0).getRegionHeight() * 1.5f) * 0.5f,
                                       logo.getKeyFrame(0).getRegionWidth() * 1.5f,
                                       logo.getKeyFrame(0).getRegionHeight() * 1.5f);
-        stateTime = 0;
+        stateTime = 0f;
+        delayTime = 0f;
 
         sceneTextureLoader = new SceneTextureLoader();
         ResourceManager.getInstance().addLoader(sceneTextureLoader);
@@ -74,9 +78,14 @@ public class LogoScreen extends ScreenBase {
         batch.draw(logo.getKeyFrame(stateTime), logoRectangle.x, logoRectangle.y, logoRectangle.width, logoRectangle.height);
         batch.end();
 
-        if (sceneTextureLoader.update()) {
-            //GameScreen gameScreen = new GameScreen(gameInstance);
-            //gameInstance.setScreen(gameScreen);
+        if (logo.isAnimationFinished(stateTime)) {
+            delayTime += delta;
+        }
+
+        if (delayTime > MAX_DELAY_TIME && sceneTextureLoader.update() && gameInstance.getScreen() != gameScreen) {
+            Gdx.app.log(LOG_TAG, " set gamescreen ");
+            gameScreen = new GameScreen(gameInstance);
+            gameInstance.setScreen(gameScreen);
             //FadeOutTransition fadeOut = new FadeOutTransition(1f);
             //FadeInTransition fadeIn = new FadeInTransition(1f);
             //Array<TransitionEffect> transitionEffects = new Array<TransitionEffect>();

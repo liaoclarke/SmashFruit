@@ -14,6 +14,48 @@
       "region" : "logo",
       "duration" : 0.05,
       "mode" : "LOOP"
+    },
+    {
+      "key" : "cuboid0",
+      "atlas" : "graphic/game.txt",
+      "region" : "cuboid0",
+      "duration" : 0.10,
+      "mode" : "LOOP"
+    },
+    {
+      "key" : "cuboid180",
+      "atlas" : "graphic/game.txt",
+      "region" : "cuboid1",
+      "duration" : 0.10,
+      "mode" : "LOOP"
+    },
+    {
+      "key" : "cuboid60",
+      "atlas" : "graphic/game.txt",
+      "region" : "cuboid2",
+      "duration" : 0.10,
+      "mode" : "LOOP"
+    },
+    {
+      "key" : "cuboid240",
+      "atlas" : "graphic/game.txt",
+      "region" : "cuboid3",
+      "duration" : 0.10,
+      "mode" : "LOOP"
+    },
+    {
+      "key" : "cuboid300",
+      "atlas" : "graphic/game.txt",
+      "region" : "cuboid4",
+      "duration" : 0.10,
+      "mode" : "LOOP"
+    },
+    {
+      "key" : "cuboid120",
+      "atlas" : "graphic/game.txt",
+      "region" : "cuboid5",
+      "duration" : 0.10,
+      "mode" : "LOOP"
     }
   ]
 }

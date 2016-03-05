@@ -23,6 +23,7 @@ public class SmashFruit extends GameBase {
 
 		Gdx.app.setLogLevel(logLevel);
 		JsonConfigFactory.getInstance().createKeyConfigs("config/KeyConfig");
+		JsonConfigFactory.getInstance().createSceneConfigs("config/SceneConfig");
 		JsonConfigFactory.getInstance().createAnimationConfigs("config/AnimationConfig");
 
 		LogoTextureLoader logoLoader = new LogoTextureLoader();

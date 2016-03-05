@@ -8,8 +8,8 @@ import com.freemotion.smashfruit.android.Utils.ResourceLoader;
  */
 public class SceneTextureLoader extends ResourceLoader {
 
-    private final String dataFile = "graphic/cuboid.txt";
-    private final String textureFile = "graphic/cuboid.png";
+    private final String dataFile = "graphic/game.txt";
+    private final String textureFile = "graphic/game.png";
     private TextureAtlas textureAtlas;
 
     public SceneTextureLoader() {

@@ -1,0 +1,10 @@
+{
+  "type" : "TextureConfig",
+  "data" : [
+    {
+      "key" : "background",
+      "atlas" : "graphic/game.txt",
+      "region" : "background"
+    }
+  ]
+}
