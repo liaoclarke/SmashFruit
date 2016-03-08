@@ -12,7 +12,7 @@ import com.freemotion.smashfruit.android.Utils.ResourceManager;
 
 public class SmashFruit extends GameBase {
 
-	private int logLevel = Application.LOG_NONE;
+	private int logLevel = Application.LOG_ERROR;
 
 	public SmashFruit() {
 	}
@@ -23,7 +23,7 @@ public class SmashFruit extends GameBase {
 
 		Gdx.app.setLogLevel(logLevel);
 		JsonConfigFactory.getInstance().createKeyConfigs("config/KeyConfig");
-		JsonConfigFactory.getInstance().createSceneConfigs("config/SceneConfig");
+		JsonConfigFactory.getInstance().createTextureConfigs("config/TextureConfig");
 		JsonConfigFactory.getInstance().createAnimationConfigs("config/AnimationConfig");
 
 		LogoTextureLoader logoLoader = new LogoTextureLoader();

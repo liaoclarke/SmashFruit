@@ -13,49 +13,91 @@
       "atlas" : "graphic/logo.txt",
       "region" : "logo",
       "duration" : 0.05,
-      "mode" : "LOOP"
+      "mode" : "NORMAL"
     },
     {
       "key" : "cuboid0",
       "atlas" : "graphic/game.txt",
       "region" : "cuboid0",
-      "duration" : 0.10,
-      "mode" : "LOOP"
+      "duration" : 0.050,
+      "mode" : "NORMAL"
     },
     {
       "key" : "cuboid180",
       "atlas" : "graphic/game.txt",
       "region" : "cuboid1",
-      "duration" : 0.10,
-      "mode" : "LOOP"
+      "duration" : 0.05,
+      "mode" : "NORMAL"
     },
     {
       "key" : "cuboid60",
       "atlas" : "graphic/game.txt",
       "region" : "cuboid2",
-      "duration" : 0.10,
-      "mode" : "LOOP"
+      "duration" : 0.05,
+      "mode" : "NORMAL"
     },
     {
       "key" : "cuboid240",
       "atlas" : "graphic/game.txt",
       "region" : "cuboid3",
-      "duration" : 0.10,
-      "mode" : "LOOP"
+      "duration" : 0.05,
+      "mode" : "NORMAL"
     },
     {
       "key" : "cuboid300",
       "atlas" : "graphic/game.txt",
       "region" : "cuboid4",
-      "duration" : 0.10,
-      "mode" : "LOOP"
+      "duration" : 0.05,
+      "mode" : "NORMAL"
     },
     {
       "key" : "cuboid120",
       "atlas" : "graphic/game.txt",
       "region" : "cuboid5",
+      "duration" : 0.05,
+      "mode" : "NORMAL"
+    },
+    {
+      "key" : "cylinder0",
+      "atlas" : "graphic/game.txt",
+      "region" : "cylinder0",
       "duration" : 0.10,
-      "mode" : "LOOP"
+      "mode" : "NORMAL"
+    },
+    {
+      "key" : "cylinder60",
+      "atlas" : "graphic/game.txt",
+      "region" : "cylinder60",
+      "duration" : 0.10,
+      "mode" : "NORMAL"
+    },
+    {
+      "key" : "cylinder120",
+      "atlas" : "graphic/game.txt",
+      "region" : "cylinder120",
+      "duration" : 0.10,
+      "mode" : "NORMAL"
+    },
+    {
+      "key" : "cylinder180",
+      "atlas" : "graphic/game.txt",
+      "region" : "cylinder180",
+      "duration" : 0.10,
+      "mode" : "NORMAL"
+    },
+    {
+      "key" : "cylinder240",
+      "atlas" : "graphic/game.txt",
+      "region" : "cylinder240",
+      "duration" : 0.10,
+      "mode" : "NORMAL"
+    },
+    {
+      "key" : "cylinder300",
+      "atlas" : "graphic/game.txt",
+      "region" : "cylinder300",
+      "duration" : 0.10,
+      "mode" : "NORMAL"
     }
   ]
 }

@@ -37,6 +37,10 @@ public class JsonConfigFactory {
         createJsonConfigs(filePath, SceneConfig.class);
     }
 
+    public void createTextureConfigs(String filePath) {
+        createJsonConfigs(filePath, TextureConfig.class);
+    }
+
     public void createJsonConfigs(String configFilePath, Class confiClass) {
         FileHandle file = Gdx.files.internal(configFilePath);
         String text = file.readString();
@@ -56,6 +60,10 @@ public class JsonConfigFactory {
 
     public SceneConfig getSceneConfig(String key) {
         return (SceneConfig) getJsonConfig(SceneConfig.class.getSimpleName(), key);
+    }
+
+    public TextureConfig getTextureConfig(String key) {
+        return (TextureConfig) getJsonConfig(TextureConfig.class.getSimpleName(), key);
     }
 
     public JsonConfig getJsonConfig(String type, String key) {
@@ -81,6 +89,10 @@ public class JsonConfigFactory {
 
     public void dumpSceneJsonConfigs() {
         dumpJsonConfigs(SceneConfig.class.getSimpleName());
+    }
+
+    public void dumpTextureJsonConfigs() {
+        dumpJsonConfigs(TextureConfig.class.getSimpleName());
     }
 
     public void dumpJsonConfigs(String jsonConfigClass) {

@@ -2,16 +2,32 @@
   "type" : "SceneConfig",
   "data" : [
     {
-      "key" : "background",
-      "origX" : 0,
-      "origY" : 0,
-      "positionX" : 0,
-      "positionY" : 0,
-      "scaleX" : 1,
-      "scaleY" : 1,
-      "rotation" : 0,
-      "atlas" : "graphic/game.txt",
-      "region" : "background",
+      "key" : "scene_width",
+      "value" : 650
+    },
+    {
+      "key" : "scene_height",
+      "value" : 860
+    },
+    {
+      "key" : "scene_x",
+      "value" : 35
+    },
+    {
+      "key" : "scene_y",
+      "value" : 210
+    },
+    {
+      "key" : "collision_width",
+      "value" : 32
+    },
+    {
+      "key" : "collision_nearest",
+      "value" : 32
+    },
+    {
+      "key" : "collision_furthest",
+      "value" : 80
     }
   ]
 }

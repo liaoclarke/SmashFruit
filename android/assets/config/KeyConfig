@@ -8,6 +8,46 @@
     {
       "key" : "APP_HEIGHT",
       "value" : 1280
+    },
+    {
+      "key" : "SCENE_WIDTH",
+      "value" : 416
+    },
+    {
+      "key" : "SCENE_HEIGHT",
+      "value" : 880
+    },
+    {
+      "key" : "SCENE_X",
+      "value" : 102
+    },
+    {
+      "key" : "SCENE_Y",
+      "value" : 200
+    },
+    {
+      "key" : "COLLISION_WIDTH",
+      "value" : 0
+    },
+    {
+      "key" : "COLLISION_NEAREST",
+      "value" : 80
+    },
+    {
+      "key" : "COLLISION_FURTHEST",
+      "value" : 90
+    },
+    {
+      "key" : "FIRST_DOMINO_HORIZONTAL_MARGIN",
+      "value" : 10
+    },
+    {
+      "key" : "FIRST_DOMINO_VERTICAL_MARGIN",
+      "value" : 10
+    },
+    {
+      "key" : "LEAN_SPEED_SCALE",
+      "value" : 0.8
     }
   ]
 }

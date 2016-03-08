@@ -1,11 +1,10 @@
 package com.freemotion.smashfruit.android.Sprites;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Rectangle;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
-import com.freemotion.smashfruit.android.Misc.SceneConfig;
+import com.freemotion.smashfruit.android.Misc.TextureConfig;
 import com.freemotion.smashfruit.android.Resources.SceneTextureLoader;
 import com.freemotion.smashfruit.android.Utils.GameActor;
 import com.freemotion.smashfruit.android.Utils.ResourceManager;
@@ -21,7 +20,7 @@ public class SceneBackground extends GameActor {
     public SceneBackground() {
         super();
         LOG_TAG = this.getClass().getSimpleName();
-        SceneConfig config = JsonConfigFactory.getInstance().getSceneConfig("background");
+        TextureConfig config = JsonConfigFactory.getInstance().getTextureConfig("background");
         SceneTextureLoader sceneLoader = (SceneTextureLoader) ResourceManager.getInstance().findLoader(SceneTextureLoader.class.getSimpleName());
         texture = sceneLoader.getTextureAtlas().findRegion(config.getRegion());
         textureRectangle = new Rectangle(config.getPositionX(), config.getPositionY(),
