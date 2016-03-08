@@ -26,8 +26,10 @@ public class GameStage extends StageBase {
         PASSED,
         PUSHED,
         SETUP,
+        TOUCHED,
     };
     private LEVEL_STATE levelState;
+    private LEVEL_STATE savedState;
 
     public GameStage() {
         super();
@@ -89,13 +91,13 @@ public class GameStage extends StageBase {
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        Gdx.app.error(LOG_TAG, "stage touch up");
+        Gdx.app.error(LOG_TAG, "stage touch up screenX: " + screenX + " screenY: " + screenY);
         return super.touchUp(screenX, screenY, pointer, button);
     }
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        Gdx.app.error(LOG_TAG, "stage touch down");
+        Gdx.app.error(LOG_TAG, "stage touch down screenX: " + screenX + " screenY: " + screenY);
         return super.touchDown(screenX, screenY, pointer, button);
     }
 
@@ -160,6 +162,10 @@ public class GameStage extends StageBase {
 
     public boolean isDominoPushed() {
         return levelState == LEVEL_STATE.PUSHED;
+    }
+
+    public boolean isGameTouched() {
+        return levelState == LEVEL_STATE.TOUCHED;
     }
 
     public void pushDomino() {

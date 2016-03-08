@@ -19,10 +19,11 @@ public class StageBase extends Stage {
     protected void setupViewPort() {
         int viewport_width = Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("APP_WIDTH").getValue());
         int viewport_height = Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("APP_HEIGHT").getValue());
-        stageCamera = new OrthographicCamera(viewport_width, viewport_height);
+        stageCamera = new OrthographicCamera();
+        stageCamera.setToOrtho(false, viewport_width, viewport_height);
         stageCamera.position.set(stageCamera.viewportWidth / 2f, stageCamera.viewportHeight / 2f, 0f);
         stageCamera.update();
-        this.setViewport(new ScalingViewport(Scaling.stretch, viewport_width, viewport_height, stageCamera));
+        this.setViewport(new ScalingViewport(Scaling.fill, viewport_width, viewport_height, stageCamera));
         getViewport().setScreenX(0);
         getViewport().setScreenY(0);
         getViewport().setScreenWidth(Gdx.graphics.getWidth());

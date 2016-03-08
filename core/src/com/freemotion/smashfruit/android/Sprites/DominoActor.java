@@ -7,12 +7,14 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.freemotion.smashfruit.android.Game.DominoObject;
 import com.freemotion.smashfruit.android.Misc.AnimationConfig;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Resources.SceneTextureLoader;
+import com.freemotion.smashfruit.android.Stages.GameStage;
 import com.freemotion.smashfruit.android.Utils.GameActor;
 import com.freemotion.smashfruit.android.Utils.ResourceManager;
 
@@ -32,6 +34,7 @@ public class DominoActor extends GameActor {
     protected Rectangle textureRectangle;
     protected DominoActor nextDomino;
     protected String dominoType;
+    protected Vector2 touchPosition;
     protected Pixmap touchableMask;
     protected float leanSpeed;
     protected float stateTime;
@@ -57,6 +60,7 @@ public class DominoActor extends GameActor {
                                          object.getCenterPos().y - textureRegion.getRegionHeight() * 0.5f,
                                          textureRegion.getRegionWidth(), textureRegion.getRegionHeight());
         setBounds(textureRectangle.x, textureRectangle.y, textureRectangle.width, textureRectangle.height);
+        touchPosition = new Vector2(textureRegion.getRegionX(), textureRegion.getRegionY());
         touchableMask = generateTouchableMask(textureRegion);
         stateTime = 0;
         status = DOMINO_STATE.Stand;
@@ -121,12 +125,15 @@ public class DominoActor extends GameActor {
 
     @Override
     public Actor hit(float x, float y, boolean touchable) {
+        //return super.hit(x, y, touchable);
         if((touchable && getTouchable() != Touchable.enabled)) {
             return null;
         } else {
-            //Gdx.app.error(LOG_TAG, "domino hit x: " + x + " y: " + y);
-            int pix = (touchableMask != null) ? touchableMask.getPixel(textureRegion.getRegionX() + (int) x, textureRegion.getRegionY() + (int) (getHeight() - y)) : 1;
-            return ((pix & 0x000000ff) != 0) ? this : null;
+            int pix = (touchableMask != null) ? touchableMask.getPixel((int) touchPosition.x + (int) x, (int) touchPosition.y + (int) (getHeight() - y)) : 1;
+            if (((GameStage) getStage()).isGameTouched() && super.hit(x, y, touchable) != null && ((pix & 0x000000ff) != 0)) {
+                Gdx.app.error(LOG_TAG, "domino hit x: " + x + " y: " + y + " pix: " + pix + " actorX: " + getX() + " actorY: " + getY() + " textureRegionX: " + touchPosition.x + " textureRegionY: " + touchPosition.y);
+            }
+            return (super.hit(x, y, touchable) != null) && ((pix & 0x000000ff) != 0) ? this : null;
         }
-    }
+}
 }
