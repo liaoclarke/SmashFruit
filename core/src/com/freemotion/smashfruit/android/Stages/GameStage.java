@@ -8,6 +8,8 @@ import com.freemotion.smashfruit.android.Game.TouchEventListener;
 import com.freemotion.smashfruit.android.Sprites.Cuboid;
 import com.freemotion.smashfruit.android.Sprites.DominoActor;
 import com.freemotion.smashfruit.android.Sprites.SceneBackground;
+import com.freemotion.smashfruit.android.Sprites.Widget.PassButton;
+import com.freemotion.smashfruit.android.Sprites.Widget.ResetButton;
 import com.freemotion.smashfruit.android.Utils.StageBase;
 
 /**
@@ -111,6 +113,8 @@ public class GameStage extends StageBase {
         game = new GameController();
         game.enterGame();
         createDominos();
+        addActor(new ResetButton());
+        addActor(new PassButton());
     }
 
     private void createDominos() {

@@ -1,5 +1,5 @@
 game.png
-size: 816, 3632
+size: 816, 3788
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -346,3 +346,17 @@ cylinder60
   orig: 204, 196
   offset: 0, 0
   index: 3
+pass
+  rotate: false
+  xy: 0, 3632
+  size: 160, 156
+  orig: 160, 156
+  offset: 0, 0
+  index: -1
+reset
+  rotate: false
+  xy: 160, 3632
+  size: 160, 156
+  orig: 160, 156
+  offset: 0, 0
+  index: -1

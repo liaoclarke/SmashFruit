@@ -22,7 +22,7 @@ public class GameController {
         level = 1;
         difficulty = 1;
         //dominoNum = MathUtils.random(6 + difficulty, 10 + difficulty);
-        dominoNum = 6;
+        dominoNum = 12;
         dominoObjects = new Array<DominoObject>();
         resetGame();
     }

@@ -35,6 +35,7 @@ public class DominoActor extends GameActor {
     protected DominoActor nextDomino;
     protected String dominoType;
     protected Vector2 touchPosition;
+    protected Rectangle touchableRectangle;
     protected Pixmap touchableMask;
     protected float leanSpeed;
     protected float stateTime;
@@ -61,6 +62,15 @@ public class DominoActor extends GameActor {
                                          textureRegion.getRegionWidth(), textureRegion.getRegionHeight());
         setBounds(textureRectangle.x, textureRectangle.y, textureRectangle.width, textureRectangle.height);
         touchPosition = new Vector2(textureRegion.getRegionX(), textureRegion.getRegionY());
+        /*touchableRectangle = new Rectangle(object.getCenterPos().x - (Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("TOUCHABLE_OFFSET_X").getValue())) * 0.5f,
+                                           object.getCenterPos().y - (Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("TOUCHABLE_OFFSET_Y").getValue())) * 0.5f,
+                                           Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("TOUCHABLE_OFFSET_X").getValue()),
+                                           Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("TOUCHABLE_OFFSET_Y").getValue()));
+                                           */
+        touchableRectangle = new Rectangle((textureRegion.getRegionWidth() - Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("TOUCHABLE_OFFSET_X").getValue())) * 0.5f,
+                                           (textureRegion.getRegionHeight() - Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("TOUCHABLE_OFFSET_Y").getValue())) * 0.5f,
+                                           Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("TOUCHABLE_OFFSET_X").getValue()),
+                                           Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("TOUCHABLE_OFFSET_Y").getValue()));
         touchableMask = generateTouchableMask(textureRegion);
         stateTime = 0;
         status = DOMINO_STATE.Stand;
@@ -130,10 +140,16 @@ public class DominoActor extends GameActor {
             return null;
         } else {
             int pix = (touchableMask != null) ? touchableMask.getPixel((int) touchPosition.x + (int) x, (int) touchPosition.y + (int) (getHeight() - y)) : 1;
-            if (((GameStage) getStage()).isGameTouched() && super.hit(x, y, touchable) != null && ((pix & 0x000000ff) != 0)) {
-                Gdx.app.error(LOG_TAG, "domino hit x: " + x + " y: " + y + " pix: " + pix + " actorX: " + getX() + " actorY: " + getY() + " textureRegionX: " + touchPosition.x + " textureRegionY: " + touchPosition.y);
+            //return (super.hit(x, y, touchable) != null) && ((pix & 0x000000ff) != 0) ? this : null;
+            boolean t =  (super.hit(x, y, touchable) != null) &&
+                   (x > touchableRectangle.x &&
+                    x < touchableRectangle.x + touchableRectangle.width &&
+                    y > touchableRectangle.y &&
+                    y < touchableRectangle.y + touchableRectangle.height);
+            if (t) {
+                Gdx.app.error(LOG_TAG, "domino hit x: " + x + " y: " + y + " actorX: " + getX() + " actorY: " + getY() + " touchRegionX: " + touchableRectangle.x + " touchRegionY: " + touchableRectangle.y);
             }
-            return (super.hit(x, y, touchable) != null) && ((pix & 0x000000ff) != 0) ? this : null;
+            return t ? this : null;
         }
 }
 }

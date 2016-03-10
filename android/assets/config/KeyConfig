@@ -48,6 +48,14 @@
     {
       "key" : "LEAN_SPEED_SCALE",
       "value" : 0.8
+    },
+    {
+      "key" : "TOUCHABLE_OFFSET_X",
+      "value" : 84
+    },
+    {
+      "key" : "TOUCHABLE_OFFSET_Y",
+      "value" : 80
     }
   ]
 }

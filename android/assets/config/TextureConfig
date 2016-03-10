@@ -12,6 +12,30 @@
       "rotation" : 0,
       "atlas" : "graphic/game.txt",
       "region" : "background"
+    },
+    {
+      "key" : "reset",
+      "origX" : 0,
+      "origY" : 0,
+      "positionX" : 40,
+      "positionY" : 20,
+      "scaleX" : 0.5,
+      "scaleY" : 0.5,
+      "rotation" : 0,
+      "atlas" : "graphic/game.txt",
+      "region" : "reset"
+    },
+    {
+      "key" : "pass",
+      "origX" : 0,
+      "origY" : 0,
+      "positionX" : 600,
+      "positionY" : 20,
+      "scaleX" : 0.5,
+      "scaleY" : 0.5,
+      "rotation" : 0,
+      "atlas" : "graphic/game.txt",
+      "region" : "pass"
     }
   ]
 }
