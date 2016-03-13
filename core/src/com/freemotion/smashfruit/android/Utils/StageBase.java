@@ -3,6 +3,7 @@ package com.freemotion.smashfruit.android.Utils;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.freemotion.smashfruit.android.Game.TouchEventListener;
@@ -13,8 +14,13 @@ import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
  */
 public class StageBase extends Stage {
 
-    private final static String LOG_TAG = StageBase.class.getSimpleName();
+    protected String LOG_TAG = StageBase.class.getSimpleName();
     private OrthographicCamera stageCamera;
+    private Array<ResourceLoader> loaders;
+
+    public StageBase() {
+        loaders = new Array<ResourceLoader>();
+    }
 
     protected void setupViewPort() {
         int viewport_width = Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("APP_WIDTH").getValue());
@@ -41,5 +47,17 @@ public class StageBase extends Stage {
 
     public boolean handleKeyReleasedEvent(TouchEventListener.INPUT_EVENT event) {
         return false;
+    }
+
+    public void readStageConfig() {
+    }
+
+    public void setStageContent() {
+    }
+
+    public void pause() {
+    }
+
+    public void resume() {
     }
 }

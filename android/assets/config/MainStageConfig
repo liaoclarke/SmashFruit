@@ -1,0 +1,110 @@
+{
+  "type" : "StageConfig",
+  "name" : "MainStage",
+  "data" : [
+    {
+      "key" : "main_background",
+      "dclass" : "BaseImage",
+      "positionX" : 0,
+      "positionY" : 0,
+      "width" : 0,
+      "height" : 0,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "rotation" : 0,
+      "atlas" : "graphic/ui.txt",
+      "region" : "main_background"
+    },
+    {
+      "key" : "game_logo",
+      "dclass" : "BaseImage",
+      "positionX" : 90,
+      "positionY" : 1023,
+      "width" : 0,
+      "height" : 0,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "rotation" : 0,
+      "atlas" : "graphic/ui.txt",
+      "region" : "game_logo"
+    },
+    {
+      "key" : "time_race",
+      "dclass" : "TimeRaceButton",
+      "positionX" : 162,
+      "positionY" : 761,
+      "width" : 0,
+      "height" : 0,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "rotation" : 0,
+      "atlas" : "graphic/ui.txt",
+      "region" : "time_race"
+    },
+    {
+      "key" : "find_best",
+      "dclass" : "FindBestButton",
+      "positionX" : 162,
+      "positionY" : 545,
+      "width" : 0,
+      "height" : 0,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "rotation" : 0,
+      "atlas" : "graphic/ui.txt",
+      "region" : "find_best"
+    },
+    {
+      "key" : "shape_it",
+      "dclass" : "ShapeItButton",
+      "positionX" : 162,
+      "positionY" : 329,
+      "width" : 0,
+      "height" : 0,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "rotation" : 0,
+      "atlas" : "graphic/ui.txt",
+      "region" : "shape_it"
+    },
+    {
+      "key" : "settings",
+      "dclass" : "SettingsButton",
+      "positionX" : 91,
+      "positionY" : 49,
+      "width" : 0,
+      "height" : 0,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "rotation" : 0,
+      "atlas" : "graphic/ui.txt",
+      "region" : "settings"
+    },
+    {
+      "key" : "rate",
+      "dclass" : "RateButton",
+      "positionX" : 298,
+      "positionY" : 49,
+      "width" : 0,
+      "height" : 0,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "rotation" : 0,
+      "atlas" : "graphic/ui.txt",
+      "region" : "rate"
+    },
+    {
+      "key" : "share",
+      "dclass" : "ShareButton",
+      "positionX" : 506,
+      "positionY" : 49,
+      "width" : 0,
+      "height" : 0,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "rotation" : 0,
+      "atlas" : "graphic/ui.txt",
+      "region" : "share"
+    }
+  ]
+}

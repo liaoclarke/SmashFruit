@@ -10,6 +10,7 @@ import com.freemotion.smashfruit.android.Misc.AnimationConfig;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Resources.LogoTextureLoader;
 import com.freemotion.smashfruit.android.Resources.SceneTextureLoader;
+import com.freemotion.smashfruit.android.Resources.UITextureLoader;
 import com.freemotion.smashfruit.android.Utils.GameBase;
 import com.freemotion.smashfruit.android.Utils.ResourceManager;
 import com.freemotion.smashfruit.android.Utils.ScreenBase;
@@ -21,6 +22,7 @@ public class LogoScreen extends ScreenBase {
 
     private String LOG_TAG;
     private SceneTextureLoader sceneTextureLoader;
+    private UITextureLoader uiTextureLoader;
     private LogoTextureLoader logoTextureLoader;
     private GameScreen gameScreen;
     private SpriteBatch batch;
@@ -56,6 +58,10 @@ public class LogoScreen extends ScreenBase {
         sceneTextureLoader = new SceneTextureLoader();
         ResourceManager.getInstance().addLoader(sceneTextureLoader);
         sceneTextureLoader.load();
+
+        uiTextureLoader = new UITextureLoader();
+        ResourceManager.getInstance().addLoader(uiTextureLoader);
+        uiTextureLoader.load();
     }
 
     @Override
@@ -82,7 +88,7 @@ public class LogoScreen extends ScreenBase {
             delayTime += delta;
         }
 
-        if (delayTime > MAX_DELAY_TIME && sceneTextureLoader.update() && gameInstance.getScreen() != gameScreen) {
+        if (delayTime > MAX_DELAY_TIME && uiTextureLoader.update() && sceneTextureLoader.update() && gameInstance.getScreen() != gameScreen) {
             Gdx.app.log(LOG_TAG, " set gamescreen ");
             gameScreen = new GameScreen(gameInstance);
             gameInstance.setScreen(gameScreen);

@@ -7,7 +7,9 @@ import java.util.ArrayList;
  */
 public class JsonConfigArray {
     public String type;
+    public String name;
     public ArrayList data;
+    public JsonConfigFileParser parser;
 
     public String getType() {
         return type;
@@ -15,5 +17,17 @@ public class JsonConfigArray {
 
     public ArrayList getData() {
         return data;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public JsonConfigFileParser getParser() {
+        return parser;
+    }
+
+    public void setParser(JsonConfigFileParser parser) {
+        this.parser = parser;
     }
 }

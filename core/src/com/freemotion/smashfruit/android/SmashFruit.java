@@ -2,6 +2,8 @@ package com.freemotion.smashfruit.android;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.math.Rectangle;
 import com.freemotion.smashfruit.android.Misc.AnimationConfig;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.KeyConfig;
@@ -12,7 +14,7 @@ import com.freemotion.smashfruit.android.Utils.ResourceManager;
 
 public class SmashFruit extends GameBase {
 
-	private int logLevel = Application.LOG_ERROR;
+	private int logLevel = Application.LOG_DEBUG;
 
 	public SmashFruit() {
 	}
