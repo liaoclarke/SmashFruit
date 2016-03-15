@@ -1,0 +1,12 @@
+{
+  "type" : "StageConfig",
+  "name" : "MenuStage",
+  "data" : [
+    {
+      "key" : "MainMenu",
+      "dclass" : "BaseFragment",
+      "configFile" : "config/MainMenuConfig",
+      "configName" : "MainMenu"
+    }
+  ]
+}

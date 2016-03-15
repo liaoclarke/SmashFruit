@@ -13,7 +13,7 @@ public class StageConfig extends JsonConfig {
     private float scaleX, scaleY;
     private float rotation;
     private String atlas, region;
-
+    private String configFile, configName;
 
     public int getPositionX() {
         return positionX;
@@ -49,5 +49,13 @@ public class StageConfig extends JsonConfig {
 
     public String getDclass() {
         return dclass;
+    }
+
+    public String getConfigFile() {
+        return configFile;
+    }
+
+    public String getConfigName() {
+        return configName;
     }
 }

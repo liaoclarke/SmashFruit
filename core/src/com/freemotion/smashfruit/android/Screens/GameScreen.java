@@ -24,8 +24,8 @@ public class GameScreen extends ScreenBase {
 
     private String LOG_TAG;
     private SpriteBatch batch;
-    private GameStage gameStage;
-    private MainStage mainStage;
+    private TimeRaceStage gameStage;
+    private MenuStage menuStage;
     private Array<StageBase> stages;
 
     public GameScreen(GameBase gameInstance) {
@@ -34,8 +34,8 @@ public class GameScreen extends ScreenBase {
         batch = new SpriteBatch();
 
         stages = new Array<StageBase>();
-        mainStage = new MainStage();
-        stages.add(mainStage);
+        menuStage = new MenuStage();
+        stages.add(menuStage);
         //gameStage = new GameStage();
         //stages.add(gameStage);
     }

@@ -1,10 +1,10 @@
 {
   "type" : "StageConfig",
-  "name" : "MainStage",
+  "name" : "MainMenu",
   "data" : [
     {
       "key" : "main_background",
-      "dclass" : "BaseImage",
+      "dclass" : "MenuBackground",
       "positionX" : 0,
       "positionY" : 0,
       "width" : 0,
@@ -17,7 +17,7 @@
     },
     {
       "key" : "game_logo",
-      "dclass" : "BaseImage",
+      "dclass" : "LogoTitle",
       "positionX" : 90,
       "positionY" : 1023,
       "width" : 0,

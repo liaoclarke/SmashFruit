@@ -1,0 +1,95 @@
+{
+  "type" : "StageConfig",
+  "name" : "FindBestMenu",
+  "data" : [
+    {
+      "key" : "findbest_background",
+      "dclass" : "MenuBackground",
+      "positionX" : 0,
+      "positionY" : 0,
+      "width" : 0,
+      "height" : 0,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "rotation" : 0,
+      "atlas" : "graphic/ui.txt",
+      "region" : "main_background"
+    },
+    {
+      "key" : "findbest_title",
+      "dclass" : "ChooseLevelTitle",
+      "positionX" : 0,
+      "positionY" : 1128,
+      "width" : 0,
+      "height" : 0,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "rotation" : 0,
+      "atlas" : "graphic/ui.txt",
+      "region" : "level_title"
+    },
+    {
+      "key" : "findbest_star_num",
+      "dclass" : "StarNum",
+      "positionX" : 38,
+      "positionY" : 1163,
+      "width" : 0,
+      "height" : 0,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "rotation" : 0,
+      "atlas" : "graphic/ui.txt",
+      "region" : "star_num"
+    },
+    {
+      "key" : "findbest_cuboid_num",
+      "dclass" : "CuboidNum",
+      "positionX" : 474,
+      "positionY" : 1163,
+      "width" : 0,
+      "height" : 0,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "rotation" : 0,
+      "atlas" : "graphic/ui.txt",
+      "region" : "cuboid_num"
+    },
+    {
+      "key" : "findbest_level_grid",
+      "dclass" : "ChooseLevelGrid",
+      "positionX" : 37,
+      "positionY" : 241,
+      "width" : 0,
+      "height" : 0,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "rotation" : 0
+    },
+    {
+      "key" : "findbest_back_button",
+      "dclass" : "BackButton",
+      "positionX" : 29,
+      "positionY" : 50,
+      "width" : 0,
+      "height" : 0,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "rotation" : 0,
+      "atlas" : "graphic/ui.txt",
+      "region" : "back"
+    },
+    {
+      "key" : "findbest_next_button",
+      "dclass" : "NextButton",
+      "positionX" : 599,
+      "positionY" : 50,
+      "width" : 0,
+      "height" : 0,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "rotation" : 0,
+      "atlas" : "graphic/ui.txt",
+      "region" : "next"
+    }
+  ]
+}

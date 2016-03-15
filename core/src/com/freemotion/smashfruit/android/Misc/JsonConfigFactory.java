@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
-import com.freemotion.smashfruit.android.Utils.GameActor;
 
 /**
  * Created by liaoclark on 2016/2/28.
@@ -86,12 +85,13 @@ public class JsonConfigFactory {
         return (StageConfig) getJsonConfig(StageConfig.class.getSimpleName(), name, key);
     }
 
-    public void inflateStaget(String configFile) {
+    public void inflateStage(String configFile) {
         for (JsonConfigArray array : jsonConfigMap) {
             if (configFile.equals(array.getName())) {
                 for (int i = 0; i < array.data.size(); i++) {
                     array.getParser().getGameActorObject((StageConfig) array.getData().get(i));
                 }
+                return;
             }
         }
     }

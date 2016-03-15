@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Resources.UITextureLoader;
 import com.freemotion.smashfruit.android.Utils.ResourceManager;
@@ -56,4 +57,15 @@ public class RateButton extends BaseButton {
             super.touchUp(event, x, y, pointer, button);
         }
     };
+
+    @Override
+    public void show() {
+        Gdx.app.error(LOG_TAG, " show");
+    }
+
+    @Override
+    public void hide() {
+        Gdx.app.error(LOG_TAG, " hide");
+        addAction(Actions.moveBy(0, -200, parent.getDuration()));
+    }
 }

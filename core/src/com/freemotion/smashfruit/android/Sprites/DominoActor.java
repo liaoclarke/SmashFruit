@@ -14,15 +14,14 @@ import com.freemotion.smashfruit.android.Game.DominoObject;
 import com.freemotion.smashfruit.android.Misc.AnimationConfig;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Resources.SceneTextureLoader;
-import com.freemotion.smashfruit.android.Stages.GameStage;
-import com.freemotion.smashfruit.android.Utils.GameActor;
 import com.freemotion.smashfruit.android.Utils.ResourceManager;
 
 /**
  * Created by liaoclark on 2016/3/8.
  */
-public class DominoActor extends GameActor {
+public class DominoActor extends Actor {
 
+    protected String LOG_TAG = "DominoActor";
     private enum DOMINO_STATE {
         Stand,
         Lean,

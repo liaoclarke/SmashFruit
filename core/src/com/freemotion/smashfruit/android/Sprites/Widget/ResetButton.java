@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
@@ -11,15 +12,15 @@ import com.freemotion.smashfruit.android.Game.TouchEventListener;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.TextureConfig;
 import com.freemotion.smashfruit.android.Resources.SceneTextureLoader;
-import com.freemotion.smashfruit.android.Stages.GameStage;
-import com.freemotion.smashfruit.android.Utils.GameActor;
+import com.freemotion.smashfruit.android.Stages.TimeRaceStage;
 import com.freemotion.smashfruit.android.Utils.ResourceManager;
 
 /**
  * Created by liaoclark on 1/22/16.
  */
-public class ResetButton extends GameActor {
+public class ResetButton extends Actor {
 
+    protected String LOG_TAG;
     private TextureRegion texture;
     private Rectangle textureRectangle;
 
@@ -51,7 +52,7 @@ public class ResetButton extends GameActor {
         @Override
         public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
             Gdx.app.error(LOG_TAG, "resetButton touch down");
-            ((GameStage) getStage()).handleKeyPressedEvent(TouchEventListener.INPUT_EVENT.Reset);
+            ((TimeRaceStage) getStage()).handleKeyPressedEvent(TouchEventListener.INPUT_EVENT.Reset);
             return super.touchDown(event, x, y, pointer, button);
         }
 
