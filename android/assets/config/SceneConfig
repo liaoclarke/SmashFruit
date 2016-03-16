@@ -1,5 +1,6 @@
 {
   "type" : "SceneConfig",
+  "name" : "SceneProperty",
   "data" : [
     {
       "key" : "scene_width",

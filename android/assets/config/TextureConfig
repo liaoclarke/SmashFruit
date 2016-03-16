@@ -1,5 +1,6 @@
 {
   "type" : "TextureConfig",
+  "name" : "GameTextures",
   "data" : [
     {
       "key" : "background",

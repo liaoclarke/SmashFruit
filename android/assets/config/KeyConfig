@@ -1,5 +1,6 @@
 {
   "type" : "KeyConfig",
+  "name" : "GameKeyValueMap",
   "data" : [
     {
       "key" : "APP_WIDTH",
@@ -56,6 +57,34 @@
     {
       "key" : "TOUCHABLE_OFFSET_Y",
       "value" : 80
+    },
+    {
+      "key" : "FIND_BEST_PAGE_NUM",
+      "value" : 3
+    },
+    {
+      "key" : "FIND_BEST_LEVEL_GRID_ROW",
+      "value" : 4
+    },
+    {
+      "key" : "FIND_BEST_LEVEL_GRID_COL",
+      "value" : 3
+    },
+    {
+      "key" : "FIND_BEST_LEVEL_NUM",
+      "value" : 100
+    },
+    {
+      "key" : "LEVEL_GRID_CELL_X_SPACE",
+      "value" : 51
+    },
+    {
+      "key" : "LEVEL_GRID_CELL_Y_SPACE",
+      "value" : 74
+    },
+    {
+      "key" : "LEVEL_GRID_PAGE_PADDING",
+      "value" : 37
     }
   ]
 }

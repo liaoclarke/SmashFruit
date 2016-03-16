@@ -1,5 +1,6 @@
 {
   "type" : "AnimationConfig",
+  "name" : "LogoAnimation",
   "data" : [
     {
       "key" : "logo",

@@ -4,9 +4,21 @@
   "data" : [
     {
       "key" : "MainMenu",
-      "dclass" : "BaseFragment",
+      "dclass" : "MainMenu",
+      "positionX" : 0,
+      "positionY" : 0,
       "configFile" : "config/MainMenuConfig",
-      "configName" : "MainMenu"
+      "configName" : "MainMenu",
+      "active" : false
+    },
+    {
+      "key" : "FindBestMenu",
+      "dclass" : "FindBestMenu",
+      "positionX" : 720,
+      "positionY" : 0,
+      "configFile" : "config/FindBestMenuConfig",
+      "configName" : "FindBestMenu",
+      "active" : true
     }
   ]
 }

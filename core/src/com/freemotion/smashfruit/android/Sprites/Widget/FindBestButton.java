@@ -8,8 +8,11 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Resources.UITextureLoader;
+import com.freemotion.smashfruit.android.Stages.MenuStage;
+import com.freemotion.smashfruit.android.Utils.Bundle;
 import com.freemotion.smashfruit.android.Utils.ResourceManager;
 
 /**
@@ -56,7 +59,9 @@ public class FindBestButton extends BaseButton {
             Gdx.app.error(LOG_TAG, this.getClass().getSimpleName() + " button touch up");
             pressed = false;
             super.touchUp(event, x, y, pointer, button);
-            parent.hide();
+            Bundle data = new Bundle();
+            data.putInteger(MenuStage.TO_FINDBEST);
+            ((MenuStage) getStage()).sendMessage(data);
         }
     };
 

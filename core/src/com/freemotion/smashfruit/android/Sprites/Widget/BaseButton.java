@@ -3,7 +3,6 @@ package com.freemotion.smashfruit.android.Sprites.Widget;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.StageConfig;

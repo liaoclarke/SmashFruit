@@ -16,11 +16,10 @@ import java.lang.reflect.Constructor;
  */
 public class BaseFragment extends Actor implements JsonConfigFileParser, TransitionActor {
 
-    private Array<TransitionActor> group;
     protected String LOG_TAG;
-    private String configFile, configName;
-    private TransitionActor parent;
-    private MenuStage stage;
+    protected MenuStage stage;
+    protected String configFile, configName;
+    protected Array<TransitionActor> group;
 
     public BaseFragment(StageConfig config) {
         super();
@@ -71,19 +70,23 @@ public class BaseFragment extends Actor implements JsonConfigFileParser, Transit
     }
 
     public void show() {
-        for (TransitionActor ac : group) {
-            ac.show();
-        }
+        JsonConfigFactory.getInstance().getStageConfig(configName).setActive(true);
     }
 
     public void hide() {
-        for (TransitionActor ac : group) {
-            ac.hide();
-        }
+        JsonConfigFactory.getInstance().getStageConfig(configName).setActive(false);
+    }
+
+    public boolean isActive() {
+        return JsonConfigFactory.getInstance().getStageConfig(configName).getActive();
+    }
+
+    public String getConfigName() {
+        return configName;
     }
 
     @Override
     public float getDuration() {
-        return .2f;
+        return 0f;
     }
 }

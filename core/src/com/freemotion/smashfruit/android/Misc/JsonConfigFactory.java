@@ -54,6 +54,11 @@ public class JsonConfigFactory {
         if (parser != null) {
             array.setParser(parser);
         }
+        for (JsonConfigArray ar : jsonConfigMap) {
+            if (ar.getName().equals(array.getName())) {
+                return;
+            }
+        }
         jsonConfigMap.add(array);
     }
 

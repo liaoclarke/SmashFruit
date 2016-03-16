@@ -57,10 +57,10 @@
     {
       "key" : "findbest_level_grid",
       "dclass" : "ChooseLevelGrid",
-      "positionX" : 37,
-      "positionY" : 241,
-      "width" : 0,
-      "height" : 0,
+      "positionX" : 0,
+      "positionY" : 250,
+      "width" : 720,
+      "height" : 810,
       "scaleX" : 1,
       "scaleY" : 1,
       "rotation" : 0
