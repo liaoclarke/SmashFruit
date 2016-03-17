@@ -1,0 +1,39 @@
+{
+  "type" : "StageConfig",
+  "name" : "PageIndicator",
+  "data" : [
+    {
+      "key" : "first_page",
+      "dclass" : "Indicator",
+      "positionX" : 300,
+      "positionY" : 149,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "atlas" : "graphic/ui.txt",
+      "region" : "tab",
+      "selected" : "selected_tab"
+    },
+    {
+      "key" : "second_page",
+      "dclass" : "Indicator",
+      "positionX" : 352,
+      "positionY" : 149,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "atlas" : "graphic/ui.txt",
+      "region" : "tab",
+      "selected" : "selected_tab"
+    },
+    {
+      "key" : "third_page",
+      "dclass" : "Indicator",
+      "positionX" : 403,
+      "positionY" : 149,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "atlas" : "graphic/ui.txt",
+      "region" : "tab",
+      "selected" : "selected_tab"
+    }
+  ]
+}

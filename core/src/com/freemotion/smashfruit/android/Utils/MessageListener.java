@@ -5,5 +5,5 @@ package com.freemotion.smashfruit.android.Utils;
  */
 public interface MessageListener {
 
-    void sendMessage(Bundle data);
+    void handleMessage(Bundle data);
 }

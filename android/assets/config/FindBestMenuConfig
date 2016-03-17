@@ -63,7 +63,16 @@
       "height" : 810,
       "scaleX" : 1,
       "scaleY" : 1,
-      "rotation" : 0
+      "rotation" : 0,
+      "configName" : "ChooseLevelGrid"
+    },
+    {
+      "key" : "findbest_page_indicator",
+      "dclass" : "PageIndicator",
+      "positionX" : 347,
+      "positionY" : 150,
+      "configFile" : "config/PageIndicatorConfig",
+      "configName" : "PageIndicator"
     },
     {
       "key" : "findbest_back_button",
@@ -76,7 +85,8 @@
       "scaleY" : 1,
       "rotation" : 0,
       "atlas" : "graphic/ui.txt",
-      "region" : "back"
+      "region" : "back",
+      "configName" : "BackButton"
     },
     {
       "key" : "findbest_next_button",
@@ -89,7 +99,8 @@
       "scaleY" : 1,
       "rotation" : 0,
       "atlas" : "graphic/ui.txt",
-      "region" : "next"
+      "region" : "next",
+      "configName" : "NextButton"
     }
   ]
 }

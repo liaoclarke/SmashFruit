@@ -1,12 +1,13 @@
 package com.freemotion.smashfruit.android.Sprites.Widget;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.utils.Array;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 
 /**
@@ -16,20 +17,22 @@ public class BaseScrollPane extends ScrollPane implements TransitionActor {
 
     protected String LOG_TAG;
     protected TransitionActor parent;
-    private Table content;
+    protected Table content;
+    protected String configFile, configName;
     private boolean wasPanDragFling = false;
+
 
     public BaseScrollPane (StageConfig config) {
         super(null);
         setBounds(config.getPositionX(), config.getPositionY(), config.getWidth(), config.getHeight());
+        configFile = config.getConfigFile();
+        configName = config.getConfigName();
         content = new Table();
         //content.setDebug(true);
         super.setWidget(content);
         setFadeScrollBars(false);
-    }
-
-    public void addPage (Actor page) {
-        content.add(page).expandY().fillY();
+        setFlingTime(0.1f);
+        addListener(inputListener);
     }
 
     @Override
@@ -71,26 +74,7 @@ public class BaseScrollPane extends ScrollPane implements TransitionActor {
         }
     }
 
-    private void scrollToPage () {
-        final float width = getWidth();
-        final float scrollX = getScrollX();
-        final float maxX = getMaxX();
-
-        if (scrollX >= maxX || scrollX <= 0) return;
-
-        Array<Actor> pages = content.getChildren();
-        float pageX = 0;
-        float pageWidth = 0;
-        if (pages.size > 0) {
-            for (Actor a : pages) {
-                pageX = a.getX();
-                pageWidth = a.getWidth();
-                if (scrollX < (pageX + pageWidth * 0.5)) {
-                    break;
-                }
-            }
-            setScrollX(MathUtils.clamp(pageX - (width - pageWidth) / 2, 0, maxX));
-        }
+    protected void scrollToPage () {
     }
 
     @Override
@@ -117,4 +101,19 @@ public class BaseScrollPane extends ScrollPane implements TransitionActor {
     public void setParent(TransitionActor parent) {
 
     }
+
+    protected InputListener inputListener = new InputListener() {
+        @Override
+        public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+            Gdx.app.error(LOG_TAG, this.getClass().getSimpleName() + " button touch down" + " scrollX: " + getScrollX());
+            scrollToPage();
+            return true;
+        }
+
+        @Override
+        public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+            Gdx.app.error(LOG_TAG, this.getClass().getSimpleName() + " button touch up" + " scrollX: " + getScrollX());
+            super.touchUp(event, x, y, pointer, button);
+        }
+    };
 }

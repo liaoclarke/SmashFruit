@@ -12,7 +12,7 @@ public class StageConfig extends JsonConfig {
     private int width, height;
     private float scaleX, scaleY;
     private float rotation;
-    private String atlas, region;
+    private String atlas, region, selected;
     private String configFile, configName;
     private boolean active;
 
@@ -20,64 +20,76 @@ public class StageConfig extends JsonConfig {
         return positionX;
     }
 
-    public void setPositionX(int x) {
+    public StageConfig setPositionX(int x) {
         positionX = x;
+        return this;
     }
 
     public int getPositionY() {
         return positionY;
     }
 
-    public void setPositionY(int y) {
+    public StageConfig setPositionY(int y) {
         positionY = y;
+        return this;
     }
 
     public int getWidth() {
         return width;
     }
 
-    public void setWidth(int w) {
+    public StageConfig setWidth(int w) {
         width = w;
+        return this;
     }
 
     public int getHeight() {
         return height;
     }
 
-    public void setHeight(int h) {
+    public StageConfig setHeight(int h) {
         height = h;
+        return this;
     }
 
     public float getScaleX() {
         return scaleX;
     }
 
-    public void setScaleX(float x) {
+    public StageConfig setScaleX(float x) {
         scaleX = x;
+        return this;
     }
 
     public float getScaleY() {
         return scaleY;
     }
 
-    public void setScaleY(float y) {
+    public StageConfig setScaleY(float y) {
         scaleY = y;
+        return this;
     }
 
     public String getAtlas() {
         return atlas;
     }
 
-    public void setAtlas(String atlas) {
+    public StageConfig setAtlas(String atlas) {
         this.atlas = atlas;
+        return this;
     }
 
     public String getRegion() {
         return region;
     }
 
-    public void setRegion(String region) {
+    public StageConfig setRegion(String region) {
         this.region = region;
+        return this;
+    }
+
+    public String getSelected() {
+        return selected;
     }
 
     public String getDclass() {
@@ -96,7 +108,8 @@ public class StageConfig extends JsonConfig {
         return active;
     }
 
-    public void setActive(boolean isActive) {
+    public StageConfig setActive(boolean isActive) {
         active = isActive;
+        return this;
     }
 }

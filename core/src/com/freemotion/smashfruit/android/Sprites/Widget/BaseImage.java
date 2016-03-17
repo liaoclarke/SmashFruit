@@ -18,7 +18,9 @@ public class BaseImage extends BaseActor {
 
     protected String LOG_TAG;
     private TextureRegion texture;
+    private TextureRegion selected_texture;
     private Rectangle textureRectangle;
+    private boolean isSelected;
 
     public BaseImage(String keyName) {
         super();
@@ -34,15 +36,27 @@ public class BaseImage extends BaseActor {
         super();
         UITextureLoader uiLoader = (UITextureLoader) ResourceManager.getInstance().findLoader(UITextureLoader.class.getSimpleName());
         texture = uiLoader.getTextureAtlas().findRegion(config.getRegion());
+        if (config.getSelected() != null) {
+            selected_texture = uiLoader.getTextureAtlas().findRegion(config.getSelected());
+        }
+        isSelected = false;
         textureRectangle = new Rectangle(config.getPositionX(), config.getPositionY(),
                 texture.getRegionWidth() * config.getScaleX(), texture.getRegionHeight() * config.getScaleY());
         setBounds(textureRectangle.x, textureRectangle.y, textureRectangle.width, textureRectangle.height);
     }
 
+    public void select(boolean selected) {
+        isSelected = selected;
+    }
+
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
-        batch.draw(texture, getX(), getY(), textureRectangle.width, textureRectangle.height);
+        if (isSelected) {
+            batch.draw(selected_texture, getX(), getY(), textureRectangle.width, textureRectangle.height);
+        } else {
+            batch.draw(texture, getX(), getY(), textureRectangle.width, textureRectangle.height);
+        }
     }
 
     @Override

@@ -13,12 +13,14 @@ import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Resources.UITextureLoader;
 import com.freemotion.smashfruit.android.Stages.MenuStage;
 import com.freemotion.smashfruit.android.Utils.Bundle;
+import com.freemotion.smashfruit.android.Utils.MessageDispatch;
+import com.freemotion.smashfruit.android.Utils.MessageListener;
 import com.freemotion.smashfruit.android.Utils.ResourceManager;
 
 /**
  * Created by liaoclark on 2016/3/12.
  */
-public class FindBestButton extends BaseButton {
+public class FindBestButton extends BaseButton implements MessageDispatch {
 
     private TextureRegion pressedTexture;
     private Rectangle pressedTextureRectangle;
@@ -61,9 +63,18 @@ public class FindBestButton extends BaseButton {
             super.touchUp(event, x, y, pointer, button);
             Bundle data = new Bundle();
             data.putInteger(MenuStage.TO_FINDBEST);
-            ((MenuStage) getStage()).sendMessage(data);
+            dispatchMessage((MenuStage) getStage(), data);
         }
     };
+
+    @Override
+    public void setMessageListener(MessageListener listener) {
+    }
+
+    @Override
+    public void dispatchMessage(MessageListener listener, Bundle data) {
+        ((MenuStage) getStage()).handleMessage(data);
+    }
 
     @Override
     public void show() {

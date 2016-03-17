@@ -75,7 +75,7 @@ public class MenuStage extends StageBase implements JsonConfigFileParser, Messag
         }
     }
 
-    public void sendMessage(Bundle data) {
+    public void handleMessage(Bundle data) {
         int message = data.getInteger();
         switch (message) {
             case TO_FINDBEST:

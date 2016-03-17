@@ -5,16 +5,35 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
+import com.freemotion.smashfruit.android.Utils.Bundle;
+import com.freemotion.smashfruit.android.Utils.MessageDispatch;
+import com.freemotion.smashfruit.android.Utils.MessageListener;
 
 /**
  * Created by liaoclark on 2016/3/16.
  */
-public class NextButton extends BaseButton {
+public class NextButton extends BaseButton implements MessageDispatch {
+
+    private MessageListener messageListener;
 
     public NextButton(StageConfig config) {
         super(config);
         LOG_TAG = this.getClass().getSimpleName();
         addListener(listener);
+        setName(config.getConfigName());
+        messageListener = null;
+    }
+
+    @Override
+    public void setMessageListener(MessageListener listener) {
+        messageListener = listener;
+    }
+
+    @Override
+    public void dispatchMessage(MessageListener listener, Bundle data) {
+        if (listener != null) {
+            listener.handleMessage(data);
+        }
     }
 
     @Override
@@ -37,6 +56,9 @@ public class NextButton extends BaseButton {
         @Override
         public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
             Gdx.app.error(LOG_TAG, this.getClass().getSimpleName() + " button touch up");
+            Bundle data = new Bundle();
+            data.putString("press_next_button");
+            dispatchMessage(messageListener, data);
             super.touchUp(event, x, y, pointer, button);
         }
     };

@@ -2,20 +2,28 @@ package com.freemotion.smashfruit.android.Sprites.Widget;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Array;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
+import com.freemotion.smashfruit.android.Utils.Bundle;
+import com.freemotion.smashfruit.android.Utils.MessageDispatch;
+import com.freemotion.smashfruit.android.Utils.MessageListener;
 
 /**
  * Created by liaoclark on 2016/3/16.
  */
-public class ChooseLevelGrid extends BaseScrollPane {
+public class ChooseLevelGrid extends BaseScrollPane implements MessageDispatch, MessageListener {
+
+    private MessageListener messageListener;
 
     public ChooseLevelGrid(StageConfig config) {
         super(config);
         LOG_TAG = this.getClass().getSimpleName();
-        setFlingTime(0.1f);
         inflateContent();
+        setName(configName);
     }
 
     private void inflateContent() {
@@ -26,6 +34,8 @@ public class ChooseLevelGrid extends BaseScrollPane {
         int page_padding = Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("LEVEL_GRID_PAGE_PADDING").getValue());
         int cell_x_space = Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("LEVEL_GRID_CELL_X_SPACE").getValue());
         int cell_y_space = Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("LEVEL_GRID_CELL_Y_SPACE").getValue());
+        StageConfig levelButton = new StageConfig();
+        levelButton.setAtlas("graphic/ui.txt").setRegion("unlocked_level").setPositionX(0).setPositionY(0).setScaleX(1).setScaleY(1);
         for (int page = 0; page < page_num; page++) {
             Table levels = new Table();
             //levels.setDebug(true);
@@ -34,22 +44,67 @@ public class ChooseLevelGrid extends BaseScrollPane {
             for (int row = 0; row < row_num; row++) {
                 levels.row();
                 for (int col = 0; col < col_num; col++) {
-                    levels.add(getLevelButton(level++));
+                    levels.add(new LevelButton(levelButton, level++));
                 }
             }
-            addPage(levels);
+            content.add(levels).expandY().fillY();
         }
     }
 
-    private LevelButton getLevelButton(int level) {
-        StageConfig config = new StageConfig();
-        config.setAtlas("graphic/ui.txt");
-        config.setRegion("unlocked_level");
-        config.setPositionX(0);
-        config.setPositionY(0);
-        config.setScaleX(1);
-        config.setScaleY(1);
-        return new LevelButton(config, level);
+    @Override
+    protected void scrollToPage() {
+        final float width = getWidth();
+        final float scrollX = getScrollX();
+        final float maxX = getMaxX();
+
+        if (scrollX >= maxX || scrollX <= 0) return;
+
+        Array<Actor> pages = content.getChildren();
+        float pageX = 0;
+        float pageWidth = 0;
+        if (pages.size > 0) {
+            for (Actor a : pages) {
+                pageX = a.getX();
+                pageWidth = a.getWidth();
+                if (scrollX < (pageX + pageWidth * 0.5)) {
+                    break;
+                }
+            }
+            //Gdx.app.error(LOG_TAG, " scrollX: " + scrollX + " pageX: " + pageX + " width: " + width + " maxX" + maxX);
+            Bundle data = new Bundle();
+            data.putInteger((int) scrollX);
+            dispatchMessage(messageListener, data);
+            setScrollX(MathUtils.clamp(pageX - (width - pageWidth) / 2, 0, maxX));
+        }
+    }
+
+    @Override
+    public void setMessageListener(MessageListener listener) {
+        messageListener = listener;
+    }
+
+    @Override
+    public void dispatchMessage(MessageListener listener, Bundle data) {
+        try {
+            listener.handleMessage(data);
+        } catch (Exception e) {
+            Gdx.app.error(LOG_TAG, " Dispatch message failed listener is " + listener);
+        }
+    }
+
+    @Override
+    public void handleMessage(Bundle data) {
+        String message = data.getString();
+        float scrollX = getScrollX();
+        if ("press_next_button".equals(message)) {
+            scrollX += 400;
+        } else if ("press_back_button".equals(message)) {
+            if (scrollX > 0) {
+                scrollX -= 400;
+            }
+        }
+        setScrollX(scrollX);
+        scrollToPage();
     }
 
     @Override

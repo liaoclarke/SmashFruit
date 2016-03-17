@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 public class BaseActor extends Actor implements TransitionActor {
 
     protected TransitionActor parent;
+    protected String configFile, configName;
 
     public BaseActor() {
         super();

@@ -37,6 +37,20 @@
       "rotation" : 0,
       "atlas" : "graphic/game.txt",
       "region" : "pass"
+    },
+    {
+      "key" : "page_indicator_normal",
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "atlas" : "graphic/ui.txt",
+      "region" : "tab"
+    },
+    {
+      "key" : "page_indicator_selected",
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "atlas" : "graphic/ui.txt",
+      "region" : "selected_tab"
     }
   ]
 }

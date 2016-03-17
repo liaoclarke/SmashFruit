@@ -60,6 +60,16 @@ public class BaseFragment extends Actor implements JsonConfigFileParser, Transit
         super.setStage(stage);
     }
 
+    public Actor findChildByName(String configName) {
+        for (TransitionActor ac : group) {
+            if (ac.getActor() != null && configName.equals(ac.getActor().getName()))  {
+                return ac.getActor();
+            }
+        }
+        return null;
+    }
+
+
     @Override
     public void setParent(TransitionActor actor) {
     }
