@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.utils.Array;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Misc.TransitionConfig;
@@ -12,24 +13,31 @@ import com.freemotion.smashfruit.android.Utils.Bundle;
 import com.freemotion.smashfruit.android.Utils.MessageDispatch;
 import com.freemotion.smashfruit.android.Utils.MessageListener;
 
+import java.util.ArrayList;
+
 /**
  * Created by liaoclark on 2016/3/16.
  */
 public class NextButton extends BaseButton implements MessageDispatch {
 
-    private MessageListener messageListener;
+    private Array<MessageListener> messageListeners;
 
     public NextButton(StageConfig config) {
         super(config);
         LOG_TAG = this.getClass().getSimpleName();
         addListener(listener);
         setName(config.getConfigName());
-        messageListener = null;
+        messageListeners = new Array<MessageListener>();
     }
 
     @Override
     public void setMessageListener(MessageListener listener) {
-        messageListener = listener;
+        for (MessageListener l : messageListeners) {
+            if (l == listener) {
+                return;
+            }
+        }
+        messageListeners.add(listener);
     }
 
     @Override
@@ -61,7 +69,9 @@ public class NextButton extends BaseButton implements MessageDispatch {
             Gdx.app.error(LOG_TAG, this.getClass().getSimpleName() + " button touch up");
             Bundle data = new Bundle();
             data.putString("press_next_button");
-            dispatchMessage(messageListener, data);
+            for (MessageListener l : messageListeners) {
+                dispatchMessage(l, data);
+            }
             super.touchUp(event, x, y, pointer, button);
         }
     };

@@ -30,7 +30,7 @@ public class PageIndicator extends BaseActor implements JsonConfigFileParser, Me
         configFile = config.getConfigFile();
         configName = config.getConfigName();
         JsonConfigFactory.getInstance().createStageConfigs(configFile, this);
-        JsonConfigFactory.getInstance().inflateStage(configName);
+        JsonConfigFactory.getInstance().inflateStage(configName, this);
         setName(configName);
         indicators.get(0).select(true);
     }
@@ -55,8 +55,10 @@ public class PageIndicator extends BaseActor implements JsonConfigFileParser, Me
         if (getStage() != null) {
             remove();
         }
-        for (TransitionActor ac : indicators) {
-            stage.addActor(ac.getActor());
+        if (stage != null) {
+            for (TransitionActor ac : indicators) {
+                stage.addActor(ac.getActor());
+            }
         }
         super.setStage(stage);
     }

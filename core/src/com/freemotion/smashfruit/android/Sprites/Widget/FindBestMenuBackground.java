@@ -20,7 +20,7 @@ public class FindBestMenuBackground extends BaseImage {
     public void show() {
         Gdx.app.error(LOG_TAG, " show");
         StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("findbest_background");
-        TransitionConfig delay = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_delay");
+        TransitionConfig delay = JsonConfigFactory.getInstance().getTransitionConfig(sc, "show_delay");
         TransitionConfig to = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_left");
         addAction(Actions.sequence(Actions.delay(delay.getDuration()), Actions.moveTo(to.getPositionX(), to.getPositionY()), Actions.visible(true)));
     }
@@ -29,7 +29,7 @@ public class FindBestMenuBackground extends BaseImage {
     public void hide() {
         Gdx.app.error(LOG_TAG, " hide");
         StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("findbest_background");
-        TransitionConfig delay = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_delay");
+        TransitionConfig delay = JsonConfigFactory.getInstance().getTransitionConfig(sc, "hide_delay");
         TransitionConfig to = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_right");
         addAction(Actions.sequence(Actions.delay(delay.getDuration()), Actions.moveTo(to.getPositionX(), to.getPositionY()), Actions.visible(false)));
     }

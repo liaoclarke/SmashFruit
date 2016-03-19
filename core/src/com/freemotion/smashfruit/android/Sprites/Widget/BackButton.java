@@ -73,6 +73,7 @@ public class BackButton extends BaseButton implements MessageDispatch, MessageLi
                 Bundle data = new Bundle();
                 data.putString("press_back_button");
                 dispatchMessage(levelPages, data);
+                current_page -= 1;
             }
         }
     };
@@ -81,7 +82,7 @@ public class BackButton extends BaseButton implements MessageDispatch, MessageLi
     public void handleMessage(Bundle data) {
         String str = data.getString();
         int max_page_num = Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("FIND_BEST_PAGE_NUM").getValue());
-        if ("next_button_pressed".equals(str) && current_page < max_page_num) {
+        if ("press_next_button".equals(str) && current_page < max_page_num) {
             current_page += 1;
         }
     }

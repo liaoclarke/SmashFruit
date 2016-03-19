@@ -13,8 +13,12 @@
       "region" : "main_background",
       "transition" : [
         {
-          "key" : "move_delay",
+          "key" : "show_delay",
           "duration" : 0.5
+        },
+        {
+          "key" : "hide_delay",
+          "duration" : 0.6
         },
         {
           "key" : "move_right",

@@ -20,6 +20,7 @@ public class FindBestMenu extends BaseFragment {
         NextButton nextButton = (NextButton) findChildByName("NextButton");
         backButton.setMessageListener(levelGrid);
         nextButton.setMessageListener(levelGrid);
+        nextButton.setMessageListener(backButton);
     }
 
     @Override

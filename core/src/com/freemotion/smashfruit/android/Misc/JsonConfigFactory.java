@@ -112,6 +112,17 @@ public class JsonConfigFactory {
         }
     }
 
+    public void inflateStage(String configFile, JsonConfigFileParser parser) {
+        for (JsonConfigArray array : jsonConfigMap) {
+            if (configFile.equals(array.getName())) {
+                for (int i = 0; i < array.data.size(); i++) {
+                    parser.getGameActorObject((StageConfig) array.getData().get(i));
+                }
+                return;
+            }
+        }
+    }
+
     public JsonConfig getJsonConfig(String type, String name, String key) {
          for (JsonConfigArray array : jsonConfigMap) {
             if (type.equals(array.type) && name.equals(array.getName())) {
