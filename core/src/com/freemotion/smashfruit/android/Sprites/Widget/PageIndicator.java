@@ -4,10 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.Array;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFileParser;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
+import com.freemotion.smashfruit.android.Misc.TransitionConfig;
 import com.freemotion.smashfruit.android.Utils.Bundle;
 import com.freemotion.smashfruit.android.Utils.MessageListener;
 
@@ -72,13 +74,19 @@ public class PageIndicator extends BaseActor implements JsonConfigFileParser, Me
     @Override
     public void show() {
         Gdx.app.error(LOG_TAG, " show");
+        StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("findbest_page_indicator");
+        TransitionConfig delay = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_delay");
+        TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_left");
+        addAction(Actions.sequence(Actions.delay(delay.getDuration()), Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration())));
     }
 
     @Override
     public void hide() {
         Gdx.app.error(LOG_TAG, " hide");
+        StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("findbest_page_indicator");
+        TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_right");
+        addAction(Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()));
     }
-
     @Override
     public void handleMessage(Bundle data) {
         int app_width = Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("APP_WIDTH").getValue());

@@ -4,10 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Array;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
+import com.freemotion.smashfruit.android.Misc.TransitionConfig;
 import com.freemotion.smashfruit.android.Utils.Bundle;
 import com.freemotion.smashfruit.android.Utils.MessageDispatch;
 import com.freemotion.smashfruit.android.Utils.MessageListener;
@@ -120,10 +122,17 @@ public class ChooseLevelGrid extends BaseScrollPane implements MessageDispatch, 
     @Override
     public void show() {
         Gdx.app.error(LOG_TAG, " show");
+        StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("findbest_level_grid");
+        TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_left");
+        TransitionConfig delay = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_delay");
+        addAction(Actions.sequence(Actions.delay(delay.getDuration()), Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration())));
     }
 
     @Override
     public void hide() {
         Gdx.app.error(LOG_TAG, " hide");
+        StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("findbest_level_grid");
+        TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_right");
+        addAction(Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()));
     }
 }

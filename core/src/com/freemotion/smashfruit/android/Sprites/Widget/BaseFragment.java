@@ -29,6 +29,7 @@ public class BaseFragment extends Actor implements JsonConfigFileParser, Transit
         configName = config.getConfigName();
         JsonConfigFactory.getInstance().createStageConfigs(configFile, this);
         JsonConfigFactory.getInstance().inflateStage(configName);
+        setName(configName);
     }
 
     @Override

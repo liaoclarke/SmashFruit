@@ -4,12 +4,12 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
+import com.freemotion.smashfruit.android.Misc.TransitionConfig;
 import com.freemotion.smashfruit.android.Resources.UITextureLoader;
 import com.freemotion.smashfruit.android.Stages.MenuStage;
 import com.freemotion.smashfruit.android.Utils.Bundle;
@@ -62,7 +62,7 @@ public class FindBestButton extends BaseButton implements MessageDispatch {
             pressed = false;
             super.touchUp(event, x, y, pointer, button);
             Bundle data = new Bundle();
-            data.putInteger(MenuStage.TO_FINDBEST);
+            data.putInteger(MenuStage.HIDE_MAINMENU_SHOW_FINDBEST);
             dispatchMessage((MenuStage) getStage(), data);
         }
     };
@@ -79,11 +79,17 @@ public class FindBestButton extends BaseButton implements MessageDispatch {
     @Override
     public void show() {
         Gdx.app.error(LOG_TAG, " show");
+        StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("find_best");
+        TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_right");
+        TransitionConfig delay = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_delay");
+        addAction(Actions.sequence(Actions.delay(delay.getDuration()), Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration())));
     }
 
     @Override
     public void hide() {
         Gdx.app.error(LOG_TAG, " hide");
-        addAction(Actions.moveBy(-720, 0, parent.getDuration()));
+        StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("find_best");
+        TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_left");
+        addAction(Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()));
     }
 }

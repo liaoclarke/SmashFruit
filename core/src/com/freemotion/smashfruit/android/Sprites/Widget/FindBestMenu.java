@@ -24,6 +24,7 @@ public class FindBestMenu extends BaseFragment {
 
     @Override
     public void show() {
+        super.show();
         for (TransitionActor ac : group) {
             ac.show();
         }
@@ -31,6 +32,7 @@ public class FindBestMenu extends BaseFragment {
 
     @Override
     public void hide() {
+        super.hide();
         for (TransitionActor ac : group) {
             ac.hide();
         }

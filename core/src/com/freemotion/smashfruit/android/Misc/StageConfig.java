@@ -8,13 +8,33 @@ import java.util.ArrayList;
 public class StageConfig extends JsonConfig {
 
     private String dclass;
+    private int origPositionX, origPositionY;
     private int positionX, positionY;
     private int width, height;
     private float scaleX, scaleY;
     private float rotation;
     private String atlas, region, selected;
     private String configFile, configName;
+    private ArrayList<TransitionConfig> transition;
     private boolean active;
+
+    public int getOrigPositionX() {
+        return origPositionX;
+    }
+
+    public StageConfig setOrigPositionX(int x) {
+        origPositionX = x;
+        return this;
+    }
+
+    public int getOrigPositionY() {
+        return origPositionY;
+    }
+
+    public StageConfig setOrigPositionY(int y) {
+        origPositionY = y;
+        return this;
+    }
 
     public int getPositionX() {
         return positionX;
@@ -111,5 +131,9 @@ public class StageConfig extends JsonConfig {
     public StageConfig setActive(boolean isActive) {
         active = isActive;
         return this;
+    }
+
+    public ArrayList<TransitionConfig> getTransition() {
+        return transition;
     }
 }

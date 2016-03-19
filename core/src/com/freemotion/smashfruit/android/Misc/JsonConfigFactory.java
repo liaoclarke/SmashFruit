@@ -5,6 +5,8 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 
+import java.util.ArrayList;
+
 /**
  * Created by liaoclark on 2016/2/28.
  */
@@ -84,6 +86,15 @@ public class JsonConfigFactory {
 
     public StageConfig getStageConfig(String key) {
         return (StageConfig) getJsonConfig(StageConfig.class.getSimpleName(), key);
+    }
+
+    public TransitionConfig getTransitionConfig(StageConfig config, String key) {
+        for (TransitionConfig c : config.getTransition()) {
+            if (key != null && key.equals(c.getKey())) {
+                return c;
+            }
+        }
+        return null;
     }
 
     public StageConfig getStageConfig(String name, String key) {

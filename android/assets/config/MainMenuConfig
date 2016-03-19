@@ -4,16 +4,31 @@
   "data" : [
     {
       "key" : "main_background",
-      "dclass" : "MenuBackground",
+      "dclass" : "MainMenuBackground",
       "positionX" : 0,
       "positionY" : 0,
-      "width" : 0,
-      "height" : 0,
       "scaleX" : 1,
       "scaleY" : 1,
-      "rotation" : 0,
       "atlas" : "graphic/ui.txt",
-      "region" : "main_background"
+      "region" : "main_background",
+      "transition" : [
+        {
+          "key" : "move_delay",
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_right",
+          "positionX" : 0,
+          "positionY" : 0,
+          "duration" : 0
+        },
+        {
+          "key" : "move_left",
+          "positionX" : -720,
+          "positionY" : 0,
+          "duration" : 0
+        }
+      ]
     },
     {
       "key" : "game_logo",
@@ -26,7 +41,25 @@
       "scaleY" : 1,
       "rotation" : 0,
       "atlas" : "graphic/ui.txt",
-      "region" : "game_logo"
+      "region" : "game_logo",
+      "transition" : [
+        {
+          "key" : "move_up",
+          "positionX" : 90,
+          "positionY" : 1500,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_down",
+          "positionX" : 90,
+          "positionY" : 1023,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_delay",
+          "duration" : 0.5
+        }
+      ]
     },
     {
       "key" : "time_race",
@@ -39,7 +72,25 @@
       "scaleY" : 1,
       "rotation" : 0,
       "atlas" : "graphic/ui.txt",
-      "region" : "time_race"
+      "region" : "time_race",
+      "transition" : [
+        {
+          "key" : "move_left",
+          "positionX" : -558,
+          "positionY" : 761,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_right",
+          "positionX" : 162,
+          "positionY" : 761,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_delay",
+          "duration" : 0.5
+        }
+      ]
     },
     {
       "key" : "find_best",
@@ -52,7 +103,25 @@
       "scaleY" : 1,
       "rotation" : 0,
       "atlas" : "graphic/ui.txt",
-      "region" : "find_best"
+      "region" : "find_best",
+      "transition" : [
+        {
+          "key" : "move_left",
+          "positionX" : -558,
+          "positionY" : 545,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_right",
+          "positionX" : 162,
+          "positionY" : 545,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_delay",
+          "duration" : 0.5
+        }
+      ]
     },
     {
       "key" : "shape_it",
@@ -65,7 +134,25 @@
       "scaleY" : 1,
       "rotation" : 0,
       "atlas" : "graphic/ui.txt",
-      "region" : "shape_it"
+      "region" : "shape_it",
+      "transition" : [
+        {
+          "key" : "move_left",
+          "positionX" : -558,
+          "positionY" : 329,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_right",
+          "positionX" : 162,
+          "positionY" : 329,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_delay",
+          "duration" : 0.5
+        }
+      ]
     },
     {
       "key" : "settings",
@@ -78,7 +165,25 @@
       "scaleY" : 1,
       "rotation" : 0,
       "atlas" : "graphic/ui.txt",
-      "region" : "settings"
+      "region" : "settings",
+      "transition" : [
+        {
+          "key" : "move_down",
+          "positionX" : 91,
+          "positionY" : -500,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_up",
+          "positionX" : 91,
+          "positionY" : 49,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_delay",
+          "duration" : 0.5
+        }
+      ]
     },
     {
       "key" : "rate",
@@ -91,7 +196,25 @@
       "scaleY" : 1,
       "rotation" : 0,
       "atlas" : "graphic/ui.txt",
-      "region" : "rate"
+      "region" : "rate",
+      "transition" : [
+        {
+          "key" : "move_down",
+          "positionX" : 298,
+          "positionY" : -500,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_up",
+          "positionX" : 298,
+          "positionY" : 49,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_delay",
+          "duration" : 0.5
+        }
+      ]
     },
     {
       "key" : "share",
@@ -104,7 +227,25 @@
       "scaleY" : 1,
       "rotation" : 0,
       "atlas" : "graphic/ui.txt",
-      "region" : "share"
+      "region" : "share",
+      "transition" : [
+        {
+          "key" : "move_down",
+          "positionX" : 506,
+          "positionY" : -500,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_up",
+          "positionX" : 506,
+          "positionY" : 49,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_delay",
+          "duration" : 0.5
+        }
+      ]
     }
   ]
 }

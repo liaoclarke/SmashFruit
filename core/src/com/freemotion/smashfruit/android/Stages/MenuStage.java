@@ -1,12 +1,12 @@
 package com.freemotion.smashfruit.android.Stages;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFileParser;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Sprites.Widget.BaseFragment;
+import com.freemotion.smashfruit.android.Sprites.Widget.MainMenu;
 import com.freemotion.smashfruit.android.Utils.Bundle;
 import com.freemotion.smashfruit.android.Utils.MessageListener;
 import com.freemotion.smashfruit.android.Utils.StageBase;
@@ -18,9 +18,10 @@ import java.lang.reflect.Constructor;
  */
 public class MenuStage extends StageBase implements JsonConfigFileParser, MessageListener {
 
-    public static final int TO_MAINMENU = 0;
-    public static final int TO_FINDBEST = 1;
-    public static final int TO_SHAPEIT = 2;
+    public static final int HIDE_MAINMENU_SHOW_FINDBEST = 0;
+    public static final int HIDE_MAINMENU_SHOW_SHAPEIT = 1;
+    public static final int HIDE_FINDBEST_SHOW_MAINMENU = 2;
+    public static final int HIDE_SHAPEIT_SHOW_MAINMENU  = 3;
 
     private Array<BaseFragment> fragments;
     private String configFile = "config/MenuStageConfig";
@@ -55,10 +56,10 @@ public class MenuStage extends StageBase implements JsonConfigFileParser, Messag
     public void setStageContent() {
         fragments = new Array<BaseFragment>();
         JsonConfigFactory.getInstance().inflateStage(configName);
-        if (curr_frag == null) {
-            curr_frag = findActiveFragment();
+        //addActor(findActiveFragment());
+        for (BaseFragment frag : fragments) {
+            addActor(frag);
         }
-        addActor(curr_frag);
     }
 
     @Override
@@ -78,25 +79,14 @@ public class MenuStage extends StageBase implements JsonConfigFileParser, Messag
     public void handleMessage(Bundle data) {
         int message = data.getInteger();
         switch (message) {
-            case TO_FINDBEST:
-                curr_frag.hide();
-                next_frag = findFragment("FindBestMenu");
-                next_frag.show();
-                curr_frag = next_frag;
+            case HIDE_MAINMENU_SHOW_FINDBEST:
+                findFragment("MainMenu").hide();
+                findFragment("FindBestMenu").show();
                 break;
 
-            case TO_MAINMENU:
-                curr_frag.hide();
-                next_frag = findFragment("MainMenu");
-                next_frag.show();
-                curr_frag = next_frag;
-                break;
-
-            case TO_SHAPEIT:
-                curr_frag.hide();
-                next_frag = findFragment("ShapeItMenu");
-                next_frag.show();
-                curr_frag = next_frag;
+            case HIDE_FINDBEST_SHOW_MAINMENU:
+                findFragment("FindBestMenu").hide();
+                findFragment("MainMenu").show();
                 break;
         }
     }

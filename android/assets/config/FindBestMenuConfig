@@ -4,8 +4,8 @@
   "data" : [
     {
       "key" : "findbest_background",
-      "dclass" : "MenuBackground",
-      "positionX" : 0,
+      "dclass" : "FindBestMenuBackground",
+      "positionX" : 720,
       "positionY" : 0,
       "width" : 0,
       "height" : 0,
@@ -13,25 +13,61 @@
       "scaleY" : 1,
       "rotation" : 0,
       "atlas" : "graphic/ui.txt",
-      "region" : "main_background"
+      "region" : "main_background",
+      "transition" : [
+        {
+          "key" : "move_delay",
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_right",
+          "positionX" : 720,
+          "positionY" : 0,
+          "duration" : 0
+        },
+        {
+          "key" : "move_left",
+          "positionX" : 0,
+          "positionY" : 0,
+          "duration" : 0
+        }
+      ]
     },
     {
       "key" : "findbest_title",
       "dclass" : "ChooseLevelTitle",
       "positionX" : 0,
-      "positionY" : 1128,
+      "positionY" : 1500,
       "width" : 0,
       "height" : 0,
       "scaleX" : 1,
       "scaleY" : 1,
       "rotation" : 0,
       "atlas" : "graphic/ui.txt",
-      "region" : "level_title"
+      "region" : "level_title",
+      "transition" : [
+        {
+          "key" : "move_down",
+          "positionX" : 0,
+          "positionY" : 1128,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_up",
+          "positionX" : 0,
+          "positionY" : 1500,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_delay",
+          "duration" : 0.5
+        }
+      ]
     },
     {
       "key" : "findbest_star_num",
       "dclass" : "StarNum",
-      "positionX" : 38,
+      "positionX" : -500,
       "positionY" : 1163,
       "width" : 0,
       "height" : 0,
@@ -39,12 +75,30 @@
       "scaleY" : 1,
       "rotation" : 0,
       "atlas" : "graphic/ui.txt",
-      "region" : "star_num"
+      "region" : "star_num",
+      "transition" : [
+        {
+          "key" : "move_left",
+          "positionX" : -500,
+          "positionY" : 1163,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_right",
+          "positionX" : 38,
+          "positionY" : 1163,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_delay",
+          "duration" : 0.5
+        }
+      ]
     },
     {
       "key" : "findbest_cuboid_num",
       "dclass" : "CuboidNum",
-      "positionX" : 474,
+      "positionX" : 1000,
       "positionY" : 1163,
       "width" : 0,
       "height" : 0,
@@ -52,32 +106,86 @@
       "scaleY" : 1,
       "rotation" : 0,
       "atlas" : "graphic/ui.txt",
-      "region" : "cuboid_num"
+      "region" : "cuboid_num",
+      "transition" : [
+        {
+          "key" : "move_left",
+          "positionX" : 474,
+          "positionY" : 1163,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_right",
+          "positionX" : 1000,
+          "positionY" : 1163,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_delay",
+          "duration" : 0.5
+        }
+      ]
     },
     {
       "key" : "findbest_level_grid",
       "dclass" : "ChooseLevelGrid",
-      "positionX" : 0,
+      "positionX" : 720,
       "positionY" : 250,
       "width" : 720,
       "height" : 810,
       "scaleX" : 1,
       "scaleY" : 1,
       "rotation" : 0,
-      "configName" : "ChooseLevelGrid"
+      "configName" : "ChooseLevelGrid",
+      "transition" : [
+        {
+          "key" : "move_left",
+          "positionX" : 0,
+          "positionY" : 250,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_right",
+          "positionX" : 720,
+          "positionY" : 250,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_delay",
+          "duration" : 0.5
+        }
+      ]
     },
     {
       "key" : "findbest_page_indicator",
       "dclass" : "PageIndicator",
-      "positionX" : 347,
+      "positionX" : 1067,
       "positionY" : 150,
       "configFile" : "config/PageIndicatorConfig",
-      "configName" : "PageIndicator"
+      "configName" : "PageIndicator",
+      "transition" : [
+        {
+          "key" : "move_left",
+          "positionX" : 347,
+          "positionY" : 150,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_right",
+          "positionX" : 1067,
+          "positionY" : 150,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_delay",
+          "duration" : 0.5
+        }
+      ]
     },
     {
       "key" : "findbest_back_button",
       "dclass" : "BackButton",
-      "positionX" : 29,
+      "positionX" : -500,
       "positionY" : 50,
       "width" : 0,
       "height" : 0,
@@ -86,12 +194,30 @@
       "rotation" : 0,
       "atlas" : "graphic/ui.txt",
       "region" : "back",
-      "configName" : "BackButton"
+      "configName" : "BackButton",
+      "transition" : [
+        {
+          "key" : "move_left",
+          "positionX" : -500,
+          "positionY" : 50,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_right",
+          "positionX" : 29,
+          "positionY" : 50,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_delay",
+          "duration" : 0.5
+        }
+      ]
     },
     {
       "key" : "findbest_next_button",
       "dclass" : "NextButton",
-      "positionX" : 599,
+      "positionX" : 1000,
       "positionY" : 50,
       "width" : 0,
       "height" : 0,
@@ -100,7 +226,25 @@
       "rotation" : 0,
       "atlas" : "graphic/ui.txt",
       "region" : "next",
-      "configName" : "NextButton"
+      "configName" : "NextButton",
+      "transition" : [
+        {
+          "key" : "move_left",
+          "positionX" : 599,
+          "positionY" : 50,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_right",
+          "positionX" : 1000,
+          "positionY" : 50,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_delay",
+          "duration" : 0.5
+        }
+      ]
     }
   ]
 }

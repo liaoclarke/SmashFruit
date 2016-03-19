@@ -7,7 +7,9 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
+import com.freemotion.smashfruit.android.Misc.TransitionConfig;
 import com.freemotion.smashfruit.android.Resources.UITextureLoader;
 import com.freemotion.smashfruit.android.Utils.ResourceManager;
 
@@ -61,11 +63,17 @@ public class SettingsButton extends BaseButton {
     @Override
     public void show() {
         Gdx.app.error(LOG_TAG, " show");
+        StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("settings");
+        TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_up");
+        TransitionConfig delay = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_delay");
+        addAction(Actions.sequence(Actions.delay(delay.getDuration()), Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration())));
     }
 
     @Override
     public void hide() {
         Gdx.app.error(LOG_TAG, " hide");
-        addAction(Actions.moveBy(0, -200, parent.getDuration()));
+        StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("settings");
+        TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_down");
+        addAction(Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()));
     }
 }

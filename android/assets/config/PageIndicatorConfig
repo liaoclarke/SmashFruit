@@ -5,35 +5,89 @@
     {
       "key" : "first_page",
       "dclass" : "Indicator",
-      "positionX" : 300,
-      "positionY" : 149,
+      "positionX" : 1020,
+      "positionY" : 150,
       "scaleX" : 1,
       "scaleY" : 1,
       "atlas" : "graphic/ui.txt",
       "region" : "tab",
-      "selected" : "selected_tab"
+      "selected" : "selected_tab",
+      "transition" : [
+        {
+          "key" : "move_left",
+          "positionX" : 300,
+          "positionY" : 149,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_right",
+          "positionX" : 1020,
+          "positionY" : 150,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_delay",
+          "duration" : 0.5
+        }
+      ]
     },
     {
       "key" : "second_page",
       "dclass" : "Indicator",
-      "positionX" : 352,
-      "positionY" : 149,
+      "positionX" : 1072,
+      "positionY" : 150,
       "scaleX" : 1,
       "scaleY" : 1,
       "atlas" : "graphic/ui.txt",
       "region" : "tab",
-      "selected" : "selected_tab"
+      "selected" : "selected_tab",
+      "transition" : [
+        {
+          "key" : "move_left",
+          "positionX" : 352,
+          "positionY" : 149,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_right",
+          "positionX" : 1072,
+          "positionY" : 149,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_delay",
+          "duration" : 0.5
+        }
+      ]
     },
     {
       "key" : "third_page",
       "dclass" : "Indicator",
-      "positionX" : 403,
-      "positionY" : 149,
+      "positionX" : 1123,
+      "positionY" : 150,
       "scaleX" : 1,
       "scaleY" : 1,
       "atlas" : "graphic/ui.txt",
       "region" : "tab",
-      "selected" : "selected_tab"
+      "selected" : "selected_tab",
+      "transition" : [
+        {
+          "key" : "move_left",
+          "positionX" : 403,
+          "positionY" : 149,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_right",
+          "positionX" : 1123,
+          "positionY" : 149,
+          "duration" : 0.5
+        },
+        {
+          "key" : "move_delay",
+          "duration" : 0.5
+        }
+      ]
     }
   ]
 }
