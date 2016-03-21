@@ -12,9 +12,12 @@ import com.freemotion.smashfruit.android.Misc.TransitionConfig;
  */
 public class Indicator extends BaseImage {
 
+    private String configKey;
+
     public Indicator(StageConfig config) {
         super(config);
         LOG_TAG = this.getClass().getSimpleName();
+        configKey = config.getKey();
     }
 
     @Override
@@ -30,7 +33,7 @@ public class Indicator extends BaseImage {
     @Override
     public void show() {
         Gdx.app.error(LOG_TAG, " show");
-        StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("findbest_page_indicator");
+        StageConfig sc = JsonConfigFactory.getInstance().getStageConfig(configKey);
         TransitionConfig delay = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_delay");
         TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_left");
         addAction(Actions.sequence(Actions.delay(delay.getDuration()), Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration())));
@@ -39,7 +42,7 @@ public class Indicator extends BaseImage {
     @Override
     public void hide() {
         Gdx.app.error(LOG_TAG, " hide");
-        StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("findbest_page_indicator");
+        StageConfig sc = JsonConfigFactory.getInstance().getStageConfig(configKey);
         TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_right");
         addAction(Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()));
     }

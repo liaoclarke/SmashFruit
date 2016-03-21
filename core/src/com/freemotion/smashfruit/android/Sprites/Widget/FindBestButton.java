@@ -12,10 +12,7 @@ import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Misc.TransitionConfig;
 import com.freemotion.smashfruit.android.Resources.UITextureLoader;
 import com.freemotion.smashfruit.android.Stages.MenuStage;
-import com.freemotion.smashfruit.android.Utils.Bundle;
-import com.freemotion.smashfruit.android.Utils.MessageDispatch;
-import com.freemotion.smashfruit.android.Utils.MessageListener;
-import com.freemotion.smashfruit.android.Utils.ResourceManager;
+import com.freemotion.smashfruit.android.Utils.*;
 
 /**
  * Created by liaoclark on 2016/3/12.
@@ -24,6 +21,7 @@ public class FindBestButton extends BaseButton implements MessageDispatch {
 
     private TextureRegion pressedTexture;
     private Rectangle pressedTextureRectangle;
+    private MessageHub messageHub;
 
     public FindBestButton(StageConfig config) {
         super(config);
@@ -33,6 +31,7 @@ public class FindBestButton extends BaseButton implements MessageDispatch {
         pressedTexture = uiLoader.getTextureAtlas().findRegion("rectangle_press_shadow");
         pressedTextureRectangle = new Rectangle(config.getPositionX(), config.getPositionY(),
                 pressedTexture.getRegionWidth() * config.getScaleX(), pressedTexture.getRegionHeight() * config.getScaleY());
+        setName("FindBestButton");
     }
 
     @Override
@@ -63,17 +62,18 @@ public class FindBestButton extends BaseButton implements MessageDispatch {
             super.touchUp(event, x, y, pointer, button);
             Bundle data = new Bundle();
             data.putInteger(MenuStage.HIDE_MAINMENU_SHOW_FINDBEST);
-            dispatchMessage((MenuStage) getStage(), data);
+            dispatchMessage("show_findbest_menu", data);
         }
     };
 
     @Override
-    public void setMessageListener(MessageListener listener) {
+    public void setMessageHub(MessageHub hub) {
+        messageHub = hub;
     }
 
     @Override
-    public void dispatchMessage(MessageListener listener, Bundle data) {
-        ((MenuStage) getStage()).handleMessage(data);
+    public void dispatchMessage(String message, Bundle data) {
+        messageHub.forwardMessageToListener(message, data);
     }
 
     @Override

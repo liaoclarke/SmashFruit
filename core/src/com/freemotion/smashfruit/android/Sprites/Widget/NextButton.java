@@ -11,40 +11,31 @@ import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Misc.TransitionConfig;
 import com.freemotion.smashfruit.android.Utils.Bundle;
 import com.freemotion.smashfruit.android.Utils.MessageDispatch;
+import com.freemotion.smashfruit.android.Utils.MessageHub;
 import com.freemotion.smashfruit.android.Utils.MessageListener;
-
-import java.util.ArrayList;
 
 /**
  * Created by liaoclark on 2016/3/16.
  */
 public class NextButton extends BaseButton implements MessageDispatch {
 
-    private Array<MessageListener> messageListeners;
+    private MessageHub messageHub;
 
     public NextButton(StageConfig config) {
         super(config);
         LOG_TAG = this.getClass().getSimpleName();
         addListener(listener);
         setName(config.getConfigName());
-        messageListeners = new Array<MessageListener>();
     }
 
     @Override
-    public void setMessageListener(MessageListener listener) {
-        for (MessageListener l : messageListeners) {
-            if (l == listener) {
-                return;
-            }
-        }
-        messageListeners.add(listener);
+    public void setMessageHub(MessageHub hub) {
+        messageHub = hub;
     }
 
     @Override
-    public void dispatchMessage(MessageListener listener, Bundle data) {
-        if (listener != null) {
-            listener.handleMessage(data);
-        }
+    public void dispatchMessage(String message, Bundle data) {
+        messageHub.forwardMessageToListener(message, data);
     }
 
     @Override
@@ -69,9 +60,7 @@ public class NextButton extends BaseButton implements MessageDispatch {
             Gdx.app.error(LOG_TAG, this.getClass().getSimpleName() + " button touch up");
             Bundle data = new Bundle();
             data.putString("press_next_button");
-            for (MessageListener l : messageListeners) {
-                dispatchMessage(l, data);
-            }
+            dispatchMessage("press_next_button", data);
             super.touchUp(event, x, y, pointer, button);
         }
     };

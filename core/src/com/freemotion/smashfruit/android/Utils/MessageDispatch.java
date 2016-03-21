@@ -5,7 +5,7 @@ package com.freemotion.smashfruit.android.Utils;
  */
 public interface MessageDispatch {
 
-    void setMessageListener(MessageListener listener);
+    void setMessageHub(MessageHub hub);
 
-    void dispatchMessage(MessageListener listener, Bundle data);
+    void dispatchMessage(String message, Bundle data);
 }

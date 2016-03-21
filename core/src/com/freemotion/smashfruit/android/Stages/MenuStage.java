@@ -6,7 +6,6 @@ import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFileParser;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Sprites.Widget.BaseFragment;
-import com.freemotion.smashfruit.android.Sprites.Widget.MainMenu;
 import com.freemotion.smashfruit.android.Utils.Bundle;
 import com.freemotion.smashfruit.android.Utils.MessageListener;
 import com.freemotion.smashfruit.android.Utils.StageBase;
@@ -86,6 +85,16 @@ public class MenuStage extends StageBase implements JsonConfigFileParser, Messag
 
             case HIDE_FINDBEST_SHOW_MAINMENU:
                 findFragment("FindBestMenu").hide();
+                findFragment("MainMenu").show();
+                break;
+
+            case HIDE_MAINMENU_SHOW_SHAPEIT:
+                findFragment("MainMenu").hide();
+                findFragment("ShapeItMenu").show();
+                break;
+
+            case HIDE_SHAPEIT_SHOW_MAINMENU:
+                findFragment("ShpaeItMenu").hide();
                 findFragment("MainMenu").show();
                 break;
         }

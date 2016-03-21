@@ -7,7 +7,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.freemotion.smashfruit.android.Misc.JsonConfig;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Misc.TransitionConfig;

@@ -92,13 +92,6 @@ public class LogoScreen extends ScreenBase {
             Gdx.app.log(LOG_TAG, " set gamescreen ");
             gameScreen = new GameScreen(gameInstance);
             gameInstance.setScreen(gameScreen);
-            //FadeOutTransition fadeOut = new FadeOutTransition(1f);
-            //FadeInTransition fadeIn = new FadeInTransition(1f);
-            //Array<TransitionEffect> transitionEffects = new Array<TransitionEffect>();
-            //transitionEffects.add(fadeOut);
-            //transitionEffects.add(fadeIn);
-            //TransitionScreen transitionScreen = new TransitionScreen(gameInstance, this, gameScreen, transitionEffects);
-            //gameInstance.setScreen(transitionScreen);
         }
     }
 

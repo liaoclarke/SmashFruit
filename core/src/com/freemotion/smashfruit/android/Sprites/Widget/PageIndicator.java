@@ -80,6 +80,9 @@ public class PageIndicator extends BaseActor implements JsonConfigFileParser, Me
         TransitionConfig delay = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_delay");
         TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_left");
         addAction(Actions.sequence(Actions.delay(delay.getDuration()), Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration())));
+        for (Indicator ac : indicators) {
+            ac.show();
+        }
     }
 
     @Override
@@ -88,6 +91,9 @@ public class PageIndicator extends BaseActor implements JsonConfigFileParser, Me
         StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("findbest_page_indicator");
         TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_right");
         addAction(Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()));
+        for (Indicator ac : indicators) {
+            ac.hide();
+        }
     }
     @Override
     public void handleMessage(Bundle data) {
@@ -98,6 +104,6 @@ public class PageIndicator extends BaseActor implements JsonConfigFileParser, Me
             indicators.get(i).select(false);
         }
         indicators.get(page).select(true);
-        Gdx.app.error(LOG_TAG, " page x : " + data.getInteger());
+        Gdx.app.error(LOG_TAG, " page : " + page + " page x : " + data.getInteger());
     }
 }

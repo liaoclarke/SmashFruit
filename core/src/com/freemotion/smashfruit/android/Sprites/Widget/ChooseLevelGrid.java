@@ -12,6 +12,7 @@ import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Misc.TransitionConfig;
 import com.freemotion.smashfruit.android.Utils.Bundle;
 import com.freemotion.smashfruit.android.Utils.MessageDispatch;
+import com.freemotion.smashfruit.android.Utils.MessageHub;
 import com.freemotion.smashfruit.android.Utils.MessageListener;
 
 /**
@@ -19,7 +20,7 @@ import com.freemotion.smashfruit.android.Utils.MessageListener;
  */
 public class ChooseLevelGrid extends BaseScrollPane implements MessageDispatch, MessageListener {
 
-    private MessageListener messageListener;
+    private MessageHub messageHub;
 
     public ChooseLevelGrid(StageConfig config) {
         super(config);
@@ -75,23 +76,20 @@ public class ChooseLevelGrid extends BaseScrollPane implements MessageDispatch, 
             //Gdx.app.error(LOG_TAG, " scrollX: " + scrollX + " pageX: " + pageX + " width: " + width + " maxX" + maxX);
             Bundle data = new Bundle();
             data.putInteger((int) scrollX);
-            dispatchMessage(messageListener, data);
+            data.putString("scroll_level_page");
+            dispatchMessage("scroll_level_page", data);
             setScrollX(MathUtils.clamp(pageX - (width - pageWidth) / 2, 0, maxX));
         }
     }
 
     @Override
-    public void setMessageListener(MessageListener listener) {
-        messageListener = listener;
+    public void setMessageHub(MessageHub hub) {
+        messageHub = hub;
     }
 
     @Override
-    public void dispatchMessage(MessageListener listener, Bundle data) {
-        try {
-            listener.handleMessage(data);
-        } catch (Exception e) {
-            Gdx.app.error(LOG_TAG, " Dispatch message failed listener is " + listener);
-        }
+    public void dispatchMessage(String message, Bundle data) {
+        messageHub.forwardMessageToListener(message, data);
     }
 
     @Override

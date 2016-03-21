@@ -1,7 +1,5 @@
 package com.freemotion.smashfruit.android.Sprites.Widget;
 
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Stages.MenuStage;
 import com.freemotion.smashfruit.android.Utils.Bundle;
@@ -9,24 +7,18 @@ import com.freemotion.smashfruit.android.Utils.MessageHub;
 import com.freemotion.smashfruit.android.Utils.MessageListener;
 
 /**
- * Created by liaoclark on 2016/3/15.
+ * Created by liaoclark on 3/21/2016.
  */
-public class FindBestMenu extends BaseFragment implements MessageHub {
+public class ShapeItMenu extends BaseFragment implements MessageHub {
 
-    public FindBestMenu(StageConfig config) {
+    public ShapeItMenu(StageConfig config) {
         super(config);
         LOG_TAG = this.getClass().getSimpleName();
 
         ChooseLevelGrid levelGrid = (ChooseLevelGrid) findChildByName("ChooseLevelGrid");
-        PageIndicator indicator = (PageIndicator) findChildByName("PageIndicator");
-        //levelGrid.setMessageListener(indicator);
-        levelGrid.setMessageHub(this);
-
         BackButton backButton = (BackButton) findChildByName("BackButton");
         NextButton nextButton = (NextButton) findChildByName("NextButton");
-        //backButton.setMessageHub(levelGrid);
-        //nextButton.setMessageHub(levelGrid);
-        //nextButton.setMessageHub(backButton);
+        levelGrid.setMessageHub(this);
         backButton.setMessageHub(this);
         nextButton.setMessageHub(this);
     }

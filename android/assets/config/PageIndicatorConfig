@@ -16,7 +16,7 @@
         {
           "key" : "move_left",
           "positionX" : 300,
-          "positionY" : 149,
+          "positionY" : 150,
           "duration" : 0.5
         },
         {
@@ -45,13 +45,13 @@
         {
           "key" : "move_left",
           "positionX" : 352,
-          "positionY" : 149,
+          "positionY" : 150,
           "duration" : 0.5
         },
         {
           "key" : "move_right",
           "positionX" : 1072,
-          "positionY" : 149,
+          "positionY" : 150,
           "duration" : 0.5
         },
         {
@@ -74,13 +74,13 @@
         {
           "key" : "move_left",
           "positionX" : 403,
-          "positionY" : 149,
+          "positionY" : 150,
           "duration" : 0.5
         },
         {
           "key" : "move_right",
           "positionX" : 1123,
-          "positionY" : 149,
+          "positionY" : 150,
           "duration" : 0.5
         },
         {

@@ -11,15 +11,17 @@ import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Misc.TransitionConfig;
 import com.freemotion.smashfruit.android.Resources.UITextureLoader;
-import com.freemotion.smashfruit.android.Utils.ResourceManager;
+import com.freemotion.smashfruit.android.Stages.MenuStage;
+import com.freemotion.smashfruit.android.Utils.*;
 
 /**
  * Created by liaoclark on 2016/3/12.
  */
-public class ShapeItButton extends BaseButton {
+public class ShapeItButton extends BaseButton implements MessageDispatch {
 
     private TextureRegion pressedTexture;
     private Rectangle pressedTextureRectangle;
+    private MessageHub messageHub;
 
     public ShapeItButton(StageConfig config) {
         super(config);
@@ -29,6 +31,7 @@ public class ShapeItButton extends BaseButton {
         pressedTexture = uiLoader.getTextureAtlas().findRegion("rectangle_press_shadow");
         pressedTextureRectangle = new Rectangle(config.getPositionX(), config.getPositionY(),
                 pressedTexture.getRegionWidth() * config.getScaleX(), pressedTexture.getRegionHeight() * config.getScaleY());
+        setName("ShapeItButton");
     }
 
     @Override
@@ -57,8 +60,21 @@ public class ShapeItButton extends BaseButton {
             Gdx.app.error(LOG_TAG, this.getClass().getSimpleName() + " button touch up");
             pressed = false;
             super.touchUp(event, x, y, pointer, button);
+            Bundle data = new Bundle();
+            data.putInteger(MenuStage.HIDE_MAINMENU_SHOW_FINDBEST);
+            dispatchMessage("show_shapeit_menu", data);
         }
     };
+
+    @Override
+    public void setMessageHub(MessageHub hub) {
+        messageHub = hub;
+    }
+
+    @Override
+    public void dispatchMessage(String message, Bundle data) {
+        messageHub.forwardMessageToListener(message, data);
+    }
 
     @Override
     public void show() {

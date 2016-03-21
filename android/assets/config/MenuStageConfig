@@ -19,6 +19,15 @@
       "configFile" : "config/FindBestMenuConfig",
       "configName" : "FindBestMenu",
       "active" : false
+    },
+    {
+      "key" : "ShapeItMenu",
+      "dclass" : "ShapeItMenu",
+      "positionX" : 0,
+      "positionY" : 0,
+      "configFile" : "config/ShapeItMenuConfig",
+      "configName" : "ShapeItMenu",
+      "active" : false
     }
   ]
 }
