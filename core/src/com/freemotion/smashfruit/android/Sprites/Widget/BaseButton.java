@@ -16,8 +16,8 @@ import com.freemotion.smashfruit.android.Utils.ResourceManager;
 public class BaseButton extends BaseActor {
 
     protected String LOG_TAG;
-    private TextureRegion texture;
-    private Rectangle textureRectangle;
+    protected TextureRegion texture;
+    protected Rectangle textureRectangle;
     protected boolean pressed;
 
     public BaseButton(String keyName) {

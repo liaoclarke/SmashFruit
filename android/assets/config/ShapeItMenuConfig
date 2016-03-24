@@ -141,6 +141,7 @@
       "scaleY" : 1,
       "rotation" : 0,
       "configName" : "ChooseLevelGrid",
+      "configFile" : "config/ShapeItLevelPage",
       "transition" : [
         {
           "key" : "move_left",

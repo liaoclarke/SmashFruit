@@ -105,14 +105,14 @@ public class BaseScrollPane extends ScrollPane implements TransitionActor {
     protected InputListener inputListener = new InputListener() {
         @Override
         public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-            Gdx.app.error(LOG_TAG, this.getClass().getSimpleName() + " button touch down" + " scrollX: " + getScrollX());
+            Gdx.app.log(LOG_TAG, this.getClass().getSimpleName() + " button touch down" + " scrollX: " + getScrollX());
             scrollToPage();
             return true;
         }
 
         @Override
         public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-            Gdx.app.error(LOG_TAG, this.getClass().getSimpleName() + " button touch up" + " scrollX: " + getScrollX());
+            Gdx.app.log(LOG_TAG, this.getClass().getSimpleName() + " button touch up" + " scrollX: " + getScrollX());
             super.touchUp(event, x, y, pointer, button);
         }
     };

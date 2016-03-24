@@ -53,13 +53,13 @@ public class BackButton extends BaseButton implements MessageDispatch, MessageLi
     protected InputListener listener = new InputListener() {
         @Override
         public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-            Gdx.app.error(LOG_TAG, this.getClass().getSimpleName() + " button touch down");
+            Gdx.app.log(LOG_TAG, this.getClass().getSimpleName() + " button touch down");
             return true;
         }
 
         @Override
         public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-            Gdx.app.error(LOG_TAG, this.getClass().getSimpleName() + " button touch up current_page: " + current_page);
+            Gdx.app.log(LOG_TAG, this.getClass().getSimpleName() + " button touch up current_page: " + current_page);
             super.touchUp(event, x, y, pointer, button);
             if (current_page <= 0) {
                 Bundle data = new Bundle();
@@ -80,13 +80,13 @@ public class BackButton extends BaseButton implements MessageDispatch, MessageLi
         int max_page_num = Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("FIND_BEST_PAGE_NUM").getValue());
         if ("press_next_button".equals(strData) && current_page < max_page_num) {
             current_page += 1;
-            Gdx.app.error(LOG_TAG, "press next button : " + current_page);
+            Gdx.app.log(LOG_TAG, "press next button : " + current_page);
         } else if ("scroll_level_page".equals(strData) && current_page < max_page_num) {
             int app_width = Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("APP_WIDTH").getValue());
             int page = data.getInteger() / app_width;
             page += (data.getInteger() % app_width) > (app_width * 0.5f) ? 1 : 0;
             current_page = page;
-            Gdx.app.error(LOG_TAG, "scroll level page : " + current_page);
+            Gdx.app.log(LOG_TAG, "scroll level page : " + current_page);
         }
     }
 

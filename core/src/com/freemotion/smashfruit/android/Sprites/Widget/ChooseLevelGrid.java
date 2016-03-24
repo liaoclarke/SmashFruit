@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Array;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
+import com.freemotion.smashfruit.android.Misc.LevelConfig;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Misc.TransitionConfig;
 import com.freemotion.smashfruit.android.Utils.Bundle;
@@ -30,16 +31,16 @@ public class ChooseLevelGrid extends BaseScrollPane implements MessageDispatch, 
     }
 
     private void inflateContent() {
-        int level = 1;
         int page_num = Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("FIND_BEST_PAGE_NUM").getValue());
         int row_num = Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("FIND_BEST_LEVEL_GRID_ROW").getValue());
         int col_num = Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("FIND_BEST_LEVEL_GRID_COL").getValue());
         int page_padding = Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("LEVEL_GRID_PAGE_PADDING").getValue());
         int cell_x_space = Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("LEVEL_GRID_CELL_X_SPACE").getValue());
         int cell_y_space = Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("LEVEL_GRID_CELL_Y_SPACE").getValue());
-        StageConfig levelButton = new StageConfig();
-        levelButton.setAtlas("graphic/ui.txt").setRegion("unlocked_level").setPositionX(0).setPositionY(0).setScaleX(1).setScaleY(1);
+        StageConfig viewConfig = new StageConfig();
+        viewConfig.setAtlas("graphic/ui.txt").setRegion("unlocked_level").setPositionX(0).setPositionY(0).setScaleX(1).setScaleY(1);
         for (int page = 0; page < page_num; page++) {
+            String levelConfigName = JsonConfigFactory.getInstance().createLevelConfigs(configFile + page);
             Table levels = new Table();
             //levels.setDebug(true);
             levels.defaults().space(cell_y_space, cell_x_space, cell_y_space, cell_x_space);
@@ -47,7 +48,8 @@ public class ChooseLevelGrid extends BaseScrollPane implements MessageDispatch, 
             for (int row = 0; row < row_num; row++) {
                 levels.row();
                 for (int col = 0; col < col_num; col++) {
-                    levels.add(new LevelButton(levelButton, level++));
+                    LevelConfig dataConfig = JsonConfigFactory.getInstance().getLevelConfig(levelConfigName, page + "-" + row + "-" + col);
+                    levels.add(new LevelButton(viewConfig, dataConfig));
                 }
             }
             content.add(levels).expandY().fillY();

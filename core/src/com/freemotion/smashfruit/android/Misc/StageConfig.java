@@ -73,7 +73,7 @@ public class StageConfig extends JsonConfig {
     }
 
     public float getScaleX() {
-        return scaleX;
+        return scaleX == 0 ? 1 : scaleX;
     }
 
     public StageConfig setScaleX(float x) {
@@ -82,7 +82,7 @@ public class StageConfig extends JsonConfig {
     }
 
     public float getScaleY() {
-        return scaleY;
+        return scaleY == 0 ? 1 : scaleY;
     }
 
     public StageConfig setScaleY(float y) {

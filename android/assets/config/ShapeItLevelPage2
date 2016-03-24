@@ -1,0 +1,78 @@
+{
+  "type" : "LevelConfig",
+  "name" : "ShapeItLevelPage2",
+  "data" : [
+    {
+      "key" : "2-0-0",
+      "star" : 0,
+      "level" : 25,
+      "pass" : false
+    },
+    {
+      "key" : "2-0-1",
+      "star" : 0,
+      "level" : 26,
+      "pass" : false
+    },
+    {
+      "key" : "2-0-2",
+      "star" : 0,
+      "level" : 27,
+      "pass" : false
+    },
+    {
+      "key" : "2-1-0",
+      "star" : 0,
+      "level" : 28,
+      "pass" : false
+    },
+    {
+      "key" : "2-1-1",
+      "star" : 0,
+      "level" : 29,
+      "pass" : false
+    },
+    {
+      "key" : "2-1-2",
+      "star" : 0,
+      "level" : 30,
+      "pass" : false
+    },
+    {
+      "key" : "2-2-0",
+      "star" : 0,
+      "level" : 31,
+      "pass" : false
+    },
+    {
+      "key" : "2-2-1",
+      "star" : 0,
+      "level" : 32,
+      "pass" : false
+    },
+    {
+      "key" : "2-2-2",
+      "star" : 0,
+      "level" : 33,
+      "pass" : false
+    },
+    {
+      "key" : "2-3-0",
+      "star" : 0,
+      "level" : 34,
+      "pass" : false
+    },
+    {
+      "key" : "2-3-1",
+      "star" : 0,
+      "level" : 35,
+      "pass" : false
+    },
+    {
+      "key" : "2-3-2",
+      "star" : 0,
+      "level" : 36,
+      "pass" : false
+    }
+  ]
+}

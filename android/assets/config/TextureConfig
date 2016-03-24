@@ -51,6 +51,11 @@
       "scaleY" : 1,
       "atlas" : "graphic/ui.txt",
       "region" : "selected_tab"
+    },
+    {
+      "key" : "dialog_background_shadow",
+      "atlas" : "graphic/ui.txt",
+      "region" : "dialog_shadow"
     }
   ]
 }

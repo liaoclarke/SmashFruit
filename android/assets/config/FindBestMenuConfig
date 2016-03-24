@@ -141,6 +141,7 @@
       "scaleY" : 1,
       "rotation" : 0,
       "configName" : "ChooseLevelGrid",
+      "configFile" : "config/FindBestLevelPage",
       "transition" : [
         {
           "key" : "move_left",

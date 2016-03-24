@@ -47,7 +47,12 @@ public class JsonConfigFactory {
         createJsonConfigs(filePath, TextureConfig.class);
     }
 
-    public void createJsonConfigs(String configFilePath, Class confiClass, JsonConfigFileParser parser) {
+    public String createLevelConfigs(String filePath) {
+        JsonConfigArray ar = createJsonConfigs(filePath, LevelConfig.class);
+        return ar.getName();
+    }
+
+    public JsonConfigArray createJsonConfigs(String configFilePath, Class confiClass, JsonConfigFileParser parser) {
         FileHandle file = Gdx.files.internal(configFilePath);
         String text = file.readString();
 		Json json = new Json();
@@ -58,14 +63,15 @@ public class JsonConfigFactory {
         }
         for (JsonConfigArray ar : jsonConfigMap) {
             if (ar.getName().equals(array.getName())) {
-                return;
+                return null;
             }
         }
         jsonConfigMap.add(array);
+        return array;
     }
 
-    public void createJsonConfigs(String configFilePath, Class confiClass) {
-        createJsonConfigs(configFilePath, confiClass, null);
+    public JsonConfigArray createJsonConfigs(String configFilePath, Class confiClass) {
+        return createJsonConfigs(configFilePath, confiClass, null);
     }
 
     public AnimationConfig getAnimationConfig(String key) {
@@ -99,6 +105,10 @@ public class JsonConfigFactory {
 
     public StageConfig getStageConfig(String name, String key) {
         return (StageConfig) getJsonConfig(StageConfig.class.getSimpleName(), name, key);
+    }
+
+    public LevelConfig getLevelConfig(String name, String key) {
+        return (LevelConfig) getJsonConfig(LevelConfig.class.getSimpleName(), name, key);
     }
 
     public void inflateStage(String configFile) {

@@ -1,0 +1,78 @@
+{
+  "type" : "LevelConfig",
+  "name" : "FindBestLevelPage1",
+  "data" : [
+    {
+      "key" : "1-0-0",
+      "star" : 0,
+      "level" : 13,
+      "pass" : true
+    },
+    {
+      "key" : "1-0-1",
+      "star" : 0,
+      "level" : 14,
+      "pass" : false
+    },
+    {
+      "key" : "1-0-2",
+      "star" : 0,
+      "level" : 15,
+      "pass" : false
+    },
+    {
+      "key" : "1-1-0",
+      "star" : 0,
+      "level" : 16,
+      "pass" : false
+    },
+    {
+      "key" : "1-1-1",
+      "star" : 0,
+      "level" : 17,
+      "pass" : false
+    },
+    {
+      "key" : "1-1-2",
+      "star" : 0,
+      "level" : 18,
+      "pass" : false
+    },
+    {
+      "key" : "1-2-0",
+      "star" : 0,
+      "level" : 19,
+      "pass" : false
+    },
+    {
+      "key" : "1-2-1",
+      "star" : 0,
+      "level" : 20,
+      "pass" : false
+    },
+    {
+      "key" : "1-2-2",
+      "star" : 0,
+      "level" : 21,
+      "pass" : false
+    },
+    {
+      "key" : "1-3-0",
+      "star" : 0,
+      "level" : 22,
+      "pass" : false
+    },
+    {
+      "key" : "1-3-1",
+      "star" : 0,
+      "level" : 23,
+      "pass" : false
+    },
+    {
+      "key" : "1-3-2",
+      "star" : 0,
+      "level" : 24,
+      "pass" : true
+    }
+  ]
+}

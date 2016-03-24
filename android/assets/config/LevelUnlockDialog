@@ -1,0 +1,43 @@
+{
+  "type" : "StageConfig",
+  "name" : "LevelUnlockDialog",
+  "data" : [
+    {
+      "key" : "level_unlock_dialog_shadow",
+      "positionX" : 0,
+      "positionY" : 0,
+      "width" : 720,
+      "height" : 1280,
+      "atlas" : "graphic/ui.txt",
+      "region" : "dialog_shadow"
+    },
+    {
+      "key" : "level_unlock_dialog_background",
+      "positionX" : 111,
+      "positionY" : 142,
+      "atlas" : "graphic/ui.txt",
+      "region" : "dialog_shadow"
+    },
+    {
+      "key" : "level_unlock_dialog_close_button",
+      "positionX" : 525,
+      "positionY" : 821,
+      "atlas" : "graphic/ui.txt",
+      "region" : "dialog_close"
+    },
+    {
+      "key" : "level_unlock_dialog_star_icon",
+      "positionX" : 277,
+      "positionY" : 621,
+      "atlas" : "graphic/ui.txt",
+      "region" : "dialog_star_icon"
+    },
+    {
+      "key" : "level_unlock_dialog_cuboid_icon",
+      "positionX" : 277,
+      "positionY" : 502,
+      "atlas" : "graphic/ui.txt",
+      "region" : "dialog_cuboid_icon"
+    }
+  ]
+}
