@@ -40,8 +40,15 @@ public class BaseImage extends BaseActor {
             selected_texture = uiLoader.getTextureAtlas().findRegion(config.getSelected());
         }
         isSelected = false;
-        textureRectangle = new Rectangle(config.getPositionX(), config.getPositionY(),
-                texture.getRegionWidth() * config.getScaleX(), texture.getRegionHeight() * config.getScaleY());
+        int w = texture.getRegionWidth();
+        int h = texture.getRegionHeight();
+        if (config.getWidth() != 0) {
+            w = config.getWidth();
+        }
+        if (config.getHeight() != 0) {
+            h = config.getHeight();
+        }
+        textureRectangle = new Rectangle(config.getPositionX(), config.getPositionY(), w * config.getScaleX(), h * config.getScaleY());
         setBounds(textureRectangle.x, textureRectangle.y, textureRectangle.width, textureRectangle.height);
     }
 

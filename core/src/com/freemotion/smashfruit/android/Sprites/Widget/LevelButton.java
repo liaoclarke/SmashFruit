@@ -5,26 +5,29 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.utils.Array;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
+import com.freemotion.smashfruit.android.Misc.JsonConfigFileParser;
 import com.freemotion.smashfruit.android.Misc.LevelConfig;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Resources.UITextureLoader;
+import com.freemotion.smashfruit.android.Stages.MenuStage;
 import com.freemotion.smashfruit.android.Utils.ResourceManager;
+
+import java.lang.reflect.Constructor;
 
 /**
  * Created by liaoclark on 2016/3/16.
  */
-public class LevelButton extends BaseButton {
+public class LevelButton extends BaseButton implements JsonConfigFileParser {
 
     private String LOG_TAG;
-    private int level;
     private boolean isPan;
     private LevelConfig levelData;
     private static TextureRegion unlockedTexture, lockedTexture;
 
     public LevelButton(StageConfig viewConfig, LevelConfig dataConfig) {
         super(viewConfig);
-        this.level = dataConfig.getLevel();
         levelData = dataConfig;
         UITextureLoader uiLoader = (UITextureLoader) ResourceManager.getInstance().findLoader(UITextureLoader.class.getSimpleName());
         if (lockedTexture == null) {
@@ -35,6 +38,19 @@ public class LevelButton extends BaseButton {
         }
         LOG_TAG = this.getClass().getSimpleName();
         addListener(listener);
+    }
+
+    @Override
+    public void getGameActorObject(StageConfig config) {
+        try {
+            String pkg = "com.freemotion.smashfruit.android.Sprites.Widget";
+            Class cls = Class.forName(pkg + "." + config.getDclass());
+            Constructor ctor = cls.getConstructor(StageConfig.class);
+            TransitionActor ac = (TransitionActor) ctor.newInstance(config);
+        } catch (Exception e) {
+            Gdx.app.error(LOG_TAG, "Can not create object from config : " + config.getKey());
+            throw new RuntimeException("Can not parser config file: " + configFile);
+        }
     }
 
     protected InputListener listener = new InputListener() {
@@ -86,6 +102,8 @@ public class LevelButton extends BaseButton {
     }
 
     private void showUnlockDialog() {
-
+        Gdx.app.error(LOG_TAG, " show unlock dialog");
+        UnlockDialog dialog = new UnlockDialog(this);
+        dialog.show();
     }
 }
