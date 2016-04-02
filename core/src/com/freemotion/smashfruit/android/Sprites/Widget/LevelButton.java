@@ -25,7 +25,7 @@ public class LevelButton extends BaseButton implements JsonConfigFileParser {
     private String LOG_TAG;
     private boolean isPan;
     private LevelConfig levelData;
-    private static TextureRegion unlockedTexture, lockedTexture;
+    private TextureRegion unlockedTexture, lockedTexture;
 
     public LevelButton(StageConfig viewConfig, LevelConfig dataConfig) {
         super(viewConfig);

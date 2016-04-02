@@ -63,7 +63,7 @@ public class JsonConfigFactory {
         }
         for (JsonConfigArray ar : jsonConfigMap) {
             if (ar.getName().equals(array.getName())) {
-                return null;
+                return ar;
             }
         }
         jsonConfigMap.add(array);
