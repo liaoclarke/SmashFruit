@@ -16,6 +16,7 @@ public class StageConfig extends JsonConfig {
     private String atlas, region, selected;
     private String configFile, configName;
     private ArrayList<TransitionConfig> transition;
+    private ArrayList<StageConfig> group;
     private boolean active;
 
     public int getOrigPositionX() {
@@ -124,6 +125,16 @@ public class StageConfig extends JsonConfig {
         return configName;
     }
 
+    public StageConfig setConfigFile(String value) {
+        this.configFile = value;
+        return this;
+    }
+
+    public StageConfig setConfigName(String value) {
+        this.configName = value;
+        return this;
+    }
+
     public boolean getActive() {
         return active;
     }
@@ -135,5 +146,9 @@ public class StageConfig extends JsonConfig {
 
     public ArrayList<TransitionConfig> getTransition() {
         return transition;
+    }
+
+    public ArrayList<StageConfig> getGroup() {
+        return group;
     }
 }

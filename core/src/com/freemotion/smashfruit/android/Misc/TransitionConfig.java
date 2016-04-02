@@ -6,6 +6,7 @@ package com.freemotion.smashfruit.android.Misc;
 public class TransitionConfig extends JsonConfig {
 
     private int positionX, positionY;
+    private float scaleX, scaleY;
     private float duration;
     private boolean visible;
 
@@ -20,6 +21,14 @@ public class TransitionConfig extends JsonConfig {
 
     public int getPositionY() {
         return positionY;
+    }
+
+    public float getScaleX() {
+        return scaleX;
+    }
+
+    public float getScaleY() {
+        return scaleY;
     }
 
     public TransitionConfig setPositionY(int y) {

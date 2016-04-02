@@ -1,6 +1,7 @@
 package com.freemotion.smashfruit.android.Utils;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.freemotion.smashfruit.android.Sprites.Widget.TransitionActor;
 
 /**
  * Created by liaoclark on 2016/3/16.
@@ -9,7 +10,7 @@ public class Bundle {
 
     private int iData;
     private String sData;
-    private Actor aData;
+    private TransitionActor aData;
 
     public Bundle() {
         iData = 0;
@@ -32,11 +33,11 @@ public class Bundle {
         sData = value;
     }
 
-    public Actor getActor() {
+    public TransitionActor getActor() {
         return aData;
     }
 
-    public void putActor(Actor value) {
+    public void putActor(TransitionActor value) {
         aData = value;
     }
 }

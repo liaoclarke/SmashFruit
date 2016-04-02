@@ -10,6 +10,7 @@ import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Stages.MenuStage;
 
 import java.lang.reflect.Constructor;
+import java.util.ArrayList;
 
 /**
  * Created by liaoclark on 2016/3/15.
@@ -63,7 +64,14 @@ public class BaseFragment extends Actor implements JsonConfigFileParser, Transit
 
     public Actor findChildByName(String configName) {
         for (TransitionActor ac : group) {
-            if (ac.getActor() != null && configName.equals(ac.getActor().getName()))  {
+             if (ac instanceof BaseGroup ) {
+                ArrayList<TransitionActor> childActors = ((BaseGroup) ac).getChildActors();
+                for (TransitionActor cac : childActors) {
+                    if (cac.getActor() != null && configName.equals(cac.getActor().getName())) {
+                        return cac.getActor();
+                    }
+                }
+            } else if (ac.getActor() != null && configName.equals(ac.getActor().getName()))  {
                 return ac.getActor();
             }
         }

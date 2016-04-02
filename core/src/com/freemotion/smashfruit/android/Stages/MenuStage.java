@@ -6,6 +6,7 @@ import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFileParser;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Sprites.Widget.BaseFragment;
+import com.freemotion.smashfruit.android.Sprites.Widget.TransitionActor;
 import com.freemotion.smashfruit.android.Utils.Bundle;
 import com.freemotion.smashfruit.android.Utils.MessageListener;
 import com.freemotion.smashfruit.android.Utils.StageBase;
@@ -21,6 +22,8 @@ public class MenuStage extends StageBase implements JsonConfigFileParser, Messag
     public static final int HIDE_MAINMENU_SHOW_SHAPEIT = 1;
     public static final int HIDE_FINDBEST_SHOW_MAINMENU = 2;
     public static final int HIDE_SHAPEIT_SHOW_MAINMENU  = 3;
+    public static final int SHOW_UNLOCK_DIALOG = 4;
+    public static final int CLOSE_UNLOCK_DIALOG = 5;
 
     private Array<BaseFragment> fragments;
     private String configFile = "config/MenuStageConfig";
@@ -97,6 +100,19 @@ public class MenuStage extends StageBase implements JsonConfigFileParser, Messag
                 findFragment("ShpaeItMenu").hide();
                 findFragment("MainMenu").show();
                 break;
+
+            case SHOW_UNLOCK_DIALOG: {
+                TransitionActor dialog = data.getActor();
+                addActor(dialog.getActor());
+                dialog.show();
+                break;
+            }
+
+            case CLOSE_UNLOCK_DIALOG: {
+                TransitionActor dialog = data.getActor();
+                dialog.hide();
+                break;
+            }
         }
     }
 

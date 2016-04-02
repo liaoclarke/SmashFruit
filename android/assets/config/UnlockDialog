@@ -1,0 +1,70 @@
+{
+  "type" : "StageConfig",
+  "name" : "UnlockDialog",
+  "data" : [
+    {
+      "key" : "dialog_shadow",
+      "dclass" : "DialogBackground",
+      "positionX" : 0,
+      "positionY" : 0,
+      "width" : 720,
+      "height" : 1280,
+      "atlas" : "graphic/ui.txt",
+      "region" : "dialog_shadow"
+    },
+    {
+      "key" : "unlock_dialog",
+      "dclass" : "UnlockDialogBox",
+      "positionX" : 111,
+      "positionY" : 412,
+      "origPositionX" : 360,
+      "origPositionY" : 640,
+      "width" : 498,
+      "height" : 494,
+      "scaleX" : 0.2,
+      "scaleY" : 0.2,
+      "group" : [
+        {
+          "key" : "dialog_board",
+          "dclass" : "BaseImage",
+          "positionX" : 0,
+          "positionY" : 0,
+          "atlas" : "graphic/ui.txt",
+          "region" : "unlock_dialog"
+        },
+        {
+          "key" : "unlock_dialog_close",
+          "dclass" : "DialogCloseButton",
+          "positionX" : 414,
+          "positionY" : 409,
+          "atlas" : "graphic/ui.txt",
+          "region" : "dialog_close"
+        },
+        {
+          "key" : "unlock_dialog_star",
+          "dclass" : "BaseImage",
+          "positionX" : 166,
+          "positionY" : 209,
+          "atlas" : "graphic/ui.txt",
+          "region" : "dialog_star_icon"
+        },
+        {
+          "key" : "unlock_dialog_cuboid",
+          "dclass" : "BaseImage",
+          "positionX" : 166,
+          "positionY" : 90,
+          "atlas" : "graphic/ui.txt",
+          "region" : "dialog_cuboid_icon"
+        }
+      ],
+      "transition" : [
+        {
+          "key" : "scale_up",
+          "scaleX" : 1,
+          "scaleY" : 1,
+          "duration" : 0.2
+        }
+      ]
+    }
+  ]
+}

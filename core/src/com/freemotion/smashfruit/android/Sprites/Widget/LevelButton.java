@@ -5,13 +5,14 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.utils.Array;
-import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFileParser;
 import com.freemotion.smashfruit.android.Misc.LevelConfig;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Resources.UITextureLoader;
 import com.freemotion.smashfruit.android.Stages.MenuStage;
+import com.freemotion.smashfruit.android.Utils.Bundle;
+import com.freemotion.smashfruit.android.Utils.MessageHub;
+import com.freemotion.smashfruit.android.Utils.MessageListener;
 import com.freemotion.smashfruit.android.Utils.ResourceManager;
 
 import java.lang.reflect.Constructor;
@@ -103,7 +104,12 @@ public class LevelButton extends BaseButton implements JsonConfigFileParser {
 
     private void showUnlockDialog() {
         Gdx.app.error(LOG_TAG, " show unlock dialog");
-        UnlockDialog dialog = new UnlockDialog(this);
-        dialog.show();
+        Bundle data = new Bundle();
+        StageConfig config = new StageConfig();
+        config.setConfigFile("config/UnlockDialog").setConfigName("UnlockDialog");
+        UnlockDialog dialog = new UnlockDialog(config, this);
+        data.putActor(dialog);
+        data.putInteger(MenuStage.SHOW_UNLOCK_DIALOG);
+        ((MessageListener) getStage()).handleMessage(data);
     }
 }
