@@ -40,11 +40,11 @@ public class TextureConfig extends JsonConfig {
     }
 
     public float getScaleX() {
-        return scaleX;
+        return scaleX == 0f ? 1.0f : scaleX;
     }
 
     public float getScaleY() {
-        return scaleY;
+        return scaleY == 0f ? 1.0f : scaleY;
     }
 
     public float getRotation() {

@@ -3,13 +3,13 @@ package com.freemotion.smashfruit.android.Sprites.Widget;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 
 /**
- * Created by liaoclark on 3/26/2016.
+ * Created by liaoclark on 4/2/2016.
  */
-public class UnlockDialog extends BaseFragment {
+public class SettingsDialog extends BaseFragment {
 
     private String LOG_TAG;
 
-    public UnlockDialog(StageConfig config, LevelButton button) {
+    public SettingsDialog(StageConfig config) {
         super(config);
         LOG_TAG = this.getClass().getSimpleName();
 

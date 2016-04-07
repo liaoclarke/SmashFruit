@@ -11,6 +11,9 @@ import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Misc.TransitionConfig;
 import com.freemotion.smashfruit.android.Resources.UITextureLoader;
+import com.freemotion.smashfruit.android.Stages.MenuStage;
+import com.freemotion.smashfruit.android.Utils.Bundle;
+import com.freemotion.smashfruit.android.Utils.MessageListener;
 import com.freemotion.smashfruit.android.Utils.ResourceManager;
 
 /**
@@ -57,6 +60,7 @@ public class SettingsButton extends BaseButton {
             Gdx.app.error(LOG_TAG, this.getClass().getSimpleName() + " button touch up");
             pressed = false;
             super.touchUp(event, x, y, pointer, button);
+            showSettingsDialog();
         }
     };
 
@@ -75,5 +79,16 @@ public class SettingsButton extends BaseButton {
         StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("settings");
         TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_down");
         addAction(Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()));
+    }
+
+    private void showSettingsDialog() {
+        Gdx.app.error(LOG_TAG, " show settings dialog");
+        Bundle data = new Bundle();
+        StageConfig config = new StageConfig();
+        config.setConfigFile("config/SettingsDialog").setConfigName("SettingsDialog");
+        SettingsDialog dialog = new SettingsDialog(config);
+        data.putActor(dialog);
+        data.putInteger(MenuStage.SHOW_SETTINGS_DIALOG);
+        ((MessageListener) getStage()).handleMessage(data);
     }
 }

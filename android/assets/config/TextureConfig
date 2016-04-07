@@ -56,6 +56,16 @@
       "key" : "dialog_background_shadow",
       "atlas" : "graphic/ui.txt",
       "region" : "dialog_shadow"
+    },
+    {
+      "key" : "settings_checked_button_margin",
+      "atlas" : "graphic/ui.txt",
+      "region" : "settings_checked_button_margin"
+    },
+    {
+      "key" : "settings_button_margin",
+      "atlas" : "graphic/ui.txt",
+      "region" : "settings_button_margin"
     }
   ]
 }

@@ -1,0 +1,77 @@
+{
+  "type" : "StageConfig",
+  "name" : "SettingsDialog",
+  "data" : [
+    {
+      "key" : "dialog_shadow",
+      "dclass" : "DialogBackground",
+      "positionX" : 0,
+      "positionY" : 0,
+      "width" : 720,
+      "height" : 1280,
+      "atlas" : "graphic/ui.txt",
+      "region" : "dialog_shadow"
+    },
+    {
+      "key" : "settings_dialog",
+      "dclass" : "SettingsDialogBox",
+      "positionX" : 819,
+      "positionY" : 390,
+      "width" : 529,
+      "height" : 543,
+      "group" : [
+        {
+          "key" : "settings_dialog_background",
+          "dclass" : "BaseImage",
+          "positionX" : 0,
+          "positionY" : 0,
+          "atlas" : "graphic/ui.txt",
+          "region" : "settings_dialog_background"
+        },
+        {
+          "key" : "settings_dialog_close",
+          "dclass" : "DialogCloseButton",
+          "positionX" : 448,
+          "positionY" : 460,
+          "atlas" : "graphic/ui.txt",
+          "region" : "dialog_close"
+        },
+        {
+          "key" : "sound_button",
+          "dclass" : "SettingsSoundButton",
+          "positionX" : 136,
+          "positionY" : 307,
+          "atlas" : "graphic/ui.txt",
+          "region" : "sound_button",
+          "selected" : "sound_checked_button"
+        },
+        {
+          "key" : "notification_button",
+          "dclass" : "SettingsNotificationButton",
+          "positionX" : 136,
+          "positionY" : 177,
+          "atlas" : "graphic/ui.txt",
+          "region" : "notification_button",
+          "selected" : "notification_checked_button"
+        },
+        {
+          "key" : "tutorial_button",
+          "dclass" : "SettingsTutorialButton",
+          "positionX" : 136,
+          "positionY" : 47,
+          "atlas" : "graphic/ui.txt",
+          "region" : "tutorial_button",
+          "selected" : "tutorial_checked_button"
+        }
+      ],
+      "transition" : [
+        {
+          "key" : "move_left",
+          "positionX" : 99,
+          "positionY" : 390,
+          "duration" : 0.2
+        }
+      ]
+    }
+  ]
+}

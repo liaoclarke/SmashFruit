@@ -22,13 +22,13 @@ public class MenuStage extends StageBase implements JsonConfigFileParser, Messag
     public static final int HIDE_MAINMENU_SHOW_SHAPEIT = 1;
     public static final int HIDE_FINDBEST_SHOW_MAINMENU = 2;
     public static final int HIDE_SHAPEIT_SHOW_MAINMENU  = 3;
-    public static final int SHOW_UNLOCK_DIALOG = 4;
-    public static final int CLOSE_UNLOCK_DIALOG = 5;
+    public static final int CLOSE_DIALOG = 4;
+    public static final int SHOW_UNLOCK_DIALOG = 5;
+    public static final int SHOW_SETTINGS_DIALOG = 6;
 
     private Array<BaseFragment> fragments;
     private String configFile = "config/MenuStageConfig";
     private String configName = "MenuStage";
-    private BaseFragment curr_frag, next_frag;
 
     public MenuStage() {
         super();
@@ -101,14 +101,17 @@ public class MenuStage extends StageBase implements JsonConfigFileParser, Messag
                 findFragment("MainMenu").show();
                 break;
 
-            case SHOW_UNLOCK_DIALOG: {
+            case SHOW_UNLOCK_DIALOG:
+            case SHOW_SETTINGS_DIALOG:
+            {
                 TransitionActor dialog = data.getActor();
                 addActor(dialog.getActor());
                 dialog.show();
                 break;
             }
 
-            case CLOSE_UNLOCK_DIALOG: {
+            case CLOSE_DIALOG:
+            {
                 TransitionActor dialog = data.getActor();
                 dialog.hide();
                 break;

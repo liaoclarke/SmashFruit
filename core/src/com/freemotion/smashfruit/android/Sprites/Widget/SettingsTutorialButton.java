@@ -4,26 +4,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
-import com.freemotion.smashfruit.android.Stages.MenuStage;
-import com.freemotion.smashfruit.android.Utils.Bundle;
-import com.freemotion.smashfruit.android.Utils.MessageListener;
 
 /**
- * Created by liaoclark on 3/26/2016.
+ * Created by liaoclark on 4/2/2016.
  */
-public class DialogCloseButton extends BaseButton {
+public class SettingsTutorialButton extends SettingsDialogButton {
 
-    private TransitionActor parentDialog;
-
-    public DialogCloseButton(StageConfig config) {
+    public SettingsTutorialButton(StageConfig config) {
         super(config);
         LOG_TAG = this.getClass().getSimpleName();
-        setName("DialogCloseButton");
+        setName("SettingsTutorialButton");
         addListener(listener);
-    }
-
-    public void setParentDialog(TransitionActor parent) {
-        parentDialog = parent;
     }
 
     protected InputListener listener = new InputListener() {
@@ -38,11 +29,8 @@ public class DialogCloseButton extends BaseButton {
         public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
             Gdx.app.error(LOG_TAG, LOG_TAG + " button touch up");
             pressed = false;
+            checked = checked ? false : true;
             super.touchUp(event, x, y, pointer, button);
-            Bundle data = new Bundle();
-            data.putActor(parentDialog);
-            data.putInteger(MenuStage.CLOSE_DIALOG);
-            ((MessageListener) getStage()).handleMessage(data);
         }
     };
 }
