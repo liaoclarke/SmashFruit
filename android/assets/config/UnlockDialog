@@ -37,6 +37,8 @@
           "dclass" : "DialogCloseButton",
           "positionX" : 414,
           "positionY" : 409,
+          "width" : 66,
+          "height" : 66,
           "atlas" : "graphic/ui.txt",
           "region" : "dialog_close"
         },

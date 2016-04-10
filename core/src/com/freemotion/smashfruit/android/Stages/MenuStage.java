@@ -25,6 +25,7 @@ public class MenuStage extends StageBase implements JsonConfigFileParser, Messag
     public static final int CLOSE_DIALOG = 4;
     public static final int SHOW_UNLOCK_DIALOG = 5;
     public static final int SHOW_SETTINGS_DIALOG = 6;
+    public static final int SHOW_LEVEL_COMPLETED_DIALOG = 7;
 
     private Array<BaseFragment> fragments;
     private String configFile = "config/MenuStageConfig";
@@ -58,7 +59,6 @@ public class MenuStage extends StageBase implements JsonConfigFileParser, Messag
     public void setStageContent() {
         fragments = new Array<BaseFragment>();
         JsonConfigFactory.getInstance().inflateStage(configName);
-        //addActor(findActiveFragment());
         for (BaseFragment frag : fragments) {
             addActor(frag);
         }
@@ -103,6 +103,7 @@ public class MenuStage extends StageBase implements JsonConfigFileParser, Messag
 
             case SHOW_UNLOCK_DIALOG:
             case SHOW_SETTINGS_DIALOG:
+            case SHOW_LEVEL_COMPLETED_DIALOG:
             {
                 TransitionActor dialog = data.getActor();
                 addActor(dialog.getActor());

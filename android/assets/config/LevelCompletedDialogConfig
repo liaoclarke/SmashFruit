@@ -1,0 +1,136 @@
+{
+  "type" : "StageConfig",
+  "name" : "FindBestLevelCompletedDialog",
+  "data" : [
+    {
+      "key" : "dialog_shadow",
+      "dclass" : "DialogBackground",
+      "positionX" : 0,
+      "positionY" : 0,
+      "width" : 720,
+      "height" : 1280,
+      "atlas" : "graphic/ui.txt",
+      "region" : "dialog_shadow"
+    },
+    {
+      "key" : "total_cuboid_widget",
+      "dclass" : "TotalCuboidWidget",
+      "positionX" : 511,
+      "positionY" : 1142,
+      "width" : 158,
+      "height" : 71,
+      "group" : [
+        {
+          "key" : "total_cuboid_icon",
+          "dclass" : "BaseImage",
+          "positionX" : 0,
+          "positionY" : 0,
+          "width" : 66,
+          "height" : 71,
+          "atlas" : "graphic/ui.txt",
+          "region" : "dialog_cuboid_icon"
+        },
+        {
+          "key" : "total_cuboid_num",
+          "dclass" : "BaseImage",
+          "positionX" : 69,
+          "positionY" : 20,
+          "width" : 89,
+          "height" : 35,
+          "atlas" : "graphic/ui.txt",
+          "region" : "cuboid_num_bar"
+        }
+      ]
+    },
+    {
+      "key" : "win_stars",
+      "dclass" : "LevelWinStarsBar",
+      "positionX" : 97,
+      "positionY" : 800,
+      "width" : 526,
+      "height" : 145,
+      "group" : [
+        {
+          "key" : "star_on_left",
+          "dclass" : "BaseImage",
+          "positionX" : 0,
+          "positionY" : 0,
+          "width" : 125,
+          "height" : 116,
+          "atlas" : "graphic/ui.txt",
+          "region" : "star_left_side"
+        },
+        {
+        "key" : "star_in_center",
+          "dclass" : "BaseImage",
+          "positionX" : 199,
+          "positionY" : 25,
+          "width" : 125,
+          "height" : 120,
+          "atlas" : "graphic/ui.txt",
+          "region" : "star_in_center"
+        },
+        {
+          "key" : "star_on_right",
+          "dclass" : "BaseImage",
+          "positionX" : 401,
+          "positionY" : 0,
+          "width" : 125,
+          "height" : 116,
+          "atlas" : "graphic/ui.txt",
+          "region" : "star_right_side"
+        }
+      ]
+    },
+    {
+      "key" : "level_complete_text",
+      "dclass" : "LevelCompleteText",
+      "positionX" : 168,
+      "positionY" : 657,
+      "width" : 377,
+      "height" : 77,
+      "atlas" : "graphic/ui.txt",
+      "region" : "level_complete_perfect"
+    },
+    {
+      "key" : "continue_button",
+      "dclass" : "ContinueButton",
+      "positionX" : 240,
+      "positionY" : 266,
+      "width" : 231,
+      "height" : 241,
+      "atlas" : "graphic/ui.txt",
+      "region" : "continue"
+    },
+    {
+      "key" : "back_to_menu_button",
+      "dclass" : "BackToMenuButton",
+      "positionX" : 101,
+      "positionY" : 68,
+      "width" : 118,
+      "height" : 118,
+      "atlas" : "graphic/ui.txt",
+      "region" : "back_to_menu"
+    },
+    {
+      "key" : "leaderboard_button",
+      "dclass" : "LeaderBoardButton",
+      "positionX" : 301,
+      "positionY" : 68,
+      "width" : 118,
+      "height" : 118,
+      "atlas" : "graphic/ui.txt",
+      "region" : "leaderboard"
+    },
+    {
+      "key" : "share_button",
+      "dclass" : "LevelShareButton",
+      "positionX" : 500,
+      "positionY" : 68,
+      "width" : 117,
+      "height" : 117,
+      "atlas" : "graphic/ui.txt",
+      "region" : "share"
+    }
+  ]
+}

@@ -70,8 +70,12 @@ public class LevelButton extends BaseButton implements JsonConfigFileParser {
         @Override
         public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
             Gdx.app.error(LOG_TAG, this.getClass().getSimpleName() + " button touch up x: " + x + " y: " + y);
-            if (!isPan && !levelData.getPass()) {
-                showUnlockDialog();
+            if (!isPan) {
+                if (!levelData.getPass()) {
+                    showUnlockDialog();
+                } else {
+                    showLevelCompleteDialog();
+                }
             }
             super.touchUp(event, x, y, pointer, button);
         }
@@ -110,6 +114,17 @@ public class LevelButton extends BaseButton implements JsonConfigFileParser {
         UnlockDialog dialog = new UnlockDialog(config, this);
         data.putActor(dialog);
         data.putInteger(MenuStage.SHOW_UNLOCK_DIALOG);
+        ((MessageListener) getStage()).handleMessage(data);
+    }
+
+    private void showLevelCompleteDialog() {
+        Gdx.app.error(LOG_TAG, "show level complete dialog");
+        Bundle data = new Bundle();
+        StageConfig config = new StageConfig();
+        config.setConfigFile("config/LevelCompletedDialogConfig").setConfigName("FindBestLevelCompletedDialog");
+        LevelCompletedDialog dialog = new LevelCompletedDialog(config);
+        data.putActor(dialog);
+        data.putInteger(MenuStage.SHOW_LEVEL_COMPLETED_DIALOG);
         ((MessageListener) getStage()).handleMessage(data);
     }
 }

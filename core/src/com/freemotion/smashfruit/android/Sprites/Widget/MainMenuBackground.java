@@ -1,6 +1,7 @@
 package com.freemotion.smashfruit.android.Sprites.Widget;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
@@ -14,6 +15,11 @@ public class MainMenuBackground extends BaseImage {
     public MainMenuBackground(StageConfig config) {
         super(config);
         LOG_TAG = this.getClass().getSimpleName();
+    }
+
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        super.draw(batch, parentAlpha);
     }
 
     @Override

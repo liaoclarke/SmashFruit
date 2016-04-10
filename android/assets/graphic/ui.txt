@@ -1,5 +1,5 @@
 ui.png
-size: 1747, 1861
+size: 1747, 2017
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -17,219 +17,275 @@ selected_tab
   orig: 22, 22
   offset: 0, 0
   index: -1
-dialog_close
+cuboid_num_bar
   rotate: false
   xy: 44, 0
+  size: 89, 35
+  orig: 89, 35
+  offset: 0, 0
+  index: -1
+dialog_close
+  rotate: false
+  xy: 133, 0
   size: 66, 66
   orig: 66, 66
   offset: 0, 0
   index: -1
-dialog_cuboid_icon
-  rotate: false
-  xy: 110, 0
-  size: 66, 71
-  orig: 66, 71
-  offset: 0, 0
-  index: -1
 dialog_shadow
   rotate: false
-  xy: 176, 0
+  xy: 199, 0
   size: 66, 71
   orig: 66, 71
   offset: 0, 0
   index: -1
 dialog_star_icon
   rotate: false
-  xy: 242, 0
+  xy: 265, 0
   size: 66, 71
   orig: 66, 71
   offset: 0, 0
   index: -1
-next
+dialog_cuboid_icon
   rotate: false
-  xy: 308, 0
-  size: 83, 110
-  orig: 83, 110
+  xy: 331, 0
+  size: 66, 71
+  orig: 66, 71
   offset: 0, 0
   index: -1
-back
+level_complete_perfect
   rotate: false
-  xy: 391, 0
-  size: 83, 110
-  orig: 83, 110
-  offset: 0, 0
-  index: -1
-circle_press_effect
-  rotate: false
-  xy: 474, 0
-  size: 117, 117
-  orig: 117, 117
-  offset: 0, 0
-  index: -1
-settings
-  rotate: false
-  xy: 591, 0
-  size: 117, 117
-  orig: 117, 117
-  offset: 0, 0
-  index: -1
-rate
-  rotate: false
-  xy: 708, 0
-  size: 117, 117
-  orig: 117, 117
-  offset: 0, 0
-  index: -1
-share
-  rotate: false
-  xy: 825, 0
-  size: 117, 117
-  orig: 117, 117
-  offset: 0, 0
-  index: -1
-cuboid_num
-  rotate: false
-  xy: 942, 0
-  size: 199, 77
-  orig: 199, 77
+  xy: 397, 0
+  size: 377, 77
+  orig: 377, 77
   offset: 0, 0
   index: -1
 star_num
   rotate: false
-  xy: 1141, 0
+  xy: 774, 0
   size: 199, 77
   orig: 199, 77
   offset: 0, 0
   index: -1
-unlocked_level
+cuboid_num
   rotate: false
-  xy: 1340, 0
-  size: 181, 147
-  orig: 181, 147
+  xy: 973, 0
+  size: 199, 77
+  orig: 199, 77
   offset: 0, 0
   index: -1
-locked_level
+notification_button
   rotate: false
-  xy: 1521, 0
-  size: 181, 147
-  orig: 181, 147
-  offset: 0, 0
-  index: -1
-notification_checked_button
-  rotate: false
-  xy: 0, 147
-  size: 258, 92
-  orig: 258, 92
-  offset: 0, 0
-  index: -1
-sound_checked_button
-  rotate: false
-  xy: 258, 147
-  size: 258, 92
-  orig: 258, 92
-  offset: 0, 0
-  index: -1
-tutorial_checked_button
-  rotate: false
-  xy: 516, 147
-  size: 258, 92
-  orig: 258, 92
-  offset: 0, 0
-  index: -1
-tutorial_button
-  rotate: false
-  xy: 774, 147
+  xy: 1172, 0
   size: 258, 92
   orig: 258, 92
   offset: 0, 0
   index: -1
 sound_button
   rotate: false
-  xy: 1032, 147
+  xy: 1430, 0
   size: 258, 92
   orig: 258, 92
   offset: 0, 0
   index: -1
-settings_checked_button_margin
+notification_checked_button
   rotate: false
-  xy: 1290, 147
-  size: 258, 92
-  orig: 258, 92
-  offset: 0, 0
-  index: -1
-notification_button
-  rotate: false
-  xy: 0, 239
+  xy: 0, 92
   size: 258, 92
   orig: 258, 92
   offset: 0, 0
   index: -1
 settings_button_margin
   rotate: false
-  xy: 258, 239
+  xy: 258, 92
   size: 258, 92
   orig: 258, 92
   offset: 0, 0
   index: -1
+settings_checked_button_margin
+  rotate: false
+  xy: 516, 92
+  size: 258, 92
+  orig: 258, 92
+  offset: 0, 0
+  index: -1
+tutorial_button
+  rotate: false
+  xy: 774, 92
+  size: 258, 92
+  orig: 258, 92
+  offset: 0, 0
+  index: -1
+tutorial_checked_button
+  rotate: false
+  xy: 1032, 92
+  size: 258, 92
+  orig: 258, 92
+  offset: 0, 0
+  index: -1
+sound_checked_button
+  rotate: false
+  xy: 1290, 92
+  size: 258, 92
+  orig: 258, 92
+  offset: 0, 0
+  index: -1
+next
+  rotate: false
+  xy: 1548, 92
+  size: 83, 110
+  orig: 83, 110
+  offset: 0, 0
+  index: -1
+back
+  rotate: false
+  xy: 1631, 92
+  size: 83, 110
+  orig: 83, 110
+  offset: 0, 0
+  index: -1
+star_right_side
+  rotate: false
+  xy: 0, 202
+  size: 125, 116
+  orig: 125, 116
+  offset: 0, 0
+  index: -1
+star_left_side
+  rotate: false
+  xy: 125, 202
+  size: 125, 116
+  orig: 125, 116
+  offset: 0, 0
+  index: -1
+share
+  rotate: false
+  xy: 250, 202
+  size: 117, 117
+  orig: 117, 117
+  offset: 0, 0
+  index: -1
+rate
+  rotate: false
+  xy: 367, 202
+  size: 117, 117
+  orig: 117, 117
+  offset: 0, 0
+  index: -1
+settings
+  rotate: false
+  xy: 484, 202
+  size: 117, 117
+  orig: 117, 117
+  offset: 0, 0
+  index: -1
+circle_press_effect
+  rotate: false
+  xy: 601, 202
+  size: 117, 117
+  orig: 117, 117
+  offset: 0, 0
+  index: -1
+back_to_menu
+  rotate: false
+  xy: 718, 202
+  size: 118, 118
+  orig: 118, 118
+  offset: 0, 0
+  index: -1
+leaderboard
+  rotate: false
+  xy: 836, 202
+  size: 118, 118
+  orig: 118, 118
+  offset: 0, 0
+  index: -1
+star_in_center
+  rotate: false
+  xy: 954, 202
+  size: 125, 120
+  orig: 125, 120
+  offset: 0, 0
+  index: -1
+unlocked_level
+  rotate: false
+  xy: 1079, 202
+  size: 181, 147
+  orig: 181, 147
+  offset: 0, 0
+  index: -1
 rectangle_press_shadow
   rotate: false
-  xy: 516, 239
+  xy: 1260, 202
   size: 394, 147
   orig: 394, 147
   offset: 0, 0
   index: -1
 time_race
   rotate: false
-  xy: 910, 239
+  xy: 0, 349
   size: 394, 147
   orig: 394, 147
   offset: 0, 0
   index: -1
 find_best
   rotate: false
-  xy: 1304, 239
+  xy: 394, 349
   size: 394, 147
   orig: 394, 147
+  offset: 0, 0
+  index: -1
+locked_level
+  rotate: false
+  xy: 788, 349
+  size: 181, 147
+  orig: 181, 147
   offset: 0, 0
   index: -1
 shape_it
   rotate: false
-  xy: 0, 386
+  xy: 969, 349
   size: 394, 147
   orig: 394, 147
   offset: 0, 0
   index: -1
-game_logo
-  rotate: false
-  xy: 394, 386
-  size: 541, 195
-  orig: 541, 195
-  offset: 0, 0
-  index: -1
 level_title
   rotate: false
-  xy: 935, 386
+  xy: 0, 496
   size: 720, 152
   orig: 720, 152
   offset: 0, 0
   index: -1
+game_logo
+  rotate: false
+  xy: 720, 496
+  size: 541, 195
+  orig: 541, 195
+  offset: 0, 0
+  index: -1
+continue
+  rotate: false
+  xy: 1261, 496
+  size: 231, 241
+  orig: 231, 241
+  offset: 0, 0
+  index: -1
 unlock_dialog
   rotate: false
-  xy: 0, 581
+  xy: 0, 737
   size: 498, 494
   orig: 498, 494
   offset: 0, 0
   index: -1
 settings_dialog_background
   rotate: false
-  xy: 498, 581
+  xy: 498, 737
   size: 529, 543
   orig: 529, 543
   offset: 0, 0
   index: -1
 main_background
   rotate: false
-  xy: 1027, 581
+  xy: 1027, 737
   size: 720, 1280
   orig: 720, 1280
   offset: 0, 0
