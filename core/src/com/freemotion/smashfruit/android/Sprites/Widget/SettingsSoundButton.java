@@ -1,16 +1,9 @@
 package com.freemotion.smashfruit.android.Sprites.Widget;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
-import com.freemotion.smashfruit.android.Misc.TextureConfig;
-import com.freemotion.smashfruit.android.Resources.UITextureLoader;
-import com.freemotion.smashfruit.android.Utils.ResourceManager;
 
 /**
  * Created by liaoclark on 4/2/2016.

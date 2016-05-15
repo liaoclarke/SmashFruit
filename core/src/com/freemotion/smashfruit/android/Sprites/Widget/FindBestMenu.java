@@ -1,12 +1,9 @@
 package com.freemotion.smashfruit.android.Sprites.Widget;
 
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Stages.MenuStage;
 import com.freemotion.smashfruit.android.Utils.Bundle;
 import com.freemotion.smashfruit.android.Utils.MessageHub;
-import com.freemotion.smashfruit.android.Utils.MessageListener;
 
 /**
  * Created by liaoclark on 2016/3/15.

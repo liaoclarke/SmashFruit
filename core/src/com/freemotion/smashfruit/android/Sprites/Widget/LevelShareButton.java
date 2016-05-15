@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Resources.UITextureLoader;
+import com.freemotion.smashfruit.android.Sprites.Widget.BaseButton;
 import com.freemotion.smashfruit.android.Utils.ResourceManager;
 
 /**

@@ -19,6 +19,9 @@ public class MainMenu extends BaseFragment implements MessageHub {
 
         ShapeItButton shapeItButton = (ShapeItButton) findChildByName("ShapeItButton");
         shapeItButton.setMessageHub(this);
+
+        TimeRaceButton timeRaceButton = (TimeRaceButton) findChildByName("TimeRaceButton");
+        timeRaceButton.setMessageHub(this);
     }
 
     @Override
@@ -26,6 +29,8 @@ public class MainMenu extends BaseFragment implements MessageHub {
         if ("show_findbest_menu".equals(message)) {
             ((MenuStage) getStage()).handleMessage(data);
         } else if ("show_shapeit_menu".equals(message)) {
+            ((MenuStage) getStage()).handleMessage(data);
+        } else if ("play_timerace_game".equals(message)) {
             ((MenuStage) getStage()).handleMessage(data);
         }
     }

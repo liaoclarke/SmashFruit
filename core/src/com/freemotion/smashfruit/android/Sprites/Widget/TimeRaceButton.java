@@ -11,15 +11,21 @@ import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Misc.TransitionConfig;
 import com.freemotion.smashfruit.android.Resources.UITextureLoader;
+import com.freemotion.smashfruit.android.Sprites.Widget.BaseButton;
+import com.freemotion.smashfruit.android.Stages.MenuStage;
+import com.freemotion.smashfruit.android.Utils.Bundle;
+import com.freemotion.smashfruit.android.Utils.MessageDispatch;
+import com.freemotion.smashfruit.android.Utils.MessageHub;
 import com.freemotion.smashfruit.android.Utils.ResourceManager;
 
 /**
  * Created by liaoclark on 2016/3/12.
  */
-public class TimeRaceButton extends BaseButton {
+public class TimeRaceButton extends BaseButton implements MessageDispatch {
 
     private TextureRegion pressedTexture;
     private Rectangle pressedTextureRectangle;
+    private MessageHub messageHub;
 
     public TimeRaceButton(StageConfig config) {
         super(config);
@@ -29,6 +35,7 @@ public class TimeRaceButton extends BaseButton {
         pressedTexture = uiLoader.getTextureAtlas().findRegion("rectangle_press_shadow");
         pressedTextureRectangle = new Rectangle(config.getPositionX(), config.getPositionY(),
                 pressedTexture.getRegionWidth() * config.getScaleX(), pressedTexture.getRegionHeight() * config.getScaleY());
+        setName("TimeRaceButton");
     }
 
     @Override
@@ -57,8 +64,21 @@ public class TimeRaceButton extends BaseButton {
             Gdx.app.error(LOG_TAG, this.getClass().getSimpleName() + " button touch up");
             pressed = false;
             super.touchUp(event, x, y, pointer, button);
+            Bundle data = new Bundle();
+            data.putInteger(MenuStage.HIDE_MAINMENU_PLAY_TIMERACE);
+            dispatchMessage("show_findbest_menu", data);
         }
     };
+
+    @Override
+    public void setMessageHub(MessageHub hub) {
+        messageHub = hub;
+    }
+
+    @Override
+    public void dispatchMessage(String message, Bundle data) {
+        messageHub.forwardMessageToListener(message, data);
+    }
 
     @Override
     public void show() {

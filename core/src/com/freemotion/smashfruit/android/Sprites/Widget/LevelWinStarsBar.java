@@ -2,6 +2,7 @@ package com.freemotion.smashfruit.android.Sprites.Widget;
 
 import com.badlogic.gdx.Gdx;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
+import com.freemotion.smashfruit.android.Sprites.Widget.BaseGroup;
 
 /**
  * Created by liaoclark on 4/10/2016.

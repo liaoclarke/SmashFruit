@@ -7,6 +7,7 @@ import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Misc.TextureConfig;
 import com.freemotion.smashfruit.android.Resources.UITextureLoader;
+import com.freemotion.smashfruit.android.Sprites.Widget.BaseButton;
 import com.freemotion.smashfruit.android.Utils.ResourceManager;
 
 /**

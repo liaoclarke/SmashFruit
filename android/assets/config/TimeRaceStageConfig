@@ -1,0 +1,23 @@
+{
+  "type" : "StageConfig",
+  "name" : "TimeRaceStage",
+  "data" : [
+    {
+      "key" : "timerace_game_background",
+      "dclass" : "TimeRaceGameBackground",
+      "positionX" : 0,
+      "positionY" : 0,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "atlas" : "graphics/game2.txt",
+      "region" : "game_stage_background",
+      "active" : false,
+      "transition" : [
+        {
+          "key" : "fade_in",
+          "duration" : 1
+        }
+      ]
+    }
+  ]
+}

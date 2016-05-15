@@ -1,6 +1,5 @@
 package com.freemotion.smashfruit.android.Utils;
 
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.freemotion.smashfruit.android.Sprites.Widget.TransitionActor;
 
 /**

@@ -1,6 +1,9 @@
 package com.freemotion.smashfruit.android.Sprites.Widget;
 
 import com.freemotion.smashfruit.android.Misc.StageConfig;
+import com.freemotion.smashfruit.android.Sprites.Widget.BaseFragment;
+import com.freemotion.smashfruit.android.Sprites.Widget.DialogCloseButton;
+import com.freemotion.smashfruit.android.Sprites.Widget.TransitionActor;
 
 /**
  * Created by liaoclark on 4/2/2016.

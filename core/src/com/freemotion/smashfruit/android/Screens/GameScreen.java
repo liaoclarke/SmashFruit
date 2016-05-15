@@ -24,7 +24,7 @@ public class GameScreen extends ScreenBase {
 
     private String LOG_TAG;
     private SpriteBatch batch;
-    private TimeRaceStage gameStage;
+    private GameStage gameStage;
     private MenuStage menuStage;
     private Array<StageBase> stages;
 
@@ -34,7 +34,7 @@ public class GameScreen extends ScreenBase {
         batch = new SpriteBatch();
 
         stages = new Array<StageBase>();
-        menuStage = new MenuStage();
+        menuStage = new MenuStage(this);
         stages.add(menuStage);
         //gameStage = new GameStage();
         //stages.add(gameStage);
@@ -92,5 +92,51 @@ public class GameScreen extends ScreenBase {
     @Override
     public void show() {
         super.show();
+    }
+
+    public void setMenuStage() {
+        if (menuStage == null) {
+            menuStage = new MenuStage(this);
+            stages.add(menuStage);
+        }
+    }
+
+    public void setGameStage(String configFile, String configName) {
+        if (gameStage == null) {
+            gameStage = new GameStage(this, configFile, configName);
+            stages.add(gameStage);
+        } else {
+            gameStage.setStageConfig(configFile, configName);
+        }
+    }
+
+    public MenuStage getMenuStage() {
+        return menuStage;
+    }
+
+    public GameStage getGameStage() {
+        return gameStage;
+    }
+
+    public void stopMenuStage() {
+        stopStage(menuStage);
+        menuStage = null;
+    }
+
+    public void stopGameStage() {
+        stopStage(gameStage);
+    }
+
+    public void stopStage(Stage stage) {
+        int stageIndex = -1;
+        for (int i = 0; i < stages.size; i++) {
+            if (stages.get(i) == stage) {
+                stageIndex = i;
+                break;
+            }
+        }
+        if (stageIndex >= 0) {
+            stages.removeIndex(stageIndex);
+        }
     }
 }

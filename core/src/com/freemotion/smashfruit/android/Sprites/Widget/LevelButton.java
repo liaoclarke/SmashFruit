@@ -9,9 +9,12 @@ import com.freemotion.smashfruit.android.Misc.JsonConfigFileParser;
 import com.freemotion.smashfruit.android.Misc.LevelConfig;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Resources.UITextureLoader;
+import com.freemotion.smashfruit.android.Sprites.Widget.BaseButton;
+import com.freemotion.smashfruit.android.Sprites.Widget.LevelCompletedDialog;
+import com.freemotion.smashfruit.android.Sprites.Widget.TransitionActor;
+import com.freemotion.smashfruit.android.Sprites.Widget.UnlockDialog;
 import com.freemotion.smashfruit.android.Stages.MenuStage;
 import com.freemotion.smashfruit.android.Utils.Bundle;
-import com.freemotion.smashfruit.android.Utils.MessageHub;
 import com.freemotion.smashfruit.android.Utils.MessageListener;
 import com.freemotion.smashfruit.android.Utils.ResourceManager;
 

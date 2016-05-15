@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Misc.TransitionConfig;
+import com.freemotion.smashfruit.android.Sprites.Widget.BaseImage;
 
 /**
  * Created by liaoclark on 2016/3/15.

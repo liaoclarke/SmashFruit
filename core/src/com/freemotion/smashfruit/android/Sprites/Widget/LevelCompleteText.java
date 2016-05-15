@@ -1,6 +1,7 @@
 package com.freemotion.smashfruit.android.Sprites.Widget;
 
 import com.freemotion.smashfruit.android.Misc.StageConfig;
+import com.freemotion.smashfruit.android.Sprites.Widget.BaseImage;
 
 /**
  * Created by liaoclark on 4/10/2016.

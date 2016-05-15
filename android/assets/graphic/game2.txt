@@ -1,0 +1,362 @@
+game2.png
+size: 816, 3788
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cuboid0
+  rotate: false
+  xy: 0, 0
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 0
+cuboid0
+  rotate: false
+  xy: 204, 0
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 1
+cuboid0
+  rotate: false
+  xy: 408, 0
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 2
+cuboid0
+  rotate: false
+  xy: 612, 0
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 3
+cuboid1
+  rotate: false
+  xy: 0, 196
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 0
+cuboid1
+  rotate: false
+  xy: 204, 196
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 1
+cuboid1
+  rotate: false
+  xy: 408, 196
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 2
+cuboid1
+  rotate: false
+  xy: 612, 196
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 3
+cuboid2
+  rotate: false
+  xy: 0, 392
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 0
+cuboid2
+  rotate: false
+  xy: 204, 392
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 1
+cuboid2
+  rotate: false
+  xy: 408, 392
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 2
+cuboid2
+  rotate: false
+  xy: 612, 392
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 3
+cuboid3
+  rotate: false
+  xy: 0, 588
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 0
+cuboid3
+  rotate: false
+  xy: 204, 588
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 1
+cuboid3
+  rotate: false
+  xy: 408, 588
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 2
+cuboid3
+  rotate: false
+  xy: 612, 588
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 3
+cuboid4
+  rotate: false
+  xy: 0, 784
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 0
+cuboid4
+  rotate: false
+  xy: 204, 784
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 1
+cuboid4
+  rotate: false
+  xy: 408, 784
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 2
+cuboid4
+  rotate: false
+  xy: 612, 784
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 3
+cuboid5
+  rotate: false
+  xy: 0, 980
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 0
+cuboid5
+  rotate: false
+  xy: 204, 980
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 1
+cuboid5
+  rotate: false
+  xy: 408, 980
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 2
+cuboid5
+  rotate: false
+  xy: 612, 980
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 3
+cylinder0
+  rotate: false
+  xy: 0, 1176
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 0
+cylinder0
+  rotate: false
+  xy: 204, 1176
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 1
+cylinder0
+  rotate: false
+  xy: 408, 1176
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 2
+cylinder0
+  rotate: false
+  xy: 612, 1176
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 3
+cylinder1
+  rotate: false
+  xy: 0, 1372
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 0
+cylinder1
+  rotate: false
+  xy: 204, 1372
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 1
+cylinder1
+  rotate: false
+  xy: 408, 1372
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 2
+cylinder1
+  rotate: false
+  xy: 612, 1372
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 3
+cylinder2
+  rotate: false
+  xy: 0, 1568
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 0
+cylinder2
+  rotate: false
+  xy: 204, 1568
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 1
+cylinder2
+  rotate: false
+  xy: 408, 1568
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 2
+cylinder2
+  rotate: false
+  xy: 612, 1568
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 3
+cylinder3
+  rotate: false
+  xy: 0, 1764
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 0
+cylinder3
+  rotate: false
+  xy: 204, 1764
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 1
+cylinder3
+  rotate: false
+  xy: 408, 1764
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 2
+cylinder3
+  rotate: false
+  xy: 612, 1764
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 3
+cylinder4
+  rotate: false
+  xy: 0, 1960
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 0
+cylinder4
+  rotate: false
+  xy: 204, 1960
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 1
+cylinder4
+  rotate: false
+  xy: 408, 1960
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 2
+cylinder4
+  rotate: false
+  xy: 612, 1960
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 3
+cylinder5
+  rotate: false
+  xy: 0, 2156
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 0
+cylinder5
+  rotate: false
+  xy: 204, 2156
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 1
+cylinder5
+  rotate: false
+  xy: 408, 2156
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 2
+cylinder5
+  rotate: false
+  xy: 612, 2156
+  size: 204, 196
+  orig: 204, 196
+  offset: 0, 0
+  index: 3
+game_stage_background
+  rotate: false
+  xy: 0, 2352
+  size: 720, 1280
+  orig: 720, 1280
+  offset: 0, 0
+  index: -1
+pass
+  rotate: false
+  xy: 0, 3632
+  size: 160, 156
+  orig: 160, 156
+  offset: 0, 0
+  index: -1
+reset
+  rotate: false
+  xy: 160, 3632
+  size: 160, 156
+  orig: 160, 156
+  offset: 0, 0
+  index: -1

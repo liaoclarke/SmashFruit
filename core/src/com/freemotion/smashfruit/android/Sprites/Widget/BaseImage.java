@@ -1,13 +1,12 @@
 package com.freemotion.smashfruit.android.Sprites.Widget;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Misc.TextureConfig;
+import com.freemotion.smashfruit.android.Resources.SceneTextureLoader;
 import com.freemotion.smashfruit.android.Resources.UITextureLoader;
 import com.freemotion.smashfruit.android.Utils.ResourceManager;
 
@@ -21,23 +20,37 @@ public class BaseImage extends BaseActor {
     private TextureRegion selected_texture;
     private Rectangle textureRectangle;
     private boolean isSelected;
+    private SceneTextureLoader loader;
 
-    public BaseImage(String keyName) {
+    public BaseImage(String keyName, SceneTextureLoader textureLoader) {
         super();
         TextureConfig config = JsonConfigFactory.getInstance().getTextureConfig(keyName);
-        UITextureLoader uiLoader = (UITextureLoader) ResourceManager.getInstance().findLoader(UITextureLoader.class.getSimpleName());
-        texture = uiLoader.getTextureAtlas().findRegion(config.getRegion());
+        this.loader = textureLoader;
+        if (this.loader == null) {
+            UITextureLoader uiLoader = (UITextureLoader) ResourceManager.getInstance().findLoader(UITextureLoader.class.getSimpleName());
+            texture = uiLoader.getTextureAtlas().findRegion(config.getRegion());
+        } else {
+            texture = this.loader.getTextureAtlas().findRegion(config.getRegion());
+        }
         textureRectangle = new Rectangle(config.getPositionX(), config.getPositionY(),
                 texture.getRegionWidth() * config.getScaleX(), texture.getRegionHeight() * config.getScaleY());
         setBounds(textureRectangle.x, textureRectangle.y, textureRectangle.width, textureRectangle.height);
     }
 
-    public BaseImage(StageConfig config) {
+    public BaseImage(StageConfig config, SceneTextureLoader textureLoader) {
         super();
-        UITextureLoader uiLoader = (UITextureLoader) ResourceManager.getInstance().findLoader(UITextureLoader.class.getSimpleName());
-        texture = uiLoader.getTextureAtlas().findRegion(config.getRegion());
-        if (config.getSelected() != null) {
-            selected_texture = uiLoader.getTextureAtlas().findRegion(config.getSelected());
+        this.loader = textureLoader;
+        if (this.loader == null) {
+            UITextureLoader uiLoader = (UITextureLoader) ResourceManager.getInstance().findLoader(UITextureLoader.class.getSimpleName());
+            texture = uiLoader.getTextureAtlas().findRegion(config.getRegion());
+            if (config.getSelected() != null) {
+                selected_texture = uiLoader.getTextureAtlas().findRegion(config.getSelected());
+            }
+        } else {
+            texture = this.loader.getTextureAtlas().findRegion(config.getRegion());
+            if (config.getSelected() != null) {
+                selected_texture = this.loader.getTextureAtlas().findRegion(config.getSelected());
+            }
         }
         isSelected = false;
         int w = texture.getRegionWidth();
@@ -50,6 +63,14 @@ public class BaseImage extends BaseActor {
         }
         textureRectangle = new Rectangle(config.getPositionX(), config.getPositionY(), w * config.getScaleX(), h * config.getScaleY());
         setBounds(textureRectangle.x, textureRectangle.y, textureRectangle.width, textureRectangle.height);
+    }
+
+    public BaseImage(StageConfig config) {
+        this(config, null);
+    }
+
+    public BaseImage(String keyName) {
+        this(keyName, null);
     }
 
     public void select(boolean selected) {

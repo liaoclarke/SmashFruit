@@ -4,7 +4,6 @@ import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Stages.MenuStage;
 import com.freemotion.smashfruit.android.Utils.Bundle;
 import com.freemotion.smashfruit.android.Utils.MessageHub;
-import com.freemotion.smashfruit.android.Utils.MessageListener;
 
 /**
  * Created by liaoclark on 3/21/2016.

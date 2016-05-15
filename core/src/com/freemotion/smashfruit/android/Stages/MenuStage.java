@@ -1,12 +1,17 @@
 package com.freemotion.smashfruit.android.Stages;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.Array;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFileParser;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
+import com.freemotion.smashfruit.android.Screens.GameScreen;
 import com.freemotion.smashfruit.android.Sprites.Widget.BaseFragment;
 import com.freemotion.smashfruit.android.Sprites.Widget.TransitionActor;
+import com.freemotion.smashfruit.android.Sprites.Widget.TransitionStage;
 import com.freemotion.smashfruit.android.Utils.Bundle;
 import com.freemotion.smashfruit.android.Utils.MessageListener;
 import com.freemotion.smashfruit.android.Utils.StageBase;
@@ -16,7 +21,7 @@ import java.lang.reflect.Constructor;
 /**
  * Created by liaoclark on 2016/3/10.
  */
-public class MenuStage extends StageBase implements JsonConfigFileParser, MessageListener {
+public class MenuStage extends StageBase implements JsonConfigFileParser, MessageListener, TransitionStage {
 
     public static final int HIDE_MAINMENU_SHOW_FINDBEST = 0;
     public static final int HIDE_MAINMENU_SHOW_SHAPEIT = 1;
@@ -27,9 +32,24 @@ public class MenuStage extends StageBase implements JsonConfigFileParser, Messag
     public static final int SHOW_SETTINGS_DIALOG = 6;
     public static final int SHOW_LEVEL_COMPLETED_DIALOG = 7;
 
+    public static final int HIDE_MAINMENU_PLAY_TIMERACE  = 0x10;
+    public static final int HIDE_MAINMENU_PLAY_FINDBEST  = 0x11;
+    public static final int HIDE_MAINMENU_PLAY_SHAPEIT  = 0x12;
+
+    private GameScreen gameScreen;
     private Array<BaseFragment> fragments;
     private String configFile = "config/MenuStageConfig";
     private String configName = "MenuStage";
+
+    private Action completeAction = new Action() {
+
+        public boolean act(float delta) {
+            gameScreen.stopMenuStage();
+            gameScreen.setGameStage("config/TimeRaceStageConfig", "TimeRaceStage");
+            gameScreen.getGameStage().show();
+            return true;
+        }
+    };
 
     public MenuStage() {
         super();
@@ -38,6 +58,11 @@ public class MenuStage extends StageBase implements JsonConfigFileParser, Messag
         setupInput();
         readStageConfig();
         setStageContent();
+    }
+
+    public MenuStage(GameScreen screen) {
+        this();
+        gameScreen = screen;
     }
 
     @Override
@@ -101,6 +126,18 @@ public class MenuStage extends StageBase implements JsonConfigFileParser, Messag
                 findFragment("MainMenu").show();
                 break;
 
+            case HIDE_MAINMENU_PLAY_TIMERACE:
+                hide();
+                break;
+
+            case HIDE_MAINMENU_PLAY_FINDBEST:
+                //gameScreen.setGameStage("configs/FindBestStage", "FindBestStage");
+                break;
+
+            case HIDE_MAINMENU_PLAY_SHAPEIT:
+                //gameScreen.setGameStage("configs/ShapeItStage", "ShapeItStage");
+                break;
+
             case SHOW_UNLOCK_DIALOG:
             case SHOW_SETTINGS_DIALOG:
             case SHOW_LEVEL_COMPLETED_DIALOG:
@@ -150,5 +187,19 @@ public class MenuStage extends StageBase implements JsonConfigFileParser, Messag
     @Override
     public void resume() {
         setStageContent();
+    }
+
+    @Override
+    public void show() {
+    }
+
+    @Override
+    public void hide() {
+        getRoot().addAction(Actions.sequence(Actions.fadeOut(.5f), completeAction));
+    }
+
+    @Override
+    public Stage getStage() {
+        return this;
     }
 }
