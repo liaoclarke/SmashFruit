@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
+import com.freemotion.smashfruit.android.Sprites.DominoActor;
 
 /**
  * Created by liaoclark on 2016/3/5.
@@ -22,7 +23,7 @@ public class GameController {
         level = 1;
         difficulty = 1;
         //dominoNum = MathUtils.random(6 + difficulty, 10 + difficulty);
-        dominoNum = 12;
+        dominoNum = 100;
         dominoObjects = new Array<DominoObject>();
         resetGame();
     }
@@ -35,14 +36,25 @@ public class GameController {
         int board_height = Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("SCENE_HEIGHT").getValue());
         int firstCuboid_x = MathUtils.random(board_x, board_x + board_width);
         int firstCuboid_y = MathUtils.random(board_y, board_y + board_height);
-        DominoObject firstCuboid = new DominoObject(firstCuboid_x, firstCuboid_y, 60 * MathUtils.random(0, 5), DominoObject.DOMINO_TYPE.Cuboid);
-        Gdx.app.error(LOG_TAG, " DominoObject: " + firstCuboid.getCenterPos());
+
+        DominoObject firstCuboid = new DominoObject(firstCuboid_x, firstCuboid_y, MathUtils.random(0, 5) * 60, DominoObject.DOMINO_TYPE.Cuboid);
+        Gdx.app.error(LOG_TAG, "DominoObject: " + firstCuboid.getCenterPos()
+                                + " direction: " + firstCuboid.getDirection()
+                                + " type: " + firstCuboid.getDominoType());
         dominoObjects.add(firstCuboid);
-        for (int i = 1; i < dominoNum; i++) {
+        for (int i = 1; i < dominoNum - 1; i++) {
             DominoObject currentCuboid = new DominoObject(firstCuboid, DominoObject.DOMINO_TYPE.Cuboid);
             dominoObjects.add(currentCuboid);
             firstCuboid = currentCuboid;
+            Gdx.app.error(LOG_TAG, "DominoObject: " + firstCuboid.getCenterPos()
+                                   + " direction: " + firstCuboid.getDirection()
+                                   + " type: " + firstCuboid.getDominoType());
         }
+        DominoObject tomato = new DominoObject(firstCuboid, DominoObject.DOMINO_TYPE.Tomato);
+        Gdx.app.error(LOG_TAG, "DominoObject: " + tomato.getCenterPos()
+                               + " direction: " + tomato.getDirection()
+                               + " type: " + tomato.getDominoType());
+        dominoObjects.add(tomato);
     }
 
     public void nextLevel() {

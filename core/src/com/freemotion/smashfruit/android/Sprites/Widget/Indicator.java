@@ -37,7 +37,8 @@ public class Indicator extends BaseImage {
         StageConfig sc = JsonConfigFactory.getInstance().getStageConfig(configKey);
         TransitionConfig delay = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_delay");
         TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_left");
-        addAction(Actions.sequence(Actions.delay(delay.getDuration()), Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration())));
+        addAction(Actions.sequence(Actions.delay(delay.getDuration()), Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()), completeShowAction));
+        isShowup = false;
     }
 
     @Override
@@ -45,6 +46,7 @@ public class Indicator extends BaseImage {
         Gdx.app.error(LOG_TAG, " hide");
         StageConfig sc = JsonConfigFactory.getInstance().getStageConfig(configKey);
         TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_right");
-        addAction(Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()));
+        addAction(Actions.sequence(Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()), completeHideAction));
+        isHidden = false;
     }
 }

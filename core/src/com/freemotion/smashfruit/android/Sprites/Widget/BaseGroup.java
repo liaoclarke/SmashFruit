@@ -1,6 +1,7 @@
 package com.freemotion.smashfruit.android.Sprites.Widget;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
@@ -17,6 +18,21 @@ public class BaseGroup extends Group implements TransitionActor {
     protected TransitionActor parent;
     protected String configFile, configName;
     private ArrayList<TransitionActor> childActors;
+    protected boolean isShowup, isHidden;
+
+    protected Action completeShowAction = new Action() {
+        public boolean act(float delta) {
+            isShowup = true;
+            return true;
+        }
+    };
+
+    protected Action completeHideAction = new Action() {
+        public boolean act(float delta) {
+            isHidden = true;
+            return true;
+        }
+    };
 
     public BaseGroup(StageConfig config) {
         super();
@@ -70,6 +86,16 @@ public class BaseGroup extends Group implements TransitionActor {
     @Override
     public void hide() {
 
+    }
+
+    @Override
+    public boolean isShowCompleted() {
+        return false;
+    }
+
+    @Override
+    public boolean isHideCompleted() {
+        return false;
     }
 
     @Override

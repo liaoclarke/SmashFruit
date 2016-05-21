@@ -72,7 +72,8 @@ public class SettingsButton extends BaseButton {
         StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("settings");
         TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_up");
         TransitionConfig delay = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_delay");
-        addAction(Actions.sequence(Actions.delay(delay.getDuration()), Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration())));
+        addAction(Actions.sequence(Actions.delay(delay.getDuration()), Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()), completeShowAction));
+        isShowup = false;
     }
 
     @Override
@@ -80,7 +81,8 @@ public class SettingsButton extends BaseButton {
         Gdx.app.error(LOG_TAG, " hide");
         StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("settings");
         TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_down");
-        addAction(Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()));
+        addAction(Actions.sequence(Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()), completeHideAction));
+        isHidden = false;
     }
 
     private void showSettingsDialog() {

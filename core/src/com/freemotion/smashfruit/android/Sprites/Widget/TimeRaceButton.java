@@ -86,7 +86,8 @@ public class TimeRaceButton extends BaseButton implements MessageDispatch {
         StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("time_race");
         TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_right");
         TransitionConfig delay = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_delay");
-        addAction(Actions.sequence(Actions.delay(delay.getDuration()), Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration())));
+        addAction(Actions.sequence(Actions.delay(delay.getDuration()), Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()), completeShowAction));
+        isShowup = false;
     }
 
     @Override
@@ -94,6 +95,7 @@ public class TimeRaceButton extends BaseButton implements MessageDispatch {
         Gdx.app.error(LOG_TAG, " hide");
         StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("time_race");
         TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_left");
-        addAction(Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()));
+        addAction(Actions.sequence(Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()), completeHideAction));
+        isHidden = false;
     }
 }

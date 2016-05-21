@@ -34,7 +34,8 @@ public class CuboidNum extends BaseImage {
         StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("findbest_cuboid_num");
         TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_left");
         TransitionConfig delay = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_delay");
-        addAction(Actions.sequence(Actions.delay(delay.getDuration()), Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration())));
+        addAction(Actions.sequence(Actions.delay(delay.getDuration()), Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()), completeShowAction));
+        isShowup = false;
     }
 
     @Override
@@ -42,6 +43,7 @@ public class CuboidNum extends BaseImage {
         Gdx.app.error(LOG_TAG, " hide");
         StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("findbest_cuboid_num");
         TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_right");
-        addAction(Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()));
+        addAction(Actions.sequence(Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()), completeHideAction));
+        isShowup = false;
     }
 }

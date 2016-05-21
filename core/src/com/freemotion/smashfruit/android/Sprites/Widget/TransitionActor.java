@@ -11,6 +11,10 @@ public interface TransitionActor {
 
     void hide();
 
+    boolean isShowCompleted();
+
+    boolean isHideCompleted();
+
     Actor getActor();
 
     float getDuration();

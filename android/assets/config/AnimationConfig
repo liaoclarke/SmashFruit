@@ -99,6 +99,13 @@
       "region" : "cylinder300",
       "duration" : 0.10,
       "mode" : "NORMAL"
+    },
+    {
+      "key" : "tomato0",
+      "atlas" : "graphic/game2.txt",
+      "region" : "tomato0",
+      "duration" : 0.08,
+      "mode" : "NORMAL"
     }
   ]
 }

@@ -34,7 +34,8 @@ public class LogoTitle extends BaseImage {
         StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("game_logo");
         TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_down");
         TransitionConfig delay = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_delay");
-        addAction(Actions.sequence(Actions.delay(delay.getDuration()), Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration())));
+        addAction(Actions.sequence(Actions.delay(delay.getDuration()), Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()), completeShowAction));
+        isShowup = false;
     }
 
     @Override
@@ -42,6 +43,7 @@ public class LogoTitle extends BaseImage {
         Gdx.app.error(LOG_TAG, " hide");
         StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("game_logo");
         TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_up");
-        addAction(Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()));
+        addAction(Actions.sequence(Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()), completeHideAction));
+        isHidden = false;
     }
 }

@@ -18,6 +18,48 @@
           "duration" : 1
         }
       ]
+    },
+    {
+      "key" : "timerace_game_reset",
+      "dclass" : "ResetButton",
+      "positionX" : 40,
+      "positionY" : 40,
+      "scaleX" : 0.5,
+      "scaleY" : 0.5,
+      "atlas" : "graphics/game2.txt",
+      "region" : "reset",
+      "active" : false,
+      "transition" : [
+        {
+          "key" : "show_delay",
+          "duration" : 1
+        },
+        {
+          "key" : "fade_in",
+          "duration" : 0.5
+        }
+      ]
+    },
+    {
+      "key" : "timerace_game_pass",
+      "dclass" : "PassButton",
+      "positionX" : 600,
+      "positionY" : 40,
+      "scaleX" : 0.5,
+      "scaleY" : 0.5,
+      "atlas" : "graphics/game2.txt",
+      "region" : "pass",
+      "active" : false,
+       "transition" : [
+         {
+           "key" : "show_delay",
+           "duration" : 1
+         },
+         {
+          "key" : "fade_in",
+          "duration" : 0.5
+        }
+      ]
     }
   ]
 }

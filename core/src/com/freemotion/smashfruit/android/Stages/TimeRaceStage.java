@@ -113,8 +113,8 @@ public class TimeRaceStage extends StageBase {
         game = new GameController();
         game.enterGame();
         createDominos();
-        addActor(new ResetButton());
-        addActor(new PassButton());
+        //addActor(new ResetButton());
+        //addActor(new PassButton());
     }
 
     private void createDominos() {

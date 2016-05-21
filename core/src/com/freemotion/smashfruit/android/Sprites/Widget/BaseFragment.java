@@ -96,6 +96,16 @@ public class BaseFragment extends Actor implements JsonConfigFileParser, Transit
         JsonConfigFactory.getInstance().getStageConfig(configName).setActive(false);
     }
 
+    @Override
+    public boolean isShowCompleted() {
+        return false;
+    }
+
+    @Override
+    public boolean isHideCompleted() {
+        return false;
+    }
+
     public boolean isActive() {
         return JsonConfigFactory.getInstance().getStageConfig(configName).getActive();
     }

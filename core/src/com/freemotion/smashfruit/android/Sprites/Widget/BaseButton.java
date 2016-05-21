@@ -8,6 +8,7 @@ import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Misc.TextureConfig;
 import com.freemotion.smashfruit.android.Resources.UITextureLoader;
+import com.freemotion.smashfruit.android.Utils.ResourceLoader;
 import com.freemotion.smashfruit.android.Utils.ResourceManager;
 
 /**
@@ -38,6 +39,14 @@ public class BaseButton extends BaseActor {
         texture = uiLoader.getTextureAtlas().findRegion(config.getRegion());
         textureRectangle = new Rectangle(config.getPositionX(), config.getPositionY(),
                 texture.getRegionWidth() * config.getScaleX(), texture.getRegionHeight() * config.getScaleY());
+        setBounds(textureRectangle.x, textureRectangle.y, textureRectangle.width, textureRectangle.height);
+        setTouchable(Touchable.enabled);
+    }
+
+    public BaseButton(StageConfig config, ResourceLoader loader) {
+        super();
+        texture = loader.getTextureAtlas().findRegion(config.getRegion());
+        textureRectangle = new Rectangle(config.getPositionX(), config.getPositionY(), texture.getRegionWidth() * config.getScaleX(), texture.getRegionHeight() * config.getScaleY());
         setBounds(textureRectangle.x, textureRectangle.y, textureRectangle.width, textureRectangle.height);
         setTouchable(Touchable.enabled);
     }

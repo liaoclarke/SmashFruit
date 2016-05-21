@@ -54,7 +54,8 @@ public class TimeRaceGameBackground extends BaseImage {
         Gdx.app.error(LOG_TAG, " show");
         StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("timerace_game_background");
         TransitionConfig to = JsonConfigFactory.getInstance().getTransitionConfig(sc, "fade_in");
-        addAction(Actions.sequence(Actions.delay(2f), Actions.alpha(0f), debugAction, Actions.fadeIn(to.getDuration())));
+        addAction(Actions.sequence(Actions.delay(0.0f), Actions.alpha(0f), debugAction, Actions.fadeIn(to.getDuration()), completeShowAction));
+        isShowup = false;
     }
 
     @Override

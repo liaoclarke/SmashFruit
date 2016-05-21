@@ -49,6 +49,10 @@ public class DominoActor extends Actor {
             case Cylinder:
                 dominoType = "cylinder";
                 break;
+
+            case Tomato:
+                dominoType = "tomato";
+                break;
         }
         AnimationConfig config = JsonConfigFactory.getInstance().getAnimationConfig(dominoType + object.getDirection());
         SceneTextureLoader sceneLoader = (SceneTextureLoader) ResourceManager.getInstance().findLoader(SceneTextureLoader.class.getSimpleName());

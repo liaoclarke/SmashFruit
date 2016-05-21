@@ -1,5 +1,5 @@
 game2.png
-size: 816, 3788
+size: 816, 3880
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -360,3 +360,59 @@ reset
   orig: 160, 156
   offset: 0, 0
   index: -1
+tomato0
+  rotate: false
+  xy: 320, 3632
+  size: 97, 92
+  orig: 97, 92
+  offset: 0, 0
+  index: 0
+tomato0
+  rotate: false
+  xy: 417, 3632
+  size: 97, 92
+  orig: 97, 92
+  offset: 0, 0
+  index: 1
+tomato0
+  rotate: false
+  xy: 514, 3632
+  size: 97, 92
+  orig: 97, 92
+  offset: 0, 0
+  index: 2
+tomato0
+  rotate: false
+  xy: 611, 3632
+  size: 97, 92
+  orig: 97, 92
+  offset: 0, 0
+  index: 3
+tomato0
+  rotate: false
+  xy: 708, 3632
+  size: 97, 92
+  orig: 97, 92
+  offset: 0, 0
+  index: 4
+tomato0
+  rotate: false
+  xy: 0, 3788
+  size: 97, 92
+  orig: 97, 92
+  offset: 0, 0
+  index: 5
+tomato0
+  rotate: false
+  xy: 97, 3788
+  size: 97, 92
+  orig: 97, 92
+  offset: 0, 0
+  index: 6
+tomato0
+  rotate: false
+  xy: 194, 3788
+  size: 97, 92
+  orig: 97, 92
+  offset: 0, 0
+  index: 7

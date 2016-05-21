@@ -23,7 +23,8 @@ public class ShapeItMenuBackground extends BaseImage {
         StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("shapeit_background");
         TransitionConfig delay = JsonConfigFactory.getInstance().getTransitionConfig(sc, "show_delay");
         TransitionConfig to = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_left");
-        addAction(Actions.sequence(Actions.delay(delay.getDuration()), Actions.moveTo(to.getPositionX(), to.getPositionY()), Actions.visible(true)));
+        addAction(Actions.sequence(Actions.delay(delay.getDuration()), Actions.moveTo(to.getPositionX(), to.getPositionY()), Actions.visible(true), completeShowAction));
+        isShowup = false;
     }
 
     @Override
@@ -32,6 +33,7 @@ public class ShapeItMenuBackground extends BaseImage {
         StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("shapeit_background");
         TransitionConfig delay = JsonConfigFactory.getInstance().getTransitionConfig(sc, "hide_delay");
         TransitionConfig to = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_right");
-        addAction(Actions.sequence(Actions.delay(delay.getDuration()), Actions.moveTo(to.getPositionX(), to.getPositionY()), Actions.visible(false)));
+        addAction(Actions.sequence(Actions.delay(delay.getDuration()), Actions.moveTo(to.getPositionX(), to.getPositionY()), Actions.visible(false), completeHideAction));
+        isHidden = false;
     }
 }

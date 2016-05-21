@@ -21,12 +21,14 @@ public class SettingsDialogBox extends BaseGroup {
         Gdx.app.error(LOG_TAG, " show");
         StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("settings_dialog");
         TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_left");
-        addAction(Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()));
+        addAction(Actions.sequence(Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()), completeShowAction));
+        isShowup = false;
     }
 
     @Override
     public void hide() {
         Gdx.app.error(LOG_TAG, " hide");
         remove();
+        isHidden = true;
     }
 }
