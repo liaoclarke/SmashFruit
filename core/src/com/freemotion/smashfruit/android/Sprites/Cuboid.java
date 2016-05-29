@@ -19,7 +19,7 @@ public class Cuboid extends DominoActor {
         LOG_TAG = this.getClass().getSimpleName();
         setTouchable(Touchable.enabled);
         addListener(listener);
-        Gdx.app.error(LOG_TAG, " textureRectangle: " + textureRectangle);
+        //Gdx.app.error(LOG_TAG, " textureRectangle: " + textureRectangle);
     }
 
     @Override

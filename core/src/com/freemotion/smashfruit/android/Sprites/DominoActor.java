@@ -41,20 +41,28 @@ public class DominoActor extends Actor {
 
     public DominoActor(DominoObject object) {
         super();
+        String animationName ;
         switch (object.getDominoType()) {
             case Cuboid:
                 dominoType = "cuboid";
+                animationName = dominoType + object.getDirection();
                 break;
 
             case Cylinder:
                 dominoType = "cylinder";
+                animationName = dominoType + object.getDirection();
                 break;
 
             case Tomato:
                 dominoType = "tomato";
+                animationName = "tomato0";
+                break;
+
+            default:
+                animationName = null;
                 break;
         }
-        AnimationConfig config = JsonConfigFactory.getInstance().getAnimationConfig(dominoType + object.getDirection());
+        AnimationConfig config = JsonConfigFactory.getInstance().getAnimationConfig(animationName);
         SceneTextureLoader sceneLoader = (SceneTextureLoader) ResourceManager.getInstance().findLoader(SceneTextureLoader.class.getSimpleName());
         leanAnimation = new Animation(config.getDuration(), sceneLoader.getTextureAtlas().findRegions(config.getRegion()));
         leanAnimation.setPlayMode(config.getMode());
