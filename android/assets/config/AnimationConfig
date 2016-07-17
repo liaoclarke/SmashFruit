@@ -20,7 +20,7 @@
       "key" : "cuboid0",
       "atlas" : "graphic/game.txt",
       "region" : "cuboid0",
-      "duration" : 0.050,
+      "duration" : 0.05,
       "mode" : "NORMAL"
     },
     {

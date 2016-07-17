@@ -23,7 +23,7 @@ public class GameController {
         level = 1;
         difficulty = 1;
         //dominoNum = MathUtils.random(6 + difficulty, 10 + difficulty);
-        dominoNum = 3;
+        dominoNum = 10;
         dominoObjects = new DominoContainer();
         resetGame();
     }
@@ -42,22 +42,22 @@ public class GameController {
         DominoObject tomato = DominoObject.createObject((int)position.x, (int)position.y, direction, DominoObject.DOMINO_TYPE.Tomato);
         DominoObject nextCuboid = tomato;
         dominoObjects.add(tomato);
-        Gdx.app.error(LOG_TAG, "DominoObject: " + tomato.getCenterPos()
-                               + " direction: " + tomato.getDirection()
-                               + " type: " + tomato.getDominoType());
+       // Gdx.app.error(LOG_TAG, "DominoObject: " + tomato.getCenterPos()
+       //                        + " direction: " + tomato.getDirection()
+       //                        + " type: " + tomato.getDominoType());
         nextCuboid = DominoObject.createObject(nextCuboid, dominoObjects, DominoObject.DOMINO_TYPE.Cuboid, true);
         dominoObjects.add(nextCuboid);
-        Gdx.app.error(LOG_TAG, "DominoObject: " + nextCuboid.getCenterPos()
-                               + " direction: " + nextCuboid.getDirection()
-                               + " type: " + nextCuboid.getDominoType());
+       // Gdx.app.error(LOG_TAG, "DominoObject: " + nextCuboid.getCenterPos()
+       //                        + " direction: " + nextCuboid.getDirection()
+       //                        + " type: " + nextCuboid.getDominoType());
         for (int i = 2; i < dominoNum; i++) {
             //direction = DominoObject.generateDirection(nextCuboid, dominoObjects);
             //position = DominoObject.generatePosition((int)nextCuboid.getCenterPos().x, (int) nextCuboid.getCenterPos().y, direction);
             nextCuboid = DominoObject.createObject(nextCuboid, dominoObjects, DominoObject.DOMINO_TYPE.Cuboid, false);
             dominoObjects.add(nextCuboid);
-            Gdx.app.error(LOG_TAG, "DominoObject: " + nextCuboid.getCenterPos()
-                               + " direction: " + nextCuboid.getDirection()
-                               + " type: " + nextCuboid.getDominoType());
+           // Gdx.app.error(LOG_TAG, "DominoObject: " + nextCuboid.getCenterPos()
+           //                    + " direction: " + nextCuboid.getDirection()
+           //                    + " type: " + nextCuboid.getDominoType());
         }
         dominoObjects.reverse();
     }

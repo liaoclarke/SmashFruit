@@ -38,397 +38,6 @@ public class DominoObject {
         return new Vector2((int)(centerX + parallel_delta_x + normal_delta_x), (int)(centerY + parallel_delta_y + normal_delta_y));
     }
 
-    public static int generateDirection(Vector2 cuboidPos, int nextDirection, DominoObject nextObject, DominoContainer objects) {
-        /*
-        *   1 |       2       | 3
-        *  -----------------------
-        *     |               |
-        *     |               |
-        *   4 |       5       | 6
-        *     |               |
-        *     |               |
-        *  -----------------------
-        *   7 |       8       | 9
-        * */
-        boolean isSection1 = isOutOfLeftBoundary(cuboidPos.x, cuboidPos.y)
-                          && isOutOfTopBoundary(cuboidPos.x, cuboidPos.y);
-
-        boolean isSection2 = isOutOfTopBoundary(cuboidPos.x, cuboidPos.y)
-                          && !isOutOfLeftBoundary(cuboidPos.x, cuboidPos.y)
-                          && !isOutOfRightBoundary(cuboidPos.x, cuboidPos.y);
-
-        boolean isSection3 = isOutOfTopBoundary(cuboidPos.x, cuboidPos.y)
-                          && isOutOfRightBoundary(cuboidPos.x, cuboidPos.y);
-
-        boolean isSection4 = isOutOfLeftBoundary(cuboidPos.x, cuboidPos.y)
-                          && !isOutOfBottomBoundary(cuboidPos.x, cuboidPos.y)
-                          && !isOutOfTopBoundary(cuboidPos.x, cuboidPos.y);
-
-        boolean isSection5 = !isOutOfLeftBoundary(cuboidPos.x, cuboidPos.y)
-                          && !isOutOfTopBoundary(cuboidPos.x, cuboidPos.y)
-                          && !isOutOfRightBoundary(cuboidPos.x, cuboidPos.y)
-                          && !isOutOfBottomBoundary(cuboidPos.x, cuboidPos.y);
-
-        boolean isSection6 = isOutOfRightBoundary(cuboidPos.x, cuboidPos.y)
-                          && !isOutOfBottomBoundary(cuboidPos.x, cuboidPos.y)
-                          && !isOutOfTopBoundary(cuboidPos.x, cuboidPos.y);
-
-        boolean isSection7 = isOutOfLeftBoundary(cuboidPos.x, cuboidPos.y)
-                          && isOutOfBottomBoundary(cuboidPos.x, cuboidPos.y);
-
-        boolean isSection8 = isOutOfBottomBoundary(cuboidPos.x, cuboidPos.y)
-                          && !isOutOfLeftBoundary(cuboidPos.x, cuboidPos.y)
-                          && !isOutOfRightBoundary(cuboidPos.x, cuboidPos.y);
-
-        boolean isSection9 = isOutOfBottomBoundary(cuboidPos.x, cuboidPos.y)
-                          && isOutOfRightBoundary(cuboidPos.x, cuboidPos.y);
-
-        int direction = 0;
-        Gdx.app.error(LOG_TAG, " " + isSection1 + " | " + isSection2 + " | " + isSection3);
-        Gdx.app.error(LOG_TAG, " " + isSection4 + " | " + isSection5 + " | " + isSection6);
-        Gdx.app.error(LOG_TAG, " " + isSection7 + " | " + isSection8 + " | " + isSection9);
-        if (isSection1) {
-            if (nextDirection == 0) {
-                direction = 300;
-            } else if (direction == 60) {
-                direction = 0;
-            } else if (direction == 120) {
-                direction = MathUtils.randomBoolean() ? 180 : 60;
-            } else if (direction == 180) {
-                direction = 240;
-            } else if (direction == 240) {
-                direction = 300;
-            } else if (direction == 300) {
-                direction = 0;
-            }
-        }
-        else if (isSection2) {
-            if (direction == 0) {
-                direction = 300;
-            } else if (direction == 60) {
-                direction = 0;
-            } else if (direction == 120){
-                direction = 180;
-            } else if (direction == 180) {
-                direction = 240;
-            } else if (direction == 240) {
-                direction = MathUtils.randomBoolean() ? 240 : 300;
-            } else if (direction == 300) {
-                direction = MathUtils.randomBoolean() ? 240 : 300;
-            }
-        }
-        else if (isSection3) {
-            if (direction == 0) {
-                direction = 300;
-            } else if (direction == 60) {
-                direction = MathUtils.randomBoolean() ? 0 : 120;
-            } else if (direction == 120){
-                direction = 180;
-            } else if (direction == 180) {
-                direction = 240;
-            } else if (direction == 240) {
-                direction = 240;
-            } else if (direction == 300) {
-                direction = 240;
-            }
-        }
-        else if (isSection4) {
-            if (direction == 0) {
-                direction = 0;
-            } else if (direction == 60) {
-                direction = 0;
-            } else if (direction == 120) {
-                direction = 60;
-            } else if (direction == 180) {
-                direction = MathUtils.randomBoolean() ? 120 : 240;
-            } else if (direction == 240) {
-                direction = 300;
-            } else if (direction == 300) {
-                direction = 0;
-            }
-        }
-        else if (isSection5) {
-            if (nextObject.getDominoType() == DOMINO_TYPE.Tomato) {
-                direction = nextDirection;
-            } else {
-                Gdx.app.error(LOG_TAG, "direction(0) : " + direction);
-                if (nextDirection == 0 || nextDirection == 180) {
-                    direction = nextDirection + 60 * MathUtils.random(-1, 1);
-                } else if (nextDirection == 120 || nextDirection == 300) {
-                    direction = nextDirection + 60 * (MathUtils.randomBoolean() ? 0 : 1);
-                } else if (nextDirection == 60 || nextDirection == 240) {
-                    direction = nextDirection + 60 * (MathUtils.randomBoolean() ? -1 : 0);
-                }
-            }
-            /*if (hasClosure(cuboidPos, direction, nextObject, objects)) {
-                direction = nextDirection - 60;
-                Gdx.app.error(LOG_TAG, "direction(-60) : " + direction);
-                if (hasClosure(cuboidPos, direction, nextObject, objects)) {
-                    direction = nextDirection + 60;
-                    Gdx.app.error(LOG_TAG, "direction(+60) : " + direction);
-                }
-            }*/
-            if (direction == -60) {
-                direction = 300;
-            } else if (direction == 360) {
-                direction = 0;
-            }
-        }
-        else if (isSection6) {
-            if (direction == 0) {
-                direction = MathUtils.randomBoolean() ? 60 : 300;
-            } else if (direction == 60) {
-                direction = 120;
-            } else if (direction == 120){
-                direction = 180;
-            } else if (direction == 180) {
-                direction = 180;
-            } else if (direction == 240) {
-                direction = 180;
-            } else if (direction == 300) {
-                direction = 240;
-            }
-        }
-        else if (isSection7) {
-            if (direction == 0) {
-                direction = 60;
-            } else if (direction == 60) {
-                direction = 60;
-            } else if (direction == 120) {
-                direction = 60;
-            } else if (direction == 180) {
-                direction = 120;
-            } else if (direction == 240) {
-                direction = MathUtils.randomBoolean() ? 180 : 300;
-            } else if (direction == 300) {
-                direction = 0;
-            }
-        }
-        else if (isSection8) {
-            if (direction == 0) {
-                direction = 60;
-            } else if (direction == 60) {
-                direction = MathUtils.randomBoolean() ? 60 : 120;
-            } else if (direction == 120) {
-                direction = MathUtils.randomBoolean() ? 60 : 120;
-            } else if (direction == 180) {
-                direction = 120;
-            } else if (direction == 240) {
-                direction = 180;
-            } else if (direction == 300) {
-                direction = 0;
-            }
-        }
-        else if (isSection9) {
-            if (direction == 0) {
-                direction = 60;
-            } else if (direction == 60) {
-                direction = 120;
-            } else if (direction == 120) {
-                direction = 120;
-            } else if (direction == 180) {
-                direction = 120;
-            } else if (direction == 240) {
-                direction = 180;
-            } else if (direction == 300) {
-                direction = MathUtils.randomBoolean() ? 240 : 0;
-            }
-        }
-
-        /*if (direction < 180) {
-            direction = 180 - direction;
-        } else {
-            direction = direction - 180;
-        }*/
-        return direction;
-    }
-
-    public static int generateDirection(DominoObject firstObject, DominoContainer objects) {
-        /*
-        *   1 |       2       | 3
-        *  -----------------------
-        *     |               |
-        *     |               |
-        *   4 |       5       | 6
-        *     |               |
-        *     |               |
-        *  -----------------------
-        *   7 |       8       | 9
-        * */
-        boolean isSection1 = isOutOfLeftBoundary(firstObject.getCenterPos().x, firstObject.getCenterPos().y)
-                          && isOutOfTopBoundary(firstObject.getCenterPos().x, firstObject.getCenterPos().y);
-
-        boolean isSection2 = isOutOfTopBoundary(firstObject.getCenterPos().x, firstObject.getCenterPos().y)
-                          && !isOutOfLeftBoundary(firstObject.getCenterPos().x, firstObject.getCenterPos().y)
-                          && !isOutOfRightBoundary(firstObject.getCenterPos().x, firstObject.getCenterPos().y);
-
-        boolean isSection3 = isOutOfTopBoundary(firstObject.centerPos.x, firstObject.centerPos.y)
-                          && isOutOfRightBoundary(firstObject.centerPos.x, firstObject.centerPos.y);
-
-        boolean isSection4 = isOutOfLeftBoundary(firstObject.centerPos.x, firstObject.centerPos.y)
-                          && !isOutOfBottomBoundary(firstObject.centerPos.x, firstObject.centerPos.y)
-                          && !isOutOfTopBoundary(firstObject.centerPos.x, firstObject.centerPos.y);
-
-        boolean isSection5 = !isOutOfLeftBoundary(firstObject.centerPos.x, firstObject.centerPos.y)
-                          && !isOutOfTopBoundary(firstObject.centerPos.x, firstObject.centerPos.y)
-                          && !isOutOfRightBoundary(firstObject.centerPos.x, firstObject.centerPos.y)
-                          && !isOutOfBottomBoundary(firstObject.centerPos.x, firstObject.centerPos.y);
-
-        boolean isSection6 = isOutOfRightBoundary(firstObject.centerPos.x, firstObject.centerPos.y)
-                          && !isOutOfBottomBoundary(firstObject.centerPos.x, firstObject.centerPos.y)
-                          && !isOutOfTopBoundary(firstObject.centerPos.x, firstObject.centerPos.y);
-
-        boolean isSection7 = isOutOfLeftBoundary(firstObject.centerPos.x, firstObject.centerPos.y)
-                          && isOutOfBottomBoundary(firstObject.centerPos.x, firstObject.centerPos.y);
-
-        boolean isSection8 = isOutOfBottomBoundary(firstObject.centerPos.x, firstObject.centerPos.y)
-                          && !isOutOfLeftBoundary(firstObject.centerPos.x, firstObject.centerPos.y)
-                          && !isOutOfRightBoundary(firstObject.centerPos.x, firstObject.centerPos.y);
-
-        boolean isSection9 = isOutOfBottomBoundary(firstObject.centerPos.x, firstObject.centerPos.y)
-                          && isOutOfRightBoundary(firstObject.centerPos.x, firstObject.centerPos.y);
-
-        int direction = 0;
-        Gdx.app.error(LOG_TAG, " " + isSection1 + " | " + isSection2 + " | " + isSection3);
-        Gdx.app.error(LOG_TAG, " " + isSection4 + " | " + isSection5 + " | " + isSection6);
-        Gdx.app.error(LOG_TAG, " " + isSection7 + " | " + isSection8 + " | " + isSection9);
-        if (isSection1) {
-            if (firstObject.direction == 0) {
-                direction = 300;
-            } else if (firstObject.direction == 60) {
-                direction = 0;
-            } else if (firstObject.direction == 120) {
-                direction = MathUtils.randomBoolean() ? 180 : 60;
-            } else if (firstObject.direction == 180) {
-                direction = 240;
-            } else if (firstObject.direction == 240) {
-                direction = 300;
-            } else if (firstObject.direction == 300) {
-                direction = 0;
-            }
-        }
-        else if (isSection2) {
-            if (firstObject.direction == 0) {
-                direction = 300;
-            } else if (firstObject.direction == 60) {
-                direction = 0;
-            } else if (firstObject.direction == 120){
-                direction = 180;
-            } else if (firstObject.direction == 180) {
-                direction = 240;
-            } else if (firstObject.direction == 240) {
-                direction = MathUtils.randomBoolean() ? 240 : 300;
-            } else if (firstObject.direction == 300) {
-                direction = MathUtils.randomBoolean() ? 240 : 300;
-            }
-        }
-        else if (isSection3) {
-            if (firstObject.direction == 0) {
-                direction = 300;
-            } else if (firstObject.direction == 60) {
-                direction = MathUtils.randomBoolean() ? 0 : 120;
-            } else if (firstObject.direction == 120){
-                direction = 180;
-            } else if (firstObject.direction == 180) {
-                direction = 240;
-            } else if (firstObject.direction == 240) {
-                direction = 240;
-            } else if (firstObject.direction == 300) {
-                direction = 240;
-            }
-        }
-        else if (isSection4) {
-            if (firstObject.direction == 0) {
-                direction = 0;
-            } else if (firstObject.direction == 60) {
-                direction = 0;
-            } else if (firstObject.direction == 120) {
-                direction = 60;
-            } else if (firstObject.direction == 180) {
-                direction = MathUtils.randomBoolean() ? 120 : 240;
-            } else if (firstObject.direction == 240) {
-                direction = 300;
-            } else if (firstObject.direction == 300) {
-                direction = 0;
-            }
-        }
-        else if (isSection5) {
-            direction = firstObject.direction + 60 * MathUtils.random(-1, 1);
-            if (direction == -60) {
-                direction = 300;
-            } else if (direction == 360) {
-                direction = 0;
-            }
-        }
-        else if (isSection6) {
-            if (firstObject.direction == 0) {
-                direction = MathUtils.randomBoolean() ? 60 : 300;
-            } else if (firstObject.direction == 60) {
-                direction = 120;
-            } else if (firstObject.direction == 120){
-                direction = 180;
-            } else if (firstObject.direction == 180) {
-                direction = 180;
-            } else if (firstObject.direction == 240) {
-                direction = 180;
-            } else if (firstObject.direction == 300) {
-                direction = 240;
-            }
-        }
-        else if (isSection7) {
-            if (firstObject.direction == 0) {
-                direction = 60;
-            } else if (firstObject.direction == 60) {
-                direction = 60;
-            } else if (firstObject.direction == 120) {
-                direction = 60;
-            } else if (firstObject.direction == 180) {
-                direction = 120;
-            } else if (firstObject.direction == 240) {
-                direction = MathUtils.randomBoolean() ? 180 : 300;
-            } else if (firstObject.direction == 300) {
-                direction = 0;
-            }
-        }
-        else if (isSection8) {
-            if (firstObject.direction == 0) {
-                direction = 60;
-            } else if (firstObject.direction == 60) {
-                direction = MathUtils.randomBoolean() ? 60 : 120;
-            } else if (firstObject.direction == 120) {
-                direction = MathUtils.randomBoolean() ? 60 : 120;
-            } else if (firstObject.direction == 180) {
-                direction = 120;
-            } else if (firstObject.direction == 240) {
-                direction = 180;
-            } else if (firstObject.direction == 300) {
-                direction = 0;
-            }
-        }
-        else if (isSection9) {
-            if (firstObject.direction == 0) {
-                direction = 60;
-            } else if (firstObject.direction == 60) {
-                direction = 120;
-            } else if (firstObject.direction == 120) {
-                direction = 120;
-            } else if (firstObject.direction == 180) {
-                direction = 120;
-            } else if (firstObject.direction == 240) {
-                direction = 180;
-            } else if (firstObject.direction == 300) {
-                direction = MathUtils.randomBoolean() ? 240 : 0;
-            }
-        }
-
-        if (direction < 180) {
-            direction = 180 - direction;
-        } else {
-            direction = direction - 180;
-        }
-        return direction;
-    }
-
     public static DominoObject createObject(int centerX, int centerY, int dir, DOMINO_TYPE type) {
         return new DominoObject(centerX, centerY, dir, type);
     }
@@ -450,71 +59,45 @@ public class DominoObject {
             centerPos = generatePosition((int)object.getCenterPos().x, (int)object.getCenterPos().y, normalDir);
             direction = object.getDirection();
         } else {
-        /*centerPos = generatePosition((int)object.getCenterPos().x,
-                                     (int)object.getCenterPos().y,
-                                     object.getDirection() < 180 ? (object.getDirection() + 180) : (object.getDirection() - 180));
-        direction = generateDirection(centerPos,  object.getDirection(), object, objects);
-        */
+            Array<Integer> centerDirSet = new Array<Integer>();
+            Array<Integer> normalDirSet = new Array<Integer>();
             Array<Vector2> centerPosSet = new Array<Vector2>();
-            Array<Integer> directionSet = new Array<Integer>();
-            int normalDir = object.getDirection() < 180 ? (object.getDirection() + 180) : (object.getDirection() - 180);
-            for (int deltaDir = -60; deltaDir < 120; deltaDir += 60) {
-                centerPosSet.add(generatePosition((int) object.getCenterPos().x, (int) object.getCenterPos().y, normalDir));
-                if ((object.getDirection() - deltaDir) == -60) {
-                    directionSet.add(300);
-                } else if ((object.getDirection() - deltaDir) == 360) {
-                    directionSet.add(0);
-                } else {
-                    directionSet.add(object.getDirection() - deltaDir);
-                }
+
+            int centerDir = object.getDirection() < 180 ? (object.getDirection() + 180) : (object.getDirection() - 180);
+            //centerDirSet.add(centerDir);
+            centerDirSet.add((centerDir - 60) < 0 ? 300 : (centerDir - 60));
+            centerDirSet.add((centerDir + 60) >= 360 ? (centerDir - 300) : (centerDir + 60));
+            for (int i = 0; i < centerDirSet.size; i++) {
+                normalDirSet.add(centerDirSet.get(i) < 180 ? centerDirSet.get(i) + 180 : centerDirSet.get(i) - 180);
             }
-            centerPosSet.add(generatePosition((int) object.getCenterPos().x, (int) object.getCenterPos().y, normalDir - 60));
-            if ((object.getDirection() + 60) == 360) {
-                directionSet.add(0);
-            } else {
-                directionSet.add(object.getDirection() + 60);
+            for (int i = 0; i < centerDirSet.size; i++) {
+                centerPosSet.add(generatePosition((int) object.getCenterPos().x, (int) object.getCenterPos().y, centerDirSet.get(i)));
             }
-            centerPosSet.add(generatePosition((int) object.getCenterPos().x, (int) object.getCenterPos().y, normalDir + 60));
-            if ((object.getDirection() - 60) == -60) {
-                directionSet.add(300);
-            } else {
-                directionSet.add(object.getDirection() - 60);
-            }
-            pickupPositionAndDirection(centerPosSet, directionSet, objects);
+            pickupPositionAndDirection(centerPosSet, normalDirSet, objects);
         }
-        dominoType = type;
     }
 
     private void pickupPositionAndDirection(Array<Vector2> positionSet, Array<Integer> directionSet, DominoContainer objects) {
-        Array<Vector2> goodPositionSet = new Array<Vector2>();
-        Array<Integer> goodDirectionSet = new Array<Integer>();
-        Array<Vector2> betterPositionSet = new Array<Vector2>();
-        Array<Integer> betterDirectionSet = new Array<Integer>();
+        int whichObject = pickWhichObjectToPlace(positionSet, directionSet);
 
-        /* Filter out the position and direction that is out of scene boundary*/
-        for (int i = 0; i < positionSet.size; i++) {
-            if (!isOutOfBoundary(positionSet.get(i), directionSet.get(i))) {
-                goodPositionSet.add(positionSet.get(i));
-                goodDirectionSet.add(directionSet.get(i));
+        if (!isOverlap(positionSet.get(whichObject), directionSet.get(whichObject), objects)) {
+            if (!isOutOfBoundary(positionSet.get(whichObject), directionSet.get(whichObject))) {
+                centerPos = positionSet.get(whichObject);
+                direction = directionSet.get(whichObject);
+            } else {
+                rotateObject(positionSet, directionSet, objects);
             }
-        }
-        /* Filter out the position and direction that might overlap with exists cuboid */
-        for (int i = 0; i < goodPositionSet.size; i++) {
-            if (!isOverlap(positionSet.get(i), directionSet.get(i), objects)) {
-                betterPositionSet.add(positionSet.get(i));
-                betterDirectionSet.add(directionSet.get(i));
-            }
-        }
-
-        if (betterPositionSet.size > 0) {
-            int index = MathUtils.random(0, betterPositionSet.size - 1);
-            centerPos = betterPositionSet.get(index);
-            direction = betterDirectionSet.get(index);
         } else {
-            int index = MathUtils.random(0, goodPositionSet.size - 1);
-            centerPos = goodPositionSet.get(index);
-            direction = goodDirectionSet.get(index);
+            rotateObject(positionSet, directionSet, objects);
         }
+    }
+
+    private int pickWhichObjectToPlace(Array<Vector2> positionSet, Array<Integer> directionSet) {
+        return MathUtils.random(0, positionSet.size - 1);
+    }
+
+    private void rotateObject(Array<Vector2> positionSet, Array<Integer> directionSet, DominoContainer objects) {
+
     }
 
     private boolean isOutOfBoundary(Vector2 position, int direction) {
@@ -538,18 +121,21 @@ public class DominoObject {
     }
 
     private boolean isOverlap(Vector2 position, int direction, DominoContainer objects) {
-        for (int i = 1; i < (objects.size() - 1); i++) {
+        const int cuboidWidth = ;
+        const int cuboidLength = ;
+        for (int i = 0; i < (objects.size() - 1); i++) {
             DominoObject obj = objects.get(i);
-            if (position.dst(obj.getCenterPos()) < 5) {
+            float p1_x = position.x + cuboidLength * MathUtils.cosDeg(direction) + cuboidWidth * 0.5f * MathUtils.sinDeg(direction);
+            float p1_y = position.y + cuboidWidth * 0.5f * MathUtils.cosDeg(direction) + cuboidLength * MathUtils.sinDeg(direction);
+            float p2_x = position.x + cuboidWidth * 0.5f * MathUtils.sinDeg(direction);
+            float p2_y = position.y + cuboidWidth * 0.5f * MathUtils.cosDeg(direction);
+            /*float degree = MathUtils.atan2(obj.getCenterPos().y - position.y, obj.getCenterPos().x - position.x) * MathUtils.radiansToDegrees;
+            float distance = position.dst(obj.getCenterPos());
+            if ((position.dst(obj.getCenterPos()) < 75)
+                 && (Math.abs(degree - direction) <= 5)) {
+                Gdx.app.error(LOG_TAG, "centerPos: " + position + " direction: " + direction + " colliside pos: " + obj.getCenterPos() + " direction: " + obj.getDirection());
                 return true;
-            } else {
-                float degree = MathUtils.atan2(obj.getCenterPos().y - position.y, obj.getCenterPos().x - position.x) * MathUtils.radiansToDegrees;
-                if ((position.dst(obj.getCenterPos()) < 75)
-                     && (Math.abs(degree - direction) <= 5)) {
-                    Gdx.app.error(LOG_TAG, "centerPos: " + position + " direction: " + direction + " colliside pos: " + obj.getCenterPos() + " direction: " + obj.getDirection());
-                    return true;
-                }
-            }
+            }*/
         }
         return false;
     }
@@ -604,17 +190,53 @@ public class DominoObject {
         }
     }
 
-    private static boolean hasClosure(Vector2 centerPos, int direction, DominoObject nextObject, DominoContainer objects) {
-        for (DominoObject obj : objects.getAll()) {
-            float degree = MathUtils.atan2(obj.getCenterPos().y - centerPos.y, obj.getCenterPos().x - centerPos.x) * MathUtils.radiansToDegrees;
-            if ((centerPos.dst(obj.getCenterPos()) < 75)
-                 && (Math.abs(degree - direction) <= 5)
-                 && (obj != nextObject)) {
-                Gdx.app.error(LOG_TAG, "centerPos: " + centerPos + " direction: " + direction + " colliside pos: " + obj.getCenterPos() + " direction: " + obj.getDirection());
-                break;
+    private static int findBestPosition(Array<Vector2> positionSet, Array<Integer> directionSet, DominoContainer objects) {
+        int retval = 0;
+
+        for (int i = 0; i < positionSet.size; i++) {
+            boolean isSection1 = isOutOfLeftBoundary(positionSet.get(i).x, positionSet.get(i).y)
+                    && isOutOfTopBoundary(positionSet.get(i).x, positionSet.get(i).y);
+
+            boolean isSection2 = isOutOfTopBoundary(positionSet.get(i).x, positionSet.get(i).y)
+                    && !isOutOfLeftBoundary(positionSet.get(i).x, positionSet.get(i).y)
+                    && !isOutOfRightBoundary(positionSet.get(i).x, positionSet.get(i).y);
+
+            boolean isSection3 = isOutOfTopBoundary(positionSet.get(i).x, positionSet.get(i).y)
+                    && isOutOfRightBoundary(positionSet.get(i).x, positionSet.get(i).y);
+
+            boolean isSection4 = isOutOfLeftBoundary(positionSet.get(i).x, positionSet.get(i).y)
+                    && !isOutOfBottomBoundary(positionSet.get(i).x, positionSet.get(i).y)
+                    && !isOutOfTopBoundary(positionSet.get(i).x, positionSet.get(i).y);
+
+            boolean isSection5 = !isOutOfLeftBoundary(positionSet.get(i).x, positionSet.get(i).y)
+                    && !isOutOfTopBoundary(positionSet.get(i).x, positionSet.get(i).y)
+                    && !isOutOfRightBoundary(positionSet.get(i).x, positionSet.get(i).y)
+                    && !isOutOfBottomBoundary(positionSet.get(i).x, positionSet.get(i).y);
+
+            boolean isSection6 = isOutOfRightBoundary(positionSet.get(i).x, positionSet.get(i).y)
+                    && !isOutOfBottomBoundary(positionSet.get(i).x, positionSet.get(i).y)
+                    && !isOutOfTopBoundary(positionSet.get(i).x, positionSet.get(i).y);
+
+            boolean isSection7 = isOutOfLeftBoundary(positionSet.get(i).x, positionSet.get(i).y)
+                    && isOutOfBottomBoundary(positionSet.get(i).x, positionSet.get(i).y);
+
+            boolean isSection8 = isOutOfBottomBoundary(positionSet.get(i).x, positionSet.get(i).y)
+                    && !isOutOfLeftBoundary(positionSet.get(i).x, positionSet.get(i).y)
+                    && !isOutOfRightBoundary(positionSet.get(i).x, positionSet.get(i).y);
+
+            boolean isSection9 = isOutOfBottomBoundary(positionSet.get(i).x, positionSet.get(i).y)
+                    && isOutOfRightBoundary(positionSet.get(i).x, positionSet.get(i).y);
+
+            int direction = 0;
+            Gdx.app.error(LOG_TAG, " " + isSection1 + " | " + isSection2 + " | " + isSection3);
+            Gdx.app.error(LOG_TAG, " " + isSection4 + " | " + isSection5 + " | " + isSection6);
+            Gdx.app.error(LOG_TAG, " " + isSection7 + " | " + isSection8 + " | " + isSection9);
+
+            if (isSection1) {
+
             }
         }
-        return false;
-    }
 
+        return retval;
+    }
 }
