@@ -23,6 +23,11 @@ public class DominoObject {
     private Vector2 centerPos;
     private DOMINO_TYPE dominoType;
 
+    private Vector2 p1_pos_delta;
+    private Vector2 p2_pos_delta;
+    private Vector2 p3_pos_delta;
+    private Vector2 p4_pos_delta;
+
     public static Vector2 generatePosition(int centerX, int centerY, int direction) {
         int collisionRegionWidth = Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("COLLISION_WIDTH").getValue());
         int collisionRegionNearestDistance = Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("COLLISION_NEAREST").getValue());
@@ -53,6 +58,7 @@ public class DominoObject {
     }
 
     public DominoObject(DominoObject object, DominoContainer objects, DOMINO_TYPE type, boolean sameDirection) {
+        boolean retVal = false;
         dominoType = type;
         if (sameDirection) {
             int normalDir = object.getDirection() < 180 ? (object.getDirection() + 180) : (object.getDirection() - 180);
@@ -73,31 +79,34 @@ public class DominoObject {
             for (int i = 0; i < centerDirSet.size; i++) {
                 centerPosSet.add(generatePosition((int) object.getCenterPos().x, (int) object.getCenterPos().y, centerDirSet.get(i)));
             }
-            pickupPositionAndDirection(centerPosSet, normalDirSet, objects);
+            retVal = pickupPositionAndDirection(centerPosSet, normalDirSet, objects);
+            while (!retVal) {
+                retVal = rotateObject(centerPosSet, normalDirSet, objects);
+            }
         }
     }
 
-    private void pickupPositionAndDirection(Array<Vector2> positionSet, Array<Integer> directionSet, DominoContainer objects) {
+    private boolean pickupPositionAndDirection(Array<Vector2> positionSet, Array<Integer> directionSet, DominoContainer objects) {
+        boolean retVal = false;
         int whichObject = pickWhichObjectToPlace(positionSet, directionSet);
 
         if (!isOverlap(positionSet.get(whichObject), directionSet.get(whichObject), objects)) {
             if (!isOutOfBoundary(positionSet.get(whichObject), directionSet.get(whichObject))) {
                 centerPos = positionSet.get(whichObject);
                 direction = directionSet.get(whichObject);
-            } else {
-                rotateObject(positionSet, directionSet, objects);
+                return true;
             }
-        } else {
-            rotateObject(positionSet, directionSet, objects);
         }
+        return retVal;
     }
 
     private int pickWhichObjectToPlace(Array<Vector2> positionSet, Array<Integer> directionSet) {
         return MathUtils.random(0, positionSet.size - 1);
     }
 
-    private void rotateObject(Array<Vector2> positionSet, Array<Integer> directionSet, DominoContainer objects) {
-
+    private boolean rotateObject(Array<Vector2> positionSet, Array<Integer> directionSet, DominoContainer objects) {
+        DominoObject tailObject = objects.get(objects.size() - 1);
+        return true;
     }
 
     private boolean isOutOfBoundary(Vector2 position, int direction) {
@@ -120,24 +129,53 @@ public class DominoObject {
         return !inSection5;
     }
 
+    private void updateRectangleVertexPositionDelta(int direction) {
+        int cuboidWidth = 44;
+        int cuboidLength = 90;
+        p1_pos_delta.set(cuboidLength * MathUtils.cosDeg(direction) + cuboidWidth * 0.5f * MathUtils.cosDeg(direction - 90),
+                         cuboidLength * MathUtils.sinDeg(direction) + cuboidWidth * 0.5f * MathUtils.sinDeg(direction - 90));
+        p2_pos_delta.set(cuboidWidth * 0.5f * MathUtils.cosDeg(direction - 90),
+                         cuboidWidth * 0.5f * MathUtils.sinDeg(direction - 90));
+        p3_pos_delta.set(cuboidWidth * 0.5f * MathUtils.cosDeg(direction + 90),
+                         cuboidWidth * 0.5f * MathUtils.sinDeg(direction + 90));
+        p4_pos_delta.set(cuboidLength * MathUtils.cosDeg(direction) + cuboidWidth * 0.5f * MathUtils.cosDeg(direction + 90),
+                         cuboidLength * MathUtils.sinDeg(direction) + cuboidWidth * 0.5f * MathUtils.sinDeg(direction + 90));
+    }
+
     private boolean isOverlap(Vector2 position, int direction, DominoContainer objects) {
-        const int cuboidWidth = ;
-        const int cuboidLength = ;
+        updateRectangleVertexPositionDelta(direction);
+        Vector2 rectangle1_p1 = new Vector2(position).add(p1_pos_delta);
+        Vector2 rectangle1_p2 = new Vector2(position).add(p2_pos_delta);
+        Vector2 rectangle1_p3 = new Vector2(position).add(p3_pos_delta);
+        Vector2 rectangle1_p4 = new Vector2(position).add(p4_pos_delta);
         for (int i = 0; i < (objects.size() - 1); i++) {
             DominoObject obj = objects.get(i);
-            float p1_x = position.x + cuboidLength * MathUtils.cosDeg(direction) + cuboidWidth * 0.5f * MathUtils.sinDeg(direction);
-            float p1_y = position.y + cuboidWidth * 0.5f * MathUtils.cosDeg(direction) + cuboidLength * MathUtils.sinDeg(direction);
-            float p2_x = position.x + cuboidWidth * 0.5f * MathUtils.sinDeg(direction);
-            float p2_y = position.y + cuboidWidth * 0.5f * MathUtils.cosDeg(direction);
-            /*float degree = MathUtils.atan2(obj.getCenterPos().y - position.y, obj.getCenterPos().x - position.x) * MathUtils.radiansToDegrees;
-            float distance = position.dst(obj.getCenterPos());
-            if ((position.dst(obj.getCenterPos()) < 75)
-                 && (Math.abs(degree - direction) <= 5)) {
-                Gdx.app.error(LOG_TAG, "centerPos: " + position + " direction: " + direction + " colliside pos: " + obj.getCenterPos() + " direction: " + obj.getDirection());
-                return true;
-            }*/
+            updateRectangleVertexPositionDelta(obj.getDirection());
+            Vector2 rectangle2_p1 = new Vector2(obj.getCenterPos()).add(p1_pos_delta);
+            Vector2 rectangle2_p2 = new Vector2(obj.getCenterPos()).add(p2_pos_delta);
+            Vector2 rectangle2_p3 = new Vector2(obj.getCenterPos()).add(p3_pos_delta);
+            Vector2 rectangle2_p4 = new Vector2(obj.getCenterPos()).add(p4_pos_delta);
+            boolean retVal = isPointInRectangle(rectangle1_p1, rectangle1_p2, rectangle1_p3, rectangle1_p4, rectangle2_p1) &&
+                             isPointInRectangle(rectangle1_p1, rectangle1_p2, rectangle1_p3, rectangle1_p4, rectangle2_p2) &&
+                             isPointInRectangle(rectangle1_p1, rectangle1_p2, rectangle1_p3, rectangle1_p4, rectangle2_p3) &&
+                             isPointInRectangle(rectangle1_p1, rectangle1_p2, rectangle1_p3, rectangle1_p4, rectangle2_p4);
+            if (retVal) {
+                return retVal;
+            }
         }
         return false;
+    }
+
+    private boolean isPointInRectangle(Vector2 rectangle1_p1, Vector2 rectangle1_p2, Vector2 rectangle1_p3, Vector2 rectangle1_p4, Vector2 rectangle2_p1) {
+        Vector2 p1_p4 = new Vector2(rectangle1_p1).sub(rectangle1_p4);
+        Vector2 p3_p4 = new Vector2(rectangle1_p3).sub(rectangle1_p4);
+        Vector2 two_p_c = rectangle2_p1.scl(2.0f).sub(rectangle1_p1).sub(rectangle1_p3);    // TWO_P_C=2P-C, C=Center of rectangle
+
+        float part1 = new Vector2(p3_p4).dot(new Vector2(two_p_c).sub(p3_p4));
+        float part2 = new Vector2(p3_p4).dot(new Vector2(two_p_c).add(p3_p4));
+        float part3 = new Vector2(p1_p4).dot(new Vector2(two_p_c).sub(p1_p4));
+        float part4 = new Vector2(p1_p4).dot(new Vector2(two_p_c).add(p1_p4));
+        return part1 <= 0 && part2 >= 0 && part3 <= 0 && part4 >= 0;
     }
 
     public Vector2 getCenterPos() {
