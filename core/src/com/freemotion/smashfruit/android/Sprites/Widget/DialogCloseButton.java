@@ -3,9 +3,11 @@ package com.freemotion.smashfruit.android.Sprites.Widget;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.freemotion.smashfruit.android.Game.MessageType;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Stages.MenuStage;
 import com.freemotion.smashfruit.android.Utils.Bundle;
+import com.freemotion.smashfruit.android.Utils.MessageHub;
 import com.freemotion.smashfruit.android.Utils.MessageListener;
 
 /**
@@ -41,8 +43,15 @@ public class DialogCloseButton extends BaseButton {
             super.touchUp(event, x, y, pointer, button);
             Bundle data = new Bundle();
             data.putActor(parentDialog);
-            data.putInteger(MenuStage.CLOSE_DIALOG);
-            ((MessageListener) getStage()).handleMessage(data);
+            data.putString(MessageType.Close_Settings_Dialog);
+            data.putCallback(DialogCloseButton.this);
+            dispatchMessage(MessageType.Close_Settings_Dialog, data);
         }
     };
+
+    @Override
+    public void setMessageHub(MessageHub hub) {
+        super.setMessageHub(hub);
+        hub.addHubObserver(this);
+    }
 }

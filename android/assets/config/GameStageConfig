@@ -1,6 +1,6 @@
 {
   "type" : "StageConfig",
-  "name" : "MainMenu",
+  "name" : "GameStage",
   "data" : [
     {
       "key" : "main_background",
@@ -68,8 +68,8 @@
     {
       "key" : "play",
       "dclass" : "PlayButton",
-      "positionX" : 162,
-      "positionY" : 761,
+      "positionX" : 223,
+      "positionY" : 498,
       "width" : 0,
       "height" : 0,
       "scaleX" : 1,

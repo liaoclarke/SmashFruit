@@ -8,4 +8,6 @@ public interface MessageDispatch {
     void setMessageHub(MessageHub hub);
 
     void dispatchMessage(String message, Bundle data);
+
+    boolean doMessageCallback(Bundle data);
 }

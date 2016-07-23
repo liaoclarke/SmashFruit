@@ -7,7 +7,11 @@ import com.badlogic.gdx.utils.Array;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFileParser;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
-import com.freemotion.smashfruit.android.Stages.MenuStage;
+import com.freemotion.smashfruit.android.Utils.Bundle;
+import com.freemotion.smashfruit.android.Utils.MessageDispatch;
+import com.freemotion.smashfruit.android.Utils.MessageHub;
+import com.freemotion.smashfruit.android.Utils.MessageHubObject;
+import com.freemotion.smashfruit.android.Utils.StageBase;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
@@ -15,16 +19,18 @@ import java.util.ArrayList;
 /**
  * Created by liaoclark on 2016/3/15.
  */
-public class BaseFragment extends Actor implements JsonConfigFileParser, TransitionActor {
+public class BaseFragment extends Actor implements JsonConfigFileParser, TransitionActor, MessageDispatch {
 
     protected String LOG_TAG;
-    protected MenuStage stage;
+    protected StageBase stage;
     protected String configFile, configName;
     protected Array<TransitionActor> group;
+    protected MessageHubObject messageHub;
 
     public BaseFragment(StageConfig config) {
         super();
         LOG_TAG = this.getClass().getSimpleName();
+        messageHub = new MessageHubObject();
         group = new Array<TransitionActor>();
         configFile = config.getConfigFile();
         configName = config.getConfigName();
@@ -53,7 +59,7 @@ public class BaseFragment extends Actor implements JsonConfigFileParser, Transit
         if (getStage() != null) {
             remove();
         }
-        this.stage = (MenuStage) stage;
+        this.stage = (StageBase) stage;
         if (this.stage != null) {
             for (TransitionActor ac : group) {
                 this.stage.addActor(ac.getActor());
@@ -88,6 +94,11 @@ public class BaseFragment extends Actor implements JsonConfigFileParser, Transit
         return this;
     }
 
+    @Override
+    public MessageDispatch getMessageDispatch() {
+        return this;
+    }
+
     public void show() {
         JsonConfigFactory.getInstance().getStageConfig(configName).setActive(true);
     }
@@ -117,5 +128,20 @@ public class BaseFragment extends Actor implements JsonConfigFileParser, Transit
     @Override
     public float getDuration() {
         return 0f;
+    }
+
+    @Override
+    public void setMessageHub(MessageHub hub) {
+        messageHub.setHub(hub);
+    }
+
+    @Override
+    public void dispatchMessage(String message, Bundle data) {
+
+    }
+
+    @Override
+    public boolean doMessageCallback(Bundle data) {
+        return false;
     }
 }

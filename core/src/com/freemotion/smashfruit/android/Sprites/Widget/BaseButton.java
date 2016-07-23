@@ -2,12 +2,16 @@ package com.freemotion.smashfruit.android.Sprites.Widget;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g3d.particles.influencers.DynamicsModifier;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Misc.TextureConfig;
 import com.freemotion.smashfruit.android.Resources.UITextureLoader;
+import com.freemotion.smashfruit.android.Utils.Bundle;
+import com.freemotion.smashfruit.android.Utils.MessageDispatch;
+import com.freemotion.smashfruit.android.Utils.MessageHub;
 import com.freemotion.smashfruit.android.Utils.ResourceLoader;
 import com.freemotion.smashfruit.android.Utils.ResourceManager;
 
@@ -70,5 +74,10 @@ public class BaseButton extends BaseActor {
     @Override
     public void hide() {
 
+    }
+
+    @Override
+    public boolean doMessageCallback(Bundle data) {
+        return false;
     }
 }

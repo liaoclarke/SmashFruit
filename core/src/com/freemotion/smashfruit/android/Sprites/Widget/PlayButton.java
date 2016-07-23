@@ -6,31 +6,30 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.freemotion.smashfruit.android.Game.MessageType;
-import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
-import com.freemotion.smashfruit.android.Misc.TransitionConfig;
 import com.freemotion.smashfruit.android.Resources.UITextureLoader;
 import com.freemotion.smashfruit.android.Utils.Bundle;
+import com.freemotion.smashfruit.android.Utils.MessageDispatch;
 import com.freemotion.smashfruit.android.Utils.ResourceManager;
 
 /**
- * Created by liaoclark on 2016/3/12.
+ * Created by liaoclark on 7/21/16.
  */
-public class SettingsButton extends BaseButton {
+public class PlayButton extends BaseButton {
 
     private TextureRegion pressedTexture;
     private Rectangle pressedTextureRectangle;
 
-    public SettingsButton(StageConfig config) {
+    public PlayButton(StageConfig config) {
         super(config);
         LOG_TAG = this.getClass().getSimpleName();
         addListener(listener);
         UITextureLoader uiLoader = (UITextureLoader) ResourceManager.getInstance().findLoader(UITextureLoader.class.getSimpleName());
-        pressedTexture = uiLoader.getTextureAtlas().findRegion("circle_press_effect");
+        pressedTexture = uiLoader.getTextureAtlas().findRegion("play_pressed");
         pressedTextureRectangle = new Rectangle(config.getPositionX(), config.getPositionY(),
                 pressedTexture.getRegionWidth() * config.getScaleX(), pressedTexture.getRegionHeight() * config.getScaleY());
+        setName("PlayButton");
     }
 
     @Override
@@ -60,37 +59,27 @@ public class SettingsButton extends BaseButton {
             pressed = false;
             super.touchUp(event, x, y, pointer, button);
             Bundle data = new Bundle();
-            data.putCallback(SettingsButton.this);
-            data.putString(MessageType.Open_Settings_Dialog);
-            StageConfig config = new StageConfig();
-            config.setConfigFile("config/SettingsDialog").setConfigName("SettingsDialog");
-            SettingsDialog dialog = new SettingsDialog(config);
-            data.putActor(dialog);
-            dispatchMessage(MessageType.Open_Settings_Dialog, data);
+            data.putCallback(PlayButton.this);
+            data.putString(MessageType.Game_Start);
+            dispatchMessage(MessageType.Game_Start, data);
         }
     };
 
     @Override
+    public boolean doMessageCallback(Bundle data) {
+        Gdx.app.error(LOG_TAG, "do message callback");
+        return true;
+    }
+
+    @Override
     public void show() {
         Gdx.app.error(LOG_TAG, " show");
-        StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("settings");
-        TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_up");
-        TransitionConfig delay = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_delay");
-        addAction(Actions.sequence(Actions.delay(delay.getDuration()), Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()), completeShowAction));
         isShowup = false;
     }
 
     @Override
     public void hide() {
         Gdx.app.error(LOG_TAG, " hide");
-        StageConfig sc = JsonConfigFactory.getInstance().getStageConfig("settings");
-        TransitionConfig tc = JsonConfigFactory.getInstance().getTransitionConfig(sc, "move_down");
-        addAction(Actions.sequence(Actions.moveTo(tc.getPositionX(), tc.getPositionY(), tc.getDuration()), completeHideAction));
         isHidden = false;
-    }
-
-    @Override
-    public boolean doMessageCallback(Bundle data) {
-        return true;
     }
 }

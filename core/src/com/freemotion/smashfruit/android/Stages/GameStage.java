@@ -6,6 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.freemotion.smashfruit.android.Game.DominoObject;
 import com.freemotion.smashfruit.android.Game.GameController;
+import com.freemotion.smashfruit.android.Utils.MessageHubImpl;
+import com.freemotion.smashfruit.android.Game.MessageType;
 import com.freemotion.smashfruit.android.Game.TouchEventListener;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFileParser;
@@ -27,49 +29,55 @@ import java.lang.reflect.Constructor;
  */
 public class GameStage extends StageBase implements JsonConfigFileParser, MessageListener, TransitionStage {
 
-    enum GameState {
-        START,
-        RUNNING,
-        PASSED,
-        AUTO_PASSED,
-        PERFECT_PASSED,
+    private enum GameState {
+        TAP_TO_START,
+        WAIT_FOR_TOUCH,
+        PASS,
+        AUTO_PASS,
+        PERFECT_PASS,
         TIMEOUT,
         PUSHED,
         TOUCHED,
         END
     };
 
-    private String configFile;
-    private String configName;
     private GameScreen gameScreen;
     private Array<TransitionActor> widgets;
     private GameState gameState;
     private GameController game;
     private Array<DominoActor> cuboids;
+    private MessageHubImpl messageHub;
 
     private Action completeAction = new Action() {
 
         public boolean act(float delta) {
-            gameScreen.stopGameStage();
-            gameScreen.setMenuStage();
-            gameScreen.getMenuStage().show();
             return true;
         }
     };
 
-    public GameStage(String configFile, String configName) {
+    public GameStage() {
         super();
+        configFile = "config/GameStageConfig";
+        configName = "GameStage";
         LOG_TAG = this.getClass().getSimpleName();
-        this.configFile = configFile;
-        this.configName = configName;
-        this.gameState = GameState.END;
+
+        messageHub = new MessageHubImpl();
+        messageHub.registerMessageListener(MessageType.Game_Start, this);
+        messageHub.registerMessageListener(MessageType.Game_Reset, this);
+        messageHub.registerMessageListener(MessageType.Game_Over, this);
+        messageHub.registerMessageListener(MessageType.Open_Settings_Dialog, this);
+        messageHub.registerMessageListener(MessageType.Close_Settings_Dialog, this);
+
         setupViewPort();
+        setupInput();
         readStageConfig();
         setStageContent();
+
+        gameState = GameState.TAP_TO_START;
     }
 
-    public GameStage(GameScreen screen, String configFile, String configName) {
-        this(configFile, configName);
+    public GameStage(GameScreen screen) {
+        this();
         gameScreen = screen;
     }
 
@@ -82,32 +90,20 @@ public class GameStage extends StageBase implements JsonConfigFileParser, Messag
     public void act(float delta) {
         super.act(delta);
         switch (gameState) {
-            case START:
-                boolean startCompleted = true;
-                for (TransitionActor widget : widgets) {
-                    if (!widget.isShowCompleted()) {
-                        startCompleted = false;
-                        break;
-                    }
-                }
-                if (startCompleted) {
-                    setupInput();
-                    setupScene();
-                    gameState = GameState.RUNNING;
-                }
+            case TAP_TO_START:
                 break;
 
-            case RUNNING:
+            case WAIT_FOR_TOUCH:
                 break;
 
-            case PERFECT_PASSED:
+            case PERFECT_PASS:
                 showPerfectPassDialog();
                 break;
 
-            case AUTO_PASSED:
+            case AUTO_PASS:
                 break;
 
-            case PASSED:
+            case PASS:
                 showPassDialog();
                 break;
 
@@ -119,26 +115,32 @@ public class GameStage extends StageBase implements JsonConfigFileParser, Messag
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-        Gdx.app.error(LOG_TAG, "stage touch up screenX: " + screenX + " screenY: " + screenY);
+        //Gdx.app.log(LOG_TAG, "stage touch up screenX: " + screenX + " screenY: " + screenY);
         return super.touchUp(screenX, screenY, pointer, button);
     }
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        Gdx.app.error(LOG_TAG, "stage touch down screenX: " + screenX + " screenY: " + screenY);
+        //Gdx.app.log(LOG_TAG, "stage touch down screenX: " + screenX + " screenY: " + screenY);
         return super.touchDown(screenX, screenY, pointer, button);
-    }
-
-    public void setStageConfig(String configFile, String configName) {
-        this.configFile = configFile;
-        this.configName = configName;
-        clear();
-        readStageConfig();
-        setStageContent();
     }
 
     @Override
     public void handleMessage(Bundle data) {
+        Gdx.app.error(LOG_TAG, data.getString());
+        if (MessageType.Game_Start.equals(data.getString())) {
+            data.getCallback().doMessageCallback(data);
+        } else if (MessageType.Open_Settings_Dialog.equals(data.getString())) {
+            TransitionActor dialog = data.getActor();
+            dialog.getMessageDispatch().setMessageHub(messageHub);
+            addActor(dialog.getActor());
+            dialog.show();
+            data.getCallback().doMessageCallback(data);
+        } else if (MessageType.Close_Settings_Dialog.equals(data.getString())) {
+            TransitionActor dialog = data.getActor();
+            dialog.hide();
+            data.getCallback().doMessageCallback(data);
+        }
     }
 
     @Override
@@ -157,6 +159,7 @@ public class GameStage extends StageBase implements JsonConfigFileParser, Messag
         widgets = new Array<TransitionActor>();
         JsonConfigFactory.getInstance().inflateStage(configName);
         for (TransitionActor widget : widgets) {
+            widget.getMessageDispatch().setMessageHub(messageHub);
             addActor(widget.getActor());
         }
     }
@@ -191,7 +194,7 @@ public class GameStage extends StageBase implements JsonConfigFileParser, Messag
         for (TransitionActor widget : widgets) {
             widget.show();
         }
-        gameState = GameState.START;
+        gameState = GameState.TAP_TO_START;
     }
 
     @Override
@@ -261,11 +264,11 @@ public class GameStage extends StageBase implements JsonConfigFileParser, Messag
                 cuboids.clear();
                 game.resetGame();
                 createDominos();
-                gameState = GameState.RUNNING;
+                gameState = GameState.WAIT_FOR_TOUCH;
                 break;
 
             case Pass:
-                gameState = GameState.PASSED;
+                gameState = GameState.PASS;
                 cuboids.get(cuboids.size - 1).playAnimation();
                 game.passLevel();
                 break;

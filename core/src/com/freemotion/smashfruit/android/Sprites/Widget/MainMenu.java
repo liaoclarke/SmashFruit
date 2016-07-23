@@ -1,9 +1,12 @@
 package com.freemotion.smashfruit.android.Sprites.Widget;
 
+import com.badlogic.gdx.utils.Array;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Stages.MenuStage;
 import com.freemotion.smashfruit.android.Utils.Bundle;
+import com.freemotion.smashfruit.android.Utils.MessageDispatch;
 import com.freemotion.smashfruit.android.Utils.MessageHub;
+import com.freemotion.smashfruit.android.Utils.MessageListener;
 
 /**
  * Created by liaoclark on 2016/3/15.
@@ -33,6 +36,21 @@ public class MainMenu extends BaseFragment implements MessageHub {
         } else if ("play_timerace_game".equals(message)) {
             ((MenuStage) getStage()).handleMessage(data);
         }
+    }
+
+    @Override
+    public void registerMessageListener(String message, MessageListener listener) {
+
+    }
+
+    @Override
+    public void addHubObserver(MessageDispatch observer) {
+
+    }
+
+    @Override
+    public Array<MessageDispatch> getHubObservers() {
+        return null;
     }
 
     @Override

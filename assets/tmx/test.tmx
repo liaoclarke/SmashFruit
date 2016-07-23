@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="45" height="80" tilewidth="16" tileheight="16" nextobjectid="53">
+ <tileset firstgid="1" name="Background" tilewidth="720" tileheight="1280" tilecount="1" columns="0">
+  <tile id="0">
+   <image width="720" height="1280" source="../game/game_stage_background.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="2" name="Cuboid" tilewidth="204" tileheight="196" tilecount="7" columns="0">
+  <tile id="3">
+   <properties>
+    <property name="Direction" value="Right"/>
+    <property name="Shape" value="Cuboid"/>
+   </properties>
+   <image width="204" height="196" source="../game/cuboid0_0.png"/>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="Direction" value="Left"/>
+    <property name="Shape" value="Cuboid"/>
+   </properties>
+   <image width="204" height="196" source="../game/cuboid1_0.png"/>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="Direction" value="Right_Up"/>
+    <property name="Shape" value="Cuboid"/>
+   </properties>
+   <image width="204" height="196" source="../game/cuboid2_0.png"/>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="Direction" value="Left_Down"/>
+    <property name="Shape" value="Cuboid"/>
+   </properties>
+   <image width="204" height="196" source="../game/cuboid3_0.png"/>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="Direction" value="Right_Down"/>
+    <property name="Shape" value="Cuboid"/>
+   </properties>
+   <image width="204" height="196" source="../game/cuboid4_0.png"/>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="Direction" value="Left_Up"/>
+    <property name="Shape" value="Cuboid"/>
+   </properties>
+   <image width="204" height="196" source="../game/cuboid5_0.png"/>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="Direction" value="N/A"/>
+    <property name="Shape" value="Cylinder"/>
+   </properties>
+   <image width="204" height="196" source="../game/cylinder0_0.png"/>
+  </tile>
+ </tileset>
+ <layer name="Background" width="45" height="80">
+  <data encoding="base64" compression="zlib">
+   eJztziEBAAAIA7DTvzQNLjCYLcESAAAAAAAAAAAAAAAAAKCZ78DBAjj0AAI=
+  </data>
+ </layer>
+ <objectgroup name="Cuboid"/>
+ <objectgroup name="Cuboid"/>
+</map>

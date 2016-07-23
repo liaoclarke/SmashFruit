@@ -95,6 +95,11 @@ public class ChooseLevelGrid extends BaseScrollPane implements MessageDispatch, 
     }
 
     @Override
+    public boolean doMessageCallback(Bundle data) {
+        return false;
+    }
+
+    @Override
     public void handleMessage(Bundle data) {
         String message = data.getString();
         float scrollX = getScrollX();

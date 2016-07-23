@@ -1,20 +1,41 @@
 ui.png
-size: 1747, 2017
+size: 788, 4033
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-tab
+back
   rotate: false
-  xy: 0, 0
-  size: 22, 22
-  orig: 22, 22
+  xy: 258, 353
+  size: 83, 110
+  orig: 83, 110
   offset: 0, 0
   index: -1
-selected_tab
+back_to_menu
   rotate: false
-  xy: 22, 0
-  size: 22, 22
-  orig: 22, 22
+  xy: 0, 469
+  size: 118, 118
+  orig: 118, 118
+  offset: 0, 0
+  index: -1
+circle_press_effect
+  rotate: false
+  xy: 605, 469
+  size: 122, 129
+  orig: 122, 129
+  offset: 0, 0
+  index: -1
+continue
+  rotate: false
+  xy: 541, 1191
+  size: 231, 241
+  orig: 231, 241
+  offset: 0, 0
+  index: -1
+cuboid_num
+  rotate: false
+  xy: 0, 77
+  size: 199, 77
+  orig: 199, 77
   offset: 0, 0
   index: -1
 cuboid_num_bar
@@ -31,9 +52,16 @@ dialog_close
   orig: 66, 66
   offset: 0, 0
   index: -1
-dialog_shadow
+dialog_cuboid_icon
   rotate: false
   xy: 199, 0
+  size: 66, 71
+  orig: 66, 71
+  offset: 0, 0
+  index: -1
+dialog_shadow
+  rotate: false
+  xy: 331, 0
   size: 66, 71
   orig: 66, 71
   offset: 0, 0
@@ -45,11 +73,25 @@ dialog_star_icon
   orig: 66, 71
   offset: 0, 0
   index: -1
-dialog_cuboid_icon
+find_best
   rotate: false
-  xy: 331, 0
-  size: 66, 71
-  orig: 66, 71
+  xy: 181, 745
+  size: 394, 147
+  orig: 394, 147
+  offset: 0, 0
+  index: -1
+game_logo
+  rotate: false
+  xy: 0, 1191
+  size: 541, 195
+  orig: 541, 195
+  offset: 0, 0
+  index: -1
+leaderboard
+  rotate: false
+  xy: 118, 469
+  size: 118, 118
+  orig: 118, 118
   offset: 0, 0
   index: -1
 level_complete_perfect
@@ -59,234 +101,206 @@ level_complete_perfect
   orig: 377, 77
   offset: 0, 0
   index: -1
-star_num
+level_title
   rotate: false
-  xy: 774, 0
-  size: 199, 77
-  orig: 199, 77
+  xy: 0, 1039
+  size: 720, 152
+  orig: 720, 152
   offset: 0, 0
   index: -1
-cuboid_num
+locked_level
   rotate: false
-  xy: 973, 0
-  size: 199, 77
-  orig: 199, 77
+  xy: 0, 745
+  size: 181, 147
+  orig: 181, 147
+  offset: 0, 0
+  index: -1
+main_background
+  rotate: false
+  xy: 0, 2753
+  size: 720, 1280
+  orig: 720, 1280
+  offset: 0, 0
+  index: -1
+next
+  rotate: false
+  xy: 341, 353
+  size: 83, 110
+  orig: 83, 110
   offset: 0, 0
   index: -1
 notification_button
   rotate: false
-  xy: 1172, 0
-  size: 258, 92
-  orig: 258, 92
-  offset: 0, 0
-  index: -1
-sound_button
-  rotate: false
-  xy: 1430, 0
+  xy: 398, 77
   size: 258, 92
   orig: 258, 92
   offset: 0, 0
   index: -1
 notification_checked_button
   rotate: false
-  xy: 0, 92
+  xy: 516, 169
   size: 258, 92
   orig: 258, 92
   offset: 0, 0
   index: -1
+play
+  rotate: false
+  xy: 275, 1432
+  size: 275, 284
+  orig: 275, 284
+  offset: 0, 0
+  index: -1
+play_pressed
+  rotate: false
+  xy: 0, 1432
+  size: 275, 284
+  orig: 275, 284
+  offset: 0, 0
+  index: -1
+rate
+  rotate: false
+  xy: 361, 469
+  size: 122, 129
+  orig: 122, 129
+  offset: 0, 0
+  index: -1
+rectangle_press_shadow
+  rotate: false
+  xy: 394, 892
+  size: 394, 147
+  orig: 394, 147
+  offset: 0, 0
+  index: -1
+selected_tab
+  rotate: false
+  xy: 0, 0
+  size: 22, 22
+  orig: 22, 22
+  offset: 0, 0
+  index: -1
+settings
+  rotate: false
+  xy: 0, 598
+  size: 122, 129
+  orig: 122, 129
+  offset: 0, 0
+  index: -1
 settings_button_margin
   rotate: false
-  xy: 258, 92
+  xy: 516, 261
   size: 258, 92
   orig: 258, 92
   offset: 0, 0
   index: -1
 settings_checked_button_margin
   rotate: false
-  xy: 516, 92
+  xy: 0, 261
   size: 258, 92
   orig: 258, 92
   offset: 0, 0
   index: -1
-tutorial_button
+settings_dialog_background
   rotate: false
-  xy: 774, 92
-  size: 258, 92
-  orig: 258, 92
+  xy: 0, 2210
+  size: 529, 543
+  orig: 529, 543
   offset: 0, 0
   index: -1
-tutorial_checked_button
+shape_it
   rotate: false
-  xy: 1032, 92
+  xy: 0, 892
+  size: 394, 147
+  orig: 394, 147
+  offset: 0, 0
+  index: -1
+share
+  rotate: false
+  xy: 483, 469
+  size: 122, 129
+  orig: 122, 129
+  offset: 0, 0
+  index: -1
+sound_button
+  rotate: false
+  xy: 258, 261
   size: 258, 92
   orig: 258, 92
   offset: 0, 0
   index: -1
 sound_checked_button
   rotate: false
-  xy: 1290, 92
+  xy: 0, 169
   size: 258, 92
   orig: 258, 92
   offset: 0, 0
   index: -1
-next
-  rotate: false
-  xy: 1548, 92
-  size: 83, 110
-  orig: 83, 110
-  offset: 0, 0
-  index: -1
-back
-  rotate: false
-  xy: 1631, 92
-  size: 83, 110
-  orig: 83, 110
-  offset: 0, 0
-  index: -1
-star_right_side
-  rotate: false
-  xy: 0, 202
-  size: 125, 116
-  orig: 125, 116
-  offset: 0, 0
-  index: -1
-star_left_side
-  rotate: false
-  xy: 125, 202
-  size: 125, 116
-  orig: 125, 116
-  offset: 0, 0
-  index: -1
-share
-  rotate: false
-  xy: 250, 202
-  size: 117, 117
-  orig: 117, 117
-  offset: 0, 0
-  index: -1
-rate
-  rotate: false
-  xy: 367, 202
-  size: 117, 117
-  orig: 117, 117
-  offset: 0, 0
-  index: -1
-settings
-  rotate: false
-  xy: 484, 202
-  size: 117, 117
-  orig: 117, 117
-  offset: 0, 0
-  index: -1
-circle_press_effect
-  rotate: false
-  xy: 601, 202
-  size: 117, 117
-  orig: 117, 117
-  offset: 0, 0
-  index: -1
-back_to_menu
-  rotate: false
-  xy: 718, 202
-  size: 118, 118
-  orig: 118, 118
-  offset: 0, 0
-  index: -1
-leaderboard
-  rotate: false
-  xy: 836, 202
-  size: 118, 118
-  orig: 118, 118
-  offset: 0, 0
-  index: -1
 star_in_center
   rotate: false
-  xy: 954, 202
+  xy: 236, 469
   size: 125, 120
   orig: 125, 120
   offset: 0, 0
   index: -1
-unlocked_level
+star_left_side
   rotate: false
-  xy: 1079, 202
-  size: 181, 147
-  orig: 181, 147
+  xy: 549, 353
+  size: 125, 116
+  orig: 125, 116
   offset: 0, 0
   index: -1
-rectangle_press_shadow
+star_num
   rotate: false
-  xy: 1260, 202
-  size: 394, 147
-  orig: 394, 147
+  xy: 199, 77
+  size: 199, 77
+  orig: 199, 77
+  offset: 0, 0
+  index: -1
+star_right_side
+  rotate: false
+  xy: 424, 353
+  size: 125, 116
+  orig: 125, 116
+  offset: 0, 0
+  index: -1
+tab
+  rotate: false
+  xy: 22, 0
+  size: 22, 22
+  orig: 22, 22
   offset: 0, 0
   index: -1
 time_race
   rotate: false
-  xy: 0, 349
+  xy: 122, 598
   size: 394, 147
   orig: 394, 147
   offset: 0, 0
   index: -1
-find_best
+tutorial_button
   rotate: false
-  xy: 394, 349
-  size: 394, 147
-  orig: 394, 147
+  xy: 258, 169
+  size: 258, 92
+  orig: 258, 92
   offset: 0, 0
   index: -1
-locked_level
+tutorial_checked_button
   rotate: false
-  xy: 788, 349
-  size: 181, 147
-  orig: 181, 147
-  offset: 0, 0
-  index: -1
-shape_it
-  rotate: false
-  xy: 969, 349
-  size: 394, 147
-  orig: 394, 147
-  offset: 0, 0
-  index: -1
-level_title
-  rotate: false
-  xy: 0, 496
-  size: 720, 152
-  orig: 720, 152
-  offset: 0, 0
-  index: -1
-game_logo
-  rotate: false
-  xy: 720, 496
-  size: 541, 195
-  orig: 541, 195
-  offset: 0, 0
-  index: -1
-continue
-  rotate: false
-  xy: 1261, 496
-  size: 231, 241
-  orig: 231, 241
+  xy: 0, 353
+  size: 258, 92
+  orig: 258, 92
   offset: 0, 0
   index: -1
 unlock_dialog
   rotate: false
-  xy: 0, 737
+  xy: 0, 1716
   size: 498, 494
   orig: 498, 494
   offset: 0, 0
   index: -1
-settings_dialog_background
+unlocked_level
   rotate: false
-  xy: 498, 737
-  size: 529, 543
-  orig: 529, 543
-  offset: 0, 0
-  index: -1
-main_background
-  rotate: false
-  xy: 1027, 737
-  size: 720, 1280
-  orig: 720, 1280
+  xy: 516, 598
+  size: 181, 147
+  orig: 181, 147
   offset: 0, 0
   index: -1

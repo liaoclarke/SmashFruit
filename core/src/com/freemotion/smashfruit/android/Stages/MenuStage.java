@@ -38,21 +38,18 @@ public class MenuStage extends StageBase implements JsonConfigFileParser, Messag
 
     private GameScreen gameScreen;
     private Array<BaseFragment> fragments;
-    private String configFile = "config/MenuStageConfig";
-    private String configName = "MenuStage";
 
     private Action completeAction = new Action() {
 
         public boolean act(float delta) {
-            gameScreen.stopMenuStage();
-            gameScreen.setGameStage("config/TimeRaceStageConfig", "TimeRaceStage");
-            gameScreen.getGameStage().show();
             return true;
         }
     };
 
     public MenuStage() {
         super();
+        configFile = "config/MenuStageConfig";
+        configName = "MenuStage";
         LOG_TAG = this.getClass().getSimpleName();
         setupViewPort();
         setupInput();

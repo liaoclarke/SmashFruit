@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.freemotion.smashfruit.android.Game.TouchEventListener;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
+import com.freemotion.smashfruit.android.Screens.GameScreen;
 
 /**
  * Created by liaoclark on 2016/3/4.
@@ -17,6 +18,7 @@ public class StageBase extends Stage {
     protected String LOG_TAG = StageBase.class.getSimpleName();
     private OrthographicCamera stageCamera;
     private Array<ResourceLoader> loaders;
+    protected String configFile, configName;
 
     public StageBase() {
         loaders = new Array<ResourceLoader>();

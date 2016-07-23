@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
+import com.freemotion.smashfruit.android.Utils.MessageDispatch;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
@@ -76,6 +77,11 @@ public class BaseGroup extends Group implements TransitionActor {
     @Override
     public Actor getActor() {
         return this;
+    }
+
+    @Override
+    public MessageDispatch getMessageDispatch() {
+        return null;
     }
 
     @Override

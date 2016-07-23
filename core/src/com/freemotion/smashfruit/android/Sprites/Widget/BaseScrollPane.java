@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
+import com.freemotion.smashfruit.android.Utils.MessageDispatch;
 
 /**
  * Created by liaoclark on 2016/3/16.
@@ -115,6 +116,11 @@ public class BaseScrollPane extends ScrollPane implements TransitionActor {
     @Override
     public Actor getActor() {
         return this;
+    }
+
+    @Override
+    public MessageDispatch getMessageDispatch() {
+        return null;
     }
 
     @Override

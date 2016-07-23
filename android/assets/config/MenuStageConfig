@@ -10,24 +10,6 @@
       "configFile" : "config/MainMenuConfig",
       "configName" : "MainMenu",
       "active" : true
-    },
-    {
-      "key" : "FindBestMenu",
-      "dclass" : "FindBestMenu",
-      "positionX" : 0,
-      "positionY" : 0,
-      "configFile" : "config/FindBestMenuConfig",
-      "configName" : "FindBestMenu",
-      "active" : false
-    },
-    {
-      "key" : "ShapeItMenu",
-      "dclass" : "ShapeItMenu",
-      "positionX" : 0,
-      "positionY" : 0,
-      "configFile" : "config/ShapeItMenuConfig",
-      "configName" : "ShapeItMenu",
-      "active" : false
     }
   ]
 }

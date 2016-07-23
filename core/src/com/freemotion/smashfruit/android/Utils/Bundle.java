@@ -10,6 +10,7 @@ public class Bundle {
     private int iData;
     private String sData;
     private TransitionActor aData;
+    private MessageDispatch mCallback;
 
     public Bundle() {
         iData = 0;
@@ -38,5 +39,13 @@ public class Bundle {
 
     public void putActor(TransitionActor value) {
         aData = value;
+    }
+
+    public void putCallback(MessageDispatch cb) {
+        mCallback = cb;
+    }
+
+    public MessageDispatch getCallback() {
+        return mCallback;
     }
 }
