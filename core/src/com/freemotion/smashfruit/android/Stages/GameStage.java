@@ -227,8 +227,8 @@ public class GameStage extends StageBase implements JsonConfigFileParser, Messag
         clear();
         widgets.clear();
         game.enterGame();
-        for (DominoInstance instance : game.getDominoObjects()) {
-
+        for (StageConfig config: game.getDominoObjects()) {
+            getGameActorObject(config);
         }
     }
 

@@ -19,6 +19,14 @@ public class StageConfig extends JsonConfig {
     private ArrayList<StageConfig> group;
     private boolean active;
 
+    public float getRotation() {
+        return rotation;
+    }
+
+    public void setRotation(int degree) {
+        rotation = degree;
+    }
+
     public int getOrigPositionX() {
         return origPositionX;
     }
@@ -115,6 +123,10 @@ public class StageConfig extends JsonConfig {
 
     public String getDclass() {
         return dclass;
+    }
+
+    public void setDclass(String cls) {
+        dclass = cls;
     }
 
     public String getConfigFile() {

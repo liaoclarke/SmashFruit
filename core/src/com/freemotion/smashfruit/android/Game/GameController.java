@@ -7,15 +7,15 @@ import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.StringBuilder;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
+import com.freemotion.smashfruit.android.Misc.StageConfig;
 
-import java.util.Iterator;
+import java.util.HashMap;
 
 /**
  * Created by liaoclark on 2016/3/5.
@@ -33,7 +33,7 @@ public class GameController {
     private String courseFileNameSeperator;
     private String dominoLayerName;
     private String dominoTileSetName;
-    private Array<DominoInstance> dominoInstances;
+    private Array<StageConfig> dominoInstances;
 
     private GameController() {
         LOG_TAG = GameController.class.getSimpleName();
@@ -59,7 +59,7 @@ public class GameController {
     public void enterGame() {
         currentCourse = firstCourse;
         String tmxPath = buildTMXPath(currentCourse);
-        loadLevelTiledMap(tmxPath);
+        loadCourseTiledMap(tmxPath);
     }
 
     public String buildTMXPath(int whichCourse) {
@@ -71,11 +71,11 @@ public class GameController {
         return builder.toString();
     }
 
-    public Array<DominoInstance> getDominoObjects(){
+    public Array<StageConfig> getDominoObjects(){
         return dominoInstances;
     }
 
-    private void loadLevelTiledMap(String tmxPath) {
+    private void loadCourseTiledMap(String tmxPath) {
         TmxMapLoader.Parameters parameters = new TmxMapLoader.Parameters();
         parameters.textureMagFilter = Texture.TextureFilter.Nearest;
         parameters.textureMinFilter = Texture.TextureFilter.Nearest;
@@ -88,16 +88,28 @@ public class GameController {
             TiledMapTileSet tileset = mapLoader.getTileSets().getTileSet(dominoTileSetName);
             //int firstGid = (Integer)tileset.getProperties().get("firstgid");
             for (MapObject tiledObj : tiledObjects) {
-                DominoInstance dominoObject = new DominoInstance();
+                //DominoInstance dominoObject = new DominoInstance();
                 MapProperties prop  = tiledObj.getProperties();
                 int gid = (Integer)prop.get("gid");
                 String direction = (String)tileset.getTile(gid).getProperties().get("Direction");
                 String shape = (String)tileset.getTile(gid).getProperties().get("Shape");
                 Rectangle rect = new Rectangle((Float)prop.get("x"), (Float)prop.get("y"), (Float)prop.get("width"), (Float)prop.get("height"));
-                dominoObject.setPosition(rect.getX(), rect.getY());
-                dominoObject.setDirection(direction);
-                dominoObject.setShape(shape);
-                dominoInstances.add(dominoObject);
+                StageConfig config = new StageConfig();
+                config.setPositionX((int)rect.getX());
+                config.setPositionY((int)rect.getY());
+                config.setDclass(shape);
+                config.setConfigName(direction);
+                config.setRotation(Integer.parseInt(JsonConfigFactory.getInstance().getCourseConfig(direction).getValue()));
+                // set touchable region in texture region
+                config.setOrigPositionX();
+                config.setOrigPositionX();
+                config.setWidth();
+                config.setHeight();
+                dominoInstances.add(config);
+                //dominoObject.setPosition(rect.getX(), rect.getY());
+                //dominoObject.setDirection(direction);
+                //dominoObject.setShape(shape);
+                //dominoInstances.add(dominoObject);
             }
         } catch (Error e) {
             Gdx.app.error(LOG_TAG, "Error happend when load course tiled map file");
