@@ -110,7 +110,7 @@ public class TimeRaceStage extends StageBase {
     private void setupScene() {
         addActor(new SceneBackground());
         cuboids = new Array<Cuboid>();
-        game = new GameController();
+        game = GameController.getInstance();
         game.enterGame();
         createDominos();
         //addActor(new ResetButton());
@@ -118,20 +118,6 @@ public class TimeRaceStage extends StageBase {
     }
 
     private void createDominos() {
-        Array<DominoObject> objects = game.getDominoObjects();
-        DominoActor prevDomino = null;
-        for (int i = objects.size - 1; i >= 0; i--) {
-            DominoObject obj = objects.get(i);
-            switch (obj.getDominoType()) {
-                case Cuboid:
-                    Cuboid c = new Cuboid(obj);
-                    c.setNextDomino(prevDomino);
-                    cuboids.add(c);
-                    addActor(c);
-                    prevDomino = c;
-                    break;
-            }
-        }
     }
 
     @Override
@@ -142,7 +128,6 @@ public class TimeRaceStage extends StageBase {
                     c.remove();
                 }
                 cuboids.clear();
-                game.resetGame();
                 createDominos();
                 levelState = LEVEL_STATE.RUNNING;
                 break;

@@ -39,6 +39,10 @@ public class JsonConfigFactory {
         createJsonConfigs(filePath, SceneConfig.class);
     }
 
+    public void createCourseConfigs(String filePath) {
+        createJsonConfigs(filePath, CourseConfig.class);
+    }
+
     public void createStageConfigs(String filePath, JsonConfigFileParser parser) {
         createJsonConfigs(filePath, StageConfig.class, parser);
     }
@@ -84,6 +88,10 @@ public class JsonConfigFactory {
 
     public SceneConfig getSceneConfig(String key) {
         return (SceneConfig) getJsonConfig(SceneConfig.class.getSimpleName(), key);
+    }
+
+    public CourseConfig getCourseConfig(String key) {
+        return (CourseConfig) getJsonConfig(CourseConfig.class.getSimpleName(), key);
     }
 
     public TextureConfig getTextureConfig(String key) {

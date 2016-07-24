@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
+import com.freemotion.smashfruit.android.Game.DominoInstance;
 import com.freemotion.smashfruit.android.Game.DominoObject;
 import com.freemotion.smashfruit.android.Game.GameController;
 import com.freemotion.smashfruit.android.Utils.MessageHubImpl;
@@ -73,6 +74,7 @@ public class GameStage extends StageBase implements JsonConfigFileParser, Messag
         readStageConfig();
         setStageContent();
 
+        game = GameController.getInstance();
         gameState = GameState.TAP_TO_START;
     }
 
@@ -129,18 +131,19 @@ public class GameStage extends StageBase implements JsonConfigFileParser, Messag
     public void handleMessage(Bundle data) {
         Gdx.app.error(LOG_TAG, data.getString());
         if (MessageType.Game_Start.equals(data.getString())) {
-            data.getCallback().doMessageCallback(data);
+            setupGameScene();
         } else if (MessageType.Open_Settings_Dialog.equals(data.getString())) {
             TransitionActor dialog = data.getActor();
             dialog.getMessageDispatch().setMessageHub(messageHub);
+            widgets.add(dialog);
             addActor(dialog.getActor());
             dialog.show();
-            data.getCallback().doMessageCallback(data);
         } else if (MessageType.Close_Settings_Dialog.equals(data.getString())) {
             TransitionActor dialog = data.getActor();
+            widgets.removeValue(dialog, true);
             dialog.hide();
-            data.getCallback().doMessageCallback(data);
         }
+        data.getCallback().doMessageCallback(data);
     }
 
     @Override
@@ -186,6 +189,7 @@ public class GameStage extends StageBase implements JsonConfigFileParser, Messag
     @Override
     public void resume() {
         setStageContent();
+        game = GameController.getInstance();
     }
 
     @Override
@@ -219,80 +223,20 @@ public class GameStage extends StageBase implements JsonConfigFileParser, Messag
 
     }
 
-    private void setupScene() {
-        cuboids = new Array<DominoActor>();
-        game = new GameController();
+    private void setupGameScene() {
+        clear();
+        widgets.clear();
         game.enterGame();
-        createDominos();
-        //addActor(new ResetButton());
-        //addActor(new PassButton());
-    }
+        for (DominoInstance instance : game.getDominoObjects()) {
 
-    private void createDominos() {
-        Array<DominoObject> objects = game.getDominoObjects();
-        DominoActor prevDomino = null;
-        for (int i = objects.size - 1; i >= 0; i--) {
-            DominoObject obj = objects.get(i);
-            switch (obj.getDominoType()) {
-                case Cuboid:
-                    Cuboid c = new Cuboid(obj);
-                    c.setNextDomino(prevDomino);
-                    cuboids.add(c);
-                    addActor(c);
-                    prevDomino = c;
-                    break;
-
-                case Tomato:
-                    Tomato t = new Tomato(obj);
-                    t.setNextDomino(prevDomino);
-                    cuboids.add(t);
-                    addActor(t);
-                    prevDomino = t;
-                    break;
-            }
         }
-    }
-
-
-    @Override
-    public boolean handleKeyPressedEvent(TouchEventListener.INPUT_EVENT event) {
-        switch (event) {
-            case Reset:
-                for (DominoActor c : cuboids) {
-                    c.remove();
-                }
-                cuboids.clear();
-                game.resetGame();
-                createDominos();
-                gameState = GameState.WAIT_FOR_TOUCH;
-                break;
-
-            case Pass:
-                gameState = GameState.PASS;
-                cuboids.get(cuboids.size - 1).playAnimation();
-                game.passLevel();
-                break;
-
-            default:
-                break;
-        }
-        return true;
-    }
-
-    @Override
-    public boolean handleKeyReleasedEvent(TouchEventListener.INPUT_EVENT event) {
-        return true;
     }
 
     public boolean isDominoPushed() {
-        return gameState == GameState.PUSHED;
-    }
-
-    public boolean isGameTouched() {
-        return gameState == GameState.TOUCHED;
+        return true;
     }
 
     public void pushDomino() {
-        gameState = GameState.PUSHED;
+
     }
 }

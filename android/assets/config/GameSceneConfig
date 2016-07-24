@@ -1,0 +1,75 @@
+{
+  "type" : "StageConfig",
+  "name" : "GameStage",
+  "data" : [
+    {
+      "key" : "scene_background",
+      "dclass" : "GameSceneBackground",
+      "positionX" : 0,
+      "positionY" : 0,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "atlas" : "graphic/ui.txt",
+      "region" : "scene_background"
+    },
+    {
+      "key" : "level_icon",
+      "dclass" : "LevelIcon",
+      "positionX" : 223,
+      "positionY" : 498,
+      "width" : 0,
+      "height" : 0,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "rotation" : 0,
+      "atlas" : "graphic/ui.txt",
+      "region" : "level_icon"
+    },
+    {
+      "key" : "level_num",
+      "dclass" : "LevelNum",
+      "positionX" : 0,
+      "positionY" : 0,
+      "width" : 0,
+      "height" : 0,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "rotation" : 0
+    },
+    {
+      "key" : "cuboid_icon",
+      "dclass" : "CuboidIcon",
+      "positionX" : 0,
+      "positionY" : 0,
+      "width" : 0,
+      "height" : 0,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "rotation" : 0,
+      "atlas" : "graphic/ui.txt",
+      "region" : "cuboid_icon"
+    },
+    {
+      "key" : "cuboid_num",
+      "dclass" : "CuboidNum",
+      "positionX" : 0,
+      "positionY" : 0,
+      "width" : 0,
+      "height" : 0,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "rotation" : 0
+    },
+    {
+      "key" : "stopwatch_bar",
+      "dclass" : "StopwatchBar",
+      "positionX" : 0,
+      "positionY" : 0,
+      "width" : 0,
+      "height" : 0,
+      "scaleX" : 1,
+      "scaleY" : 1,
+      "rotation" : 0
+    }
+  ]
+}

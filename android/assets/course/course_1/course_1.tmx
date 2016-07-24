@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="45" height="80" tilewidth="16" tileheight="16" nextobjectid="12">
+ <tileset firstgid="1" name="Background" tilewidth="720" tileheight="1280" tilecount="1" columns="0">
+  <tile id="1">
+   <image width="720" height="1280" source="../../graphic/tilesets/course_background.png"/>
+  </tile>
+ </tileset>
+ <tileset firstgid="3" name="Domino" tilewidth="204" tileheight="196" tilecount="8" columns="0">
+  <tile id="0">
+   <properties>
+    <property name="Shape" value="Tomato"/>
+   </properties>
+   <image width="97" height="92" source="../../graphic/tilesets/tomato.png"/>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="Direction" value="Left"/>
+    <property name="Shape" value="Cuboid"/>
+   </properties>
+   <image width="204" height="196" source="../../graphic/tilesets/cuboid0_0.png"/>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="Direction" value="Right"/>
+    <property name="Shape" value="Cuboid"/>
+   </properties>
+   <image width="204" height="196" source="../../graphic/tilesets/cuboid1_0.png"/>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="Direction" value="Left_Down"/>
+    <property name="Shape" value="Cuboid"/>
+   </properties>
+   <image width="204" height="196" source="../../graphic/tilesets/cuboid2_0.png"/>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="Direction" value="Right_Up"/>
+    <property name="Shape" value="Cuboid"/>
+   </properties>
+   <image width="204" height="196" source="../../graphic/tilesets/cuboid3_0.png"/>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="Direction" value="Right_Down"/>
+    <property name="Shape" value="Cuboid"/>
+   </properties>
+   <image width="204" height="196" source="../../graphic/tilesets/cuboid4_0.png"/>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="Direction" value="Left_Up"/>
+    <property name="Shape" value="Cuboid"/>
+   </properties>
+   <image width="204" height="196" source="../../graphic/tilesets/cuboid5_0.png"/>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="Shape" value="Cylinder"/>
+   </properties>
+   <image width="204" height="196" source="../../graphic/tilesets/cylinder0_0.png"/>
+  </tile>
+ </tileset>
+ <layer name="Background" width="45" height="80">
+  <data encoding="base64" compression="zlib">
+   eJztzjENAAAIA7AF/6JxsIOHp1XQBAAAAAAAAAAAAAAAAABo5jtwsDmoAAM=
+  </data>
+ </layer>
+ <objectgroup name="Domino">
+  <object id="1" gid="3" x="223.667" y="627.667" width="97" height="92"/>
+  <object id="7" gid="4" x="252" y="680" width="204" height="196"/>
+  <object id="8" gid="10" x="320" y="662" width="204" height="196"/>
+  <object id="9" gid="6" x="452" y="398" width="204" height="196"/>
+  <object id="10" gid="8" x="222" y="924" width="204" height="196"/>
+ </objectgroup>
+ <objectgroup name="HUD"/>
+</map>
