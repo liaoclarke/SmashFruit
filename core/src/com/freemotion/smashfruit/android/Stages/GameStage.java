@@ -1,33 +1,25 @@
 package com.freemotion.smashfruit.android.Stages;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g3d.ModelCache;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.Sort;
-import com.freemotion.smashfruit.android.Game.DominoInstance;
-import com.freemotion.smashfruit.android.Game.DominoObject;
 import com.freemotion.smashfruit.android.Game.GameController;
-import com.freemotion.smashfruit.android.Misc.DominoConfig;
-import com.freemotion.smashfruit.android.Utils.MessageHubImpl;
 import com.freemotion.smashfruit.android.Game.MessageType;
-import com.freemotion.smashfruit.android.Game.TouchEventListener;
+import com.freemotion.smashfruit.android.Misc.DominoConfig;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFileParser;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Screens.GameScreen;
-import com.freemotion.smashfruit.android.Sprites.Cuboid;
-import com.freemotion.smashfruit.android.Sprites.DominoActor;
-import com.freemotion.smashfruit.android.Sprites.Tomato;
+import com.freemotion.smashfruit.android.Sprites.Widget.DominoActor;
 import com.freemotion.smashfruit.android.Sprites.Widget.TransitionActor;
 import com.freemotion.smashfruit.android.Sprites.Widget.TransitionStage;
 import com.freemotion.smashfruit.android.Utils.Bundle;
+import com.freemotion.smashfruit.android.Utils.MessageHubImpl;
 import com.freemotion.smashfruit.android.Utils.MessageListener;
 import com.freemotion.smashfruit.android.Utils.StageBase;
 
 import java.lang.reflect.Constructor;
-import java.util.Comparator;
 
 /**
  * Created by liaoclark on 4/17/2016.
@@ -72,6 +64,8 @@ public class GameStage extends StageBase implements JsonConfigFileParser, Messag
         messageHub.registerMessageListener(MessageType.Game_Over, this);
         messageHub.registerMessageListener(MessageType.Open_Settings_Dialog, this);
         messageHub.registerMessageListener(MessageType.Close_Settings_Dialog, this);
+        messageHub.registerMessageListener(MessageType.Push_Cuboid, this);
+        messageHub.registerMessageListener(MessageType.Push_Cylinder, this);
 
         setupViewPort();
         setupInput();
@@ -146,6 +140,11 @@ public class GameStage extends StageBase implements JsonConfigFileParser, Messag
             TransitionActor dialog = data.getActor();
             widgets.removeValue(dialog, true);
             dialog.hide();
+        } else if (MessageType.Push_Cuboid.equals(data.getString())) {
+            if (gameState == GameState.WAIT_FOR_TOUCH) {
+                data.getCallback().doMessageCallback(data);
+                gameState = GameState.PUSHED;
+            }
         }
         data.getCallback().doMessageCallback(data);
     }
@@ -243,14 +242,19 @@ public class GameStage extends StageBase implements JsonConfigFileParser, Messag
                 DominoActor actor = (DominoActor) ctor.newInstance(config);
                 cuboids.add(actor);
             } catch (Exception e) {
-                Gdx.app.error(LOG_TAG, "Can not create object from config : " + config.getKey());
+                Gdx.app.error(LOG_TAG, "Can not create object from config : " + config.getKey() + " error: " + e.getMessage());
                 throw new RuntimeException("Can not create domino objects");
             }
         }
         for (int i = 0; i < cuboids.size - 1; i++) {
             cuboids.get(i).setNextDomino(cuboids.get(i + 1));
             addActor(cuboids.get(i));
+            cuboids.get(i).getMessageDispatch().setMessageHub(messageHub);
         }
+        addActor(cuboids.get(cuboids.size - 1));
+        cuboids.get(cuboids.size - 1).getMessageDispatch().setMessageHub(messageHub);
+
+        gameState = GameState.WAIT_FOR_TOUCH;
     }
 
     public boolean isDominoPushed() {

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="45" height="80" tilewidth="16" tileheight="16" nextobjectid="12">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="45" height="80" tilewidth="16" tileheight="16" nextobjectid="30">
  <tileset firstgid="1" name="Background" tilewidth="720" tileheight="1280" tilecount="1" columns="0">
-  <tile id="1">
+  <tile id="2">
    <image width="720" height="1280" source="../../graphic/tilesets/course_background.png"/>
   </tile>
  </tileset>
- <tileset firstgid="3" name="Domino" tilewidth="204" tileheight="196" tilecount="8" columns="0">
+ <tileset firstgid="4" name="Domino" tilewidth="204" tileheight="196" tilecount="8" columns="0">
   <tile id="0">
    <properties>
+    <property name="Direction" value="Static"/>
     <property name="Shape" value="Tomato"/>
    </properties>
    <image width="97" height="92" source="../../graphic/tilesets/tomato.png"/>
@@ -56,22 +57,56 @@
   </tile>
   <tile id="7">
    <properties>
+    <property name="Direction" value="Unknown"/>
     <property name="Shape" value="Cylinder"/>
    </properties>
    <image width="204" height="196" source="../../graphic/tilesets/cylinder0_0.png"/>
   </tile>
  </tileset>
+ <tileset firstgid="12" name="HUD" tilewidth="73" tileheight="73" tilecount="4" columns="0">
+  <tile id="0">
+   <image width="73" height="73" source="../../graphic/tilesets/course_num.png"/>
+  </tile>
+  <tile id="1">
+   <image width="44" height="50" source="../../graphic/tilesets/domino_icon.png"/>
+  </tile>
+  <tile id="2">
+   <image width="18" height="18" source="../../graphic/tilesets/stopwatch_on.png"/>
+  </tile>
+  <tile id="4">
+   <image width="18" height="18" source="../../graphic/tilesets/stopwatch_off.png"/>
+  </tile>
+ </tileset>
  <layer name="Background" width="45" height="80">
   <data encoding="base64" compression="zlib">
-   eJztzjENAAAIA7AF/6JxsIOHp1XQBAAAAAAAAAAAAAAAAABo5jtwsDmoAAM=
+   eJztzjENAAAIA7Al+PeMgx08PK2CJgAAAAAAAAAAAAAAAABAM9+BgwU6XAAE
   </data>
  </layer>
  <objectgroup name="Domino">
-  <object id="1" name="0" gid="3" x="223.667" y="627.667" width="97" height="92"/>
-  <object id="7" name="1" gid="4" x="252" y="680" width="204" height="196"/>
-  <object id="8" name="2" gid="10" x="320" y="662" width="204" height="196"/>
-  <object id="9" name="3" gid="6" x="452" y="398" width="204" height="196"/>
-  <object id="10" name="4" gid="8" x="222" y="924" width="204" height="196"/>
+  <object id="1" name="0" gid="4" x="174" y="658" width="97" height="92"/>
+  <object id="7" name="2" gid="5" x="216" y="750" width="204" height="196"/>
+  <object id="8" name="1" gid="11" x="320" y="662" width="204" height="196"/>
+  <object id="9" name="4" gid="7" x="452" y="398" width="204" height="196"/>
+  <object id="10" name="3" gid="9" x="222" y="924" width="204" height="196"/>
  </objectgroup>
- <objectgroup name="HUD"/>
+ <objectgroup name="HUD">
+  <object id="12" gid="12" x="50" y="97" width="73" height="73"/>
+  <object id="13" gid="13" x="647" y="84" width="44" height="50"/>
+  <object id="14" gid="14" x="50" y="1238" width="18" height="18"/>
+  <object id="15" gid="14" x="82" y="1238" width="18" height="18"/>
+  <object id="16" gid="14" x="146" y="1238" width="18" height="18"/>
+  <object id="17" gid="14" x="178" y="1238" width="18" height="18"/>
+  <object id="18" gid="14" x="210" y="1238" width="18" height="18"/>
+  <object id="19" gid="14" x="242" y="1238" width="18" height="18"/>
+  <object id="20" gid="14" x="274" y="1238" width="18" height="18"/>
+  <object id="21" gid="14" x="306" y="1238" width="18" height="18"/>
+  <object id="22" gid="14" x="338" y="1238" width="18" height="18"/>
+  <object id="23" gid="14" x="370" y="1238" width="18" height="18"/>
+  <object id="24" gid="14" x="434" y="1238" width="18" height="18"/>
+  <object id="25" gid="14" x="466" y="1238" width="18" height="18"/>
+  <object id="26" gid="14" x="498" y="1238" width="18" height="18"/>
+  <object id="27" gid="14" x="530" y="1238" width="18" height="18"/>
+  <object id="28" gid="14" x="402" y="1238" width="18" height="18"/>
+  <object id="29" gid="14" x="114" y="1238" width="18" height="18"/>
+ </objectgroup>
 </map>

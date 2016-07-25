@@ -1,27 +1,25 @@
 package com.freemotion.smashfruit.android.Sprites.Widget;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Pixmap;
-import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
-import com.freemotion.smashfruit.android.Game.DominoObject;
 import com.freemotion.smashfruit.android.Misc.AnimationConfig;
 import com.freemotion.smashfruit.android.Misc.DominoConfig;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
-import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Resources.SceneTextureLoader;
+import com.freemotion.smashfruit.android.Utils.Bundle;
+import com.freemotion.smashfruit.android.Utils.MessageDispatch;
+import com.freemotion.smashfruit.android.Utils.MessageHub;
 import com.freemotion.smashfruit.android.Utils.ResourceManager;
 
 /**
  * Created by liaoclark on 7/25/16.
  */
-public class DominoActor extends Actor {
+public class DominoActor extends Actor implements MessageDispatch {
 
     protected String LOG_TAG = "DominoActor";
     private enum DOMINO_STATE {
@@ -36,17 +34,21 @@ public class DominoActor extends Actor {
     protected DominoActor nextDomino;
     protected String dominoType;
     protected Rectangle touchableRectangle;
+    protected int leanDirection;
     protected float leanSpeed;
     protected float stateTime;
+    protected MessageHub messageHub;
 
     public DominoActor(DominoConfig dc) {
         super();
         String animationName ;
         if ("Cuboid".equals(dc.getShape())) {
             dominoType = "cuboid";
+            leanDirection = dc.getDegree();
             animationName = dominoType + dc.getDegree();
         } else if ("Cylinder".equals(dc.getShape())) {
             dominoType = "cylinder";
+            leanDirection = dc.getDegree();
             animationName = dominoType + dc.getDegree();
         } else if ("Tomato".equals(dc.getShape())) {
             dominoType = "tomato";
@@ -61,10 +63,10 @@ public class DominoActor extends Actor {
         leanAnimation.setPlayMode(ac.getMode());
         leanSpeed = ac.getDuration();
         textureRegion = leanAnimation.getKeyFrame(0);
-        textureRectangle = new Rectangle(dc.getTile().getTilePositionX(), dc.getTile().getTilePositionY(), textureRegion.getRegionWidth(), textureRegion.getRegionHeight());
+        textureRectangle = new Rectangle(dc.getTile().getTilePositionX(), dc.getTile().getTilePositionY() + dc.getTile().getTiledHeigh(), dc.getTile().getTileWidth(), dc.getTile().getTiledHeigh());
         setBounds(textureRectangle.x, textureRectangle.y, textureRectangle.width, textureRectangle.height);
-        touchableRectangle = new Rectangle(dc.getTile().getTouchableRegionCenterX() - dc.getTile().getTouchableRegionWidth() * 0.5f,
-                                           dc.getTile().getTouchabelRegionCenterY() - dc.getTile().getTouchableRegionHeight() * 0.5f,
+        touchableRectangle = new Rectangle(dc.getTile().getTouchableRegionCenterX(),
+                                           dc.getTile().getTouchabelRegionCenterY(),
                                            dc.getTile().getTouchableRegionWidth(), dc.getTile().getTouchableRegionHeight());
         stateTime = 0;
         status = DOMINO_STATE.Stand;
@@ -86,6 +88,9 @@ public class DominoActor extends Actor {
             case Lean:
                 stateTime += deltaTime;
                 if (leanAnimation.isAnimationFinished(stateTime) && nextDomino != null && nextDomino.getStatus() == DOMINO_STATE.Stand) {
+                    if ("cylinder".equals(nextDomino.getDominoType())) {
+                        nextDomino.setLeanAnimation("cylinder" + leanDirection);
+                    }
                     nextDomino.playAnimation(caculateLeanSpeed());
                 }
                 break;
@@ -108,12 +113,20 @@ public class DominoActor extends Actor {
         this.nextDomino = nextDomino;
     }
 
+    public DOMINO_STATE getStatus() {
+        return status;
+    }
+
     public String getDominoType() {
         return dominoType;
     }
 
-    public DOMINO_STATE getStatus() {
-        return status;
+    public void setLeanAnimation(String animationName) {
+        AnimationConfig ac = JsonConfigFactory.getInstance().getAnimationConfig(animationName);
+        SceneTextureLoader sceneLoader = (SceneTextureLoader) ResourceManager.getInstance().findLoader(SceneTextureLoader.class.getSimpleName());
+        leanAnimation = new Animation(ac.getDuration(), sceneLoader.getTextureAtlas().findRegions(ac.getRegion()));
+        leanAnimation.setPlayMode(ac.getMode());
+        leanSpeed = ac.getDuration();
     }
 
     private float caculateLeanSpeed() {
@@ -140,9 +153,28 @@ public class DominoActor extends Actor {
                             y > touchableRectangle.y &&
                             y < touchableRectangle.y + touchableRectangle.height);
             if (t) {
-                Gdx.app.error(LOG_TAG, "domino hit x: " + x + " y: " + y + " actorX: " + getX() + " actorY: " + getY() + " touchRegionX: " + touchableRectangle.x + " touchRegionY: " + touchableRectangle.y);
+            //    Gdx.app.error(LOG_TAG, "domino hit x: " + x + " y: " + y + " actorX: " + getX() + " actorY: " + getY() + " touchRegionX: " + touchableRectangle.x + " touchRegionY: " + touchableRectangle.y);
             }
             return t ? this : null;
         }
+    }
+
+    @Override
+    public void setMessageHub(MessageHub hub) {
+        messageHub = hub;
+    }
+
+    @Override
+    public void dispatchMessage(String message, Bundle data) {
+        messageHub.forwardMessageToListener(message, data);
+    }
+
+    @Override
+    public boolean doMessageCallback(Bundle data) {
+        return false;
+    }
+
+    public MessageDispatch getMessageDispatch() {
+        return this;
     }
 }

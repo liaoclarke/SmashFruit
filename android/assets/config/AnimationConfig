@@ -68,35 +68,35 @@
     {
       "key" : "cylinder60",
       "atlas" : "graphic/game.txt",
-      "region" : "cylinder60",
+      "region" : "cylinder1",
       "duration" : 0.10,
       "mode" : "NORMAL"
     },
     {
       "key" : "cylinder120",
       "atlas" : "graphic/game.txt",
-      "region" : "cylinder120",
+      "region" : "cylinder2",
       "duration" : 0.10,
       "mode" : "NORMAL"
     },
     {
       "key" : "cylinder180",
       "atlas" : "graphic/game.txt",
-      "region" : "cylinder180",
+      "region" : "cylinder3",
       "duration" : 0.10,
       "mode" : "NORMAL"
     },
     {
       "key" : "cylinder240",
       "atlas" : "graphic/game.txt",
-      "region" : "cylinder240",
+      "region" : "cylinder4",
       "duration" : 0.10,
       "mode" : "NORMAL"
     },
     {
       "key" : "cylinder300",
       "atlas" : "graphic/game.txt",
-      "region" : "cylinder300",
+      "region" : "cylinder5",
       "duration" : 0.10,
       "mode" : "NORMAL"
     },

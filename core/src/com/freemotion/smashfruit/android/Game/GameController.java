@@ -14,11 +14,8 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.StringBuilder;
 import com.freemotion.smashfruit.android.Misc.DominoConfig;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
-import com.freemotion.smashfruit.android.Misc.StageConfig;
-import javafx.beans.property.IntegerProperty;
 
 import java.util.Comparator;
-import java.util.HashMap;
 
 /**
  * Created by liaoclark on 2016/3/5.

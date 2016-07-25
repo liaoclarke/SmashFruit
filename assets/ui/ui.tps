@@ -225,6 +225,8 @@
             <key type="filename">star_left_side.png</key>
             <key type="filename">star_num.png</key>
             <key type="filename">star_right_side.png</key>
+            <key type="filename">stopwatch_off.png</key>
+            <key type="filename">stopwatch_on.png</key>
             <key type="filename">tab.png</key>
             <key type="filename">time_race.png</key>
             <key type="filename">tutorial_button.png</key>

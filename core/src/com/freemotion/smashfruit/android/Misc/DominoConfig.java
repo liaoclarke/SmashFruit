@@ -15,6 +15,7 @@ public class DominoConfig extends JsonConfig {
     }
 
     public DominoConfig(DominoConfig config) {
+        key = config.getKey();
         shape = config.getShape();
         degree = config.getDegree();
         tile = new TileConfig(config.getTile());
