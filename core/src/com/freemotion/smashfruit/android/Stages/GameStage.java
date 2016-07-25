@@ -214,15 +214,16 @@ public class GameStage extends StageBase implements JsonConfigFileParser, Messag
         return this;
     }
 
-    void showPerfectPassDialog() {
+    /* Internal helper methods */
+    private void showPerfectPassDialog() {
 
     }
 
-    void showPassDialog() {
+    private void showPassDialog() {
 
     }
 
-    void showTimeoutDialog() {
+    private void showTimeoutDialog() {
 
     }
 
@@ -255,13 +256,5 @@ public class GameStage extends StageBase implements JsonConfigFileParser, Messag
         cuboids.get(cuboids.size - 1).getMessageDispatch().setMessageHub(messageHub);
 
         gameState = GameState.WAIT_FOR_TOUCH;
-    }
-
-    public boolean isDominoPushed() {
-        return true;
-    }
-
-    public void pushDomino() {
-
     }
 }

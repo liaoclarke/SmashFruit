@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.StringBuilder;
 import com.freemotion.smashfruit.android.Misc.DominoConfig;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
+import com.freemotion.smashfruit.android.Misc.StageConfig;
 
 import java.util.Comparator;
 
@@ -25,6 +26,7 @@ public class GameController {
     private String LOG_TAG;
     private TiledMap mapLoader;
     private static GameController instance;
+
     private int currentCourse, firstCourse, bestCourse;
     private String courseRootDirectory;
     private String courseDirectoryPrefix;
@@ -32,8 +34,14 @@ public class GameController {
     private String courseFilePathSeperator;
     private String courseFileNameSeperator;
     private String dominoLayerName;
+    private String hudLayerName;
+    private String backgroundLayerName;
     private String dominoTileSetName;
+    private String hudTileSetName;
+    private String backgroundTileSetName;
+
     private Array<DominoConfig> dominoInstances;
+    private Array<StageConfig> widgetInstances;
 
     private GameController() {
         LOG_TAG = GameController.class.getSimpleName();
@@ -46,8 +54,14 @@ public class GameController {
         courseFilePathSeperator = JsonConfigFactory.getInstance().getKeyConfig("CourseFilePathSeperator").getValue();
         courseFileNameSeperator = JsonConfigFactory.getInstance().getKeyConfig("CourseFileNameSeperator").getValue();
         dominoLayerName = JsonConfigFactory.getInstance().getKeyConfig("DominoLayerName").getValue();
+        hudLayerName = JsonConfigFactory.getInstance().getKeyConfig("HUDLayerName").getValue();
+        backgroundLayerName = JsonConfigFactory.getInstance().getKeyConfig("BackgroundLayerName").getValue();
         dominoTileSetName = JsonConfigFactory.getInstance().getKeyConfig("DominoTileSetName").getValue();
+        hudTileSetName = JsonConfigFactory.getInstance().getKeyConfig("HUDTileSetName").getValue();
+        backgroundTileSetName = JsonConfigFactory.getInstance().getKeyConfig("BackgroundTileSetName").getValue();
+
         dominoInstances = new Array<DominoConfig>();
+        widgetInstances = new Array<StageConfig>();
     }
 
     public static GameController getInstance() {
@@ -92,12 +106,11 @@ public class GameController {
 
         MapLayers layers = mapLoader.getLayers();
 
+        /* Instance Domino Layer */
         try {
             MapObjects tiledObjects = layers.get(dominoLayerName).getObjects();
             TiledMapTileSet tileset = mapLoader.getTileSets().getTileSet(dominoTileSetName);
-            //int firstGid = (Integer)tileset.getProperties().get("firstgid");
             for (MapObject tiledObj : tiledObjects) {
-                //DominoInstance dominoObject = new DominoInstance();
                 MapProperties prop  = tiledObj.getProperties();
                 int gid = (Integer)prop.get("gid");
                 int index = Integer.parseInt(tiledObj.getName());
@@ -114,6 +127,38 @@ public class GameController {
             dominoInstances.sort(comparator);
         } catch (Error e) {
             Gdx.app.error(LOG_TAG, "Error happend when load course tiled map file");
+        }
+
+        /* Instance HUD Layer */
+        try {
+            MapObjects tiledObjects = layers.get(hudLayerName).getObjects();
+            for (MapObject tiledObj : tiledObjects) {
+                StageConfig sc = new StageConfig();
+                MapProperties prop = tiledObj.getProperties();
+                sc.setPositionX((Integer) prop.get("x"));
+                sc.setPositionY((Integer) prop.get("y"));
+                sc.setWidth((Integer) prop.get("width"));
+                sc.setHeight((Integer) prop.get("height"));
+                widgetInstances.add(sc);
+            }
+        } catch (Error e) {
+            Gdx.app.error(LOG_TAG, "Error happened when load course tiled map file");
+        }
+
+        /* Instance Background Layer */
+        try {
+            MapObjects tiledObjects = layers.get(backgroundLayerName).getObjects();
+            for (MapObject tiledObj : tiledObjects) {
+                StageConfig sc = new StageConfig();
+                MapProperties prop = tiledObj.getProperties();
+                sc.setPositionX((Integer) prop.get("x"));
+                sc.setPositionY((Integer) prop.get("y"));
+                sc.setWidth((Integer) prop.get("width"));
+                sc.setHeight((Integer) prop.get("height"));
+                widgetInstances.add(sc);
+            }
+        } catch (Error e) {
+            Gdx.app.error(LOG_TAG, "Error happened when load course tiled map file");
         }
     }
 

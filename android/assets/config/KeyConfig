@@ -119,8 +119,24 @@
       "value" : "Domino"
     },
     {
+        "key" : "HUDLayerName",
+        "value" : "HUD"
+    },
+    {
+        "key" : "BackgroundLayerName",
+        "value" : "Background"
+    },
+    {
       "key" : "DominoTileSetName",
       "value" : "Domino"
+    },
+    {
+        "key" : "HUDTileSetName",
+        "value" : "HUD"
+    },
+    {
+        "key" : "BackgroundTileSetName"
+        "value" : "Background"
     }
   ]
 }
