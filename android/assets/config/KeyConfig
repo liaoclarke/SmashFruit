@@ -85,6 +85,42 @@
     {
       "key" : "LEVEL_GRID_PAGE_PADDING",
       "value" : 37
+    },
+    {
+      "key" : "BestCourse",
+      "value" : 0
+    },
+    {
+      "key" : "FirstCourse",
+      "value" : 1
+    },
+    {
+      "key" : "CourseRootDirectory",
+      "value" : "course"
+    },
+    {
+      "key" : "CourseDirectoryPrefix",
+      "value" : "course"
+    },
+    {
+      "key" : "CourseFilePrefix",
+      "value" : "course"
+    },
+    {
+      "key" : "CourseFilePathSeperator",
+      "value" : "/"
+    },
+    {
+      "key" : "CourseFileNameSeperator",
+      "value" : "_"
+    },
+    {
+      "key" : "DominoLayerName",
+      "value" : "Domino"
+    },
+    {
+      "key" : "DominoTileSetName",
+      "value" : "Domino"
     }
   ]
 }

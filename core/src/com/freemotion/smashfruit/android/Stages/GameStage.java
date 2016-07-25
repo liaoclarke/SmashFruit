@@ -1,12 +1,15 @@
 package com.freemotion.smashfruit.android.Stages;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g3d.ModelCache;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Sort;
 import com.freemotion.smashfruit.android.Game.DominoInstance;
 import com.freemotion.smashfruit.android.Game.DominoObject;
 import com.freemotion.smashfruit.android.Game.GameController;
+import com.freemotion.smashfruit.android.Misc.DominoConfig;
 import com.freemotion.smashfruit.android.Utils.MessageHubImpl;
 import com.freemotion.smashfruit.android.Game.MessageType;
 import com.freemotion.smashfruit.android.Game.TouchEventListener;
@@ -24,6 +27,7 @@ import com.freemotion.smashfruit.android.Utils.MessageListener;
 import com.freemotion.smashfruit.android.Utils.StageBase;
 
 import java.lang.reflect.Constructor;
+import java.util.Comparator;
 
 /**
  * Created by liaoclark on 4/17/2016.
@@ -227,8 +231,25 @@ public class GameStage extends StageBase implements JsonConfigFileParser, Messag
         clear();
         widgets.clear();
         game.enterGame();
-        for (StageConfig config: game.getDominoObjects()) {
-            getGameActorObject(config);
+        if (cuboids == null) {
+            cuboids = new Array<DominoActor>();
+        }
+        cuboids.clear();
+        for (DominoConfig config: game.getDominoObjects()) {
+            try {
+                String pkg = "com.freemotion.smashfruit.android.Sprites.Widget";
+                Class cls = Class.forName(pkg + "." + config.getShape());
+                Constructor ctor = cls.getConstructor(DominoConfig.class);
+                DominoActor actor = (DominoActor) ctor.newInstance(config);
+                cuboids.add(actor);
+            } catch (Exception e) {
+                Gdx.app.error(LOG_TAG, "Can not create object from config : " + config.getKey());
+                throw new RuntimeException("Can not create domino objects");
+            }
+        }
+        for (int i = 0; i < cuboids.size - 1; i++) {
+            cuboids.get(i).setNextDomino(cuboids.get(i + 1));
+            addActor(cuboids.get(i));
         }
     }
 

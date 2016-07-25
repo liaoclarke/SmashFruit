@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by liaoclark on 2016/2/28.
@@ -39,8 +40,8 @@ public class JsonConfigFactory {
         createJsonConfigs(filePath, SceneConfig.class);
     }
 
-    public void createCourseConfigs(String filePath) {
-        createJsonConfigs(filePath, CourseConfig.class);
+    public void createDominoConfigs(String filePath) {
+        createJsonConfigs(filePath, DominoConfig.class);
     }
 
     public void createStageConfigs(String filePath, JsonConfigFileParser parser) {
@@ -61,17 +62,23 @@ public class JsonConfigFactory {
         String text = file.readString();
 		Json json = new Json();
         json.setElementType(JsonConfigArray.class, "data", confiClass);
-		JsonConfigArray array = json.fromJson(JsonConfigArray.class, text);
-        if (parser != null) {
-            array.setParser(parser);
-        }
-        for (JsonConfigArray ar : jsonConfigMap) {
-            if (ar.getName().equals(array.getName())) {
-                return ar;
+        try {
+            JsonConfigArray array = json.fromJson(JsonConfigArray.class, text);
+            if (parser != null) {
+                array.setParser(parser);
             }
+            for (JsonConfigArray ar : jsonConfigMap) {
+                if (ar.getName().equals(array.getName())) {
+                    return ar;
+                }
+            }
+
+            jsonConfigMap.add(array);
+            return array;
+        } catch (Exception e) {
+            Gdx.app.error(LOG_TAG, e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
-        jsonConfigMap.add(array);
-        return array;
     }
 
     public JsonConfigArray createJsonConfigs(String configFilePath, Class confiClass) {
@@ -90,8 +97,8 @@ public class JsonConfigFactory {
         return (SceneConfig) getJsonConfig(SceneConfig.class.getSimpleName(), key);
     }
 
-    public CourseConfig getCourseConfig(String key) {
-        return (CourseConfig) getJsonConfig(CourseConfig.class.getSimpleName(), key);
+    public DominoConfig getDominoConfig(String key) {
+        return (DominoConfig) getJsonConfig(DominoConfig.class.getSimpleName(), key);
     }
 
     public TextureConfig getTextureConfig(String key) {

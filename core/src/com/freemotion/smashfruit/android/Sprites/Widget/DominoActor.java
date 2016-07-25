@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.freemotion.smashfruit.android.Game.DominoObject;
 import com.freemotion.smashfruit.android.Misc.AnimationConfig;
+import com.freemotion.smashfruit.android.Misc.DominoConfig;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Resources.SceneTextureLoader;
@@ -34,22 +35,20 @@ public class DominoActor extends Actor {
     protected Rectangle textureRectangle;
     protected DominoActor nextDomino;
     protected String dominoType;
-    protected Vector2 touchPosition;
     protected Rectangle touchableRectangle;
-    protected Pixmap touchableMask;
     protected float leanSpeed;
     protected float stateTime;
 
-    public DominoActor(StageConfig config) {
+    public DominoActor(DominoConfig dc) {
         super();
         String animationName ;
-        if ("Cuboid".equals(config.getDclass())) {
+        if ("Cuboid".equals(dc.getShape())) {
             dominoType = "cuboid";
-            animationName = dominoType + config.getRotation();
-        } else if ("Cylinder".equals(config.getDclass())) {
+            animationName = dominoType + dc.getDegree();
+        } else if ("Cylinder".equals(dc.getShape())) {
             dominoType = "cylinder";
-            animationName = dominoType + config.getRotation();
-        } else if ("Tomato".equals(config.getDclass())) {
+            animationName = dominoType + dc.getDegree();
+        } else if ("Tomato".equals(dc.getShape())) {
             dominoType = "tomato";
             animationName = "tomato0";
         } else {
@@ -58,23 +57,15 @@ public class DominoActor extends Actor {
 
         AnimationConfig ac = JsonConfigFactory.getInstance().getAnimationConfig(animationName);
         SceneTextureLoader sceneLoader = (SceneTextureLoader) ResourceManager.getInstance().findLoader(SceneTextureLoader.class.getSimpleName());
-        leanAnimation = new Animation(ac.getDuration(), sceneLoader.getTextureAtlas().findRegions(config.getRegion()));
+        leanAnimation = new Animation(ac.getDuration(), sceneLoader.getTextureAtlas().findRegions(ac.getRegion()));
         leanAnimation.setPlayMode(ac.getMode());
         leanSpeed = ac.getDuration();
         textureRegion = leanAnimation.getKeyFrame(0);
-        textureRectangle = new Rectangle(config.getPositionX(), config.getPositionY(), textureRegion.getRegionWidth(), textureRegion.getRegionHeight());
+        textureRectangle = new Rectangle(dc.getTile().getTilePositionX(), dc.getTile().getTilePositionY(), textureRegion.getRegionWidth(), textureRegion.getRegionHeight());
         setBounds(textureRectangle.x, textureRectangle.y, textureRectangle.width, textureRectangle.height);
-        touchPosition = new Vector2(textureRegion.getRegionX(), textureRegion.getRegionY());
-        /*touchableRectangle = new Rectangle(object.getCenterPos().x - (Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("TOUCHABLE_OFFSET_X").getValue())) * 0.5f,
-                                           object.getCenterPos().y - (Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("TOUCHABLE_OFFSET_Y").getValue())) * 0.5f,
-                                           Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("TOUCHABLE_OFFSET_X").getValue()),
-                                           Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("TOUCHABLE_OFFSET_Y").getValue()));
-                                           */
-        touchableRectangle = new Rectangle((textureRegion.getRegionWidth() - Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("TOUCHABLE_OFFSET_X").getValue())) * 0.5f,
-                (textureRegion.getRegionHeight() - Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("TOUCHABLE_OFFSET_Y").getValue())) * 0.5f,
-                Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("TOUCHABLE_OFFSET_X").getValue()),
-                Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("TOUCHABLE_OFFSET_Y").getValue()));
-        touchableMask = generateTouchableMask(textureRegion);
+        touchableRectangle = new Rectangle(dc.getTile().getTouchableRegionCenterX() - dc.getTile().getTouchableRegionWidth() * 0.5f,
+                                           dc.getTile().getTouchabelRegionCenterY() - dc.getTile().getTouchableRegionHeight() * 0.5f,
+                                           dc.getTile().getTouchableRegionWidth(), dc.getTile().getTouchableRegionHeight());
         stateTime = 0;
         status = DOMINO_STATE.Stand;
     }
@@ -129,12 +120,12 @@ public class DominoActor extends Actor {
         return leanSpeed * Float.parseFloat(JsonConfigFactory.getInstance().getKeyConfig("LEAN_SPEED_SCALE").getValue());
     }
 
-    private Pixmap generateTouchableMask(TextureRegion fromTexture) {
+    /*private Pixmap generateTouchableMask(TextureRegion fromTexture) {
         TextureData texData = fromTexture.getTexture().getTextureData();
         if(!texData.isPrepared()) texData.prepare();
 
         return texData.consumePixmap();
-    }
+    }*/
 
     @Override
     public Actor hit(float x, float y, boolean touchable) {
@@ -142,7 +133,6 @@ public class DominoActor extends Actor {
         if((touchable && getTouchable() != Touchable.enabled)) {
             return null;
         } else {
-            int pix = (touchableMask != null) ? touchableMask.getPixel((int) touchPosition.x + (int) x, (int) touchPosition.y + (int) (getHeight() - y)) : 1;
             //return (super.hit(x, y, touchable) != null) && ((pix & 0x000000ff) != 0) ? this : null;
             boolean t =  (super.hit(x, y, touchable) != null) &&
                     (x > touchableRectangle.x &&

@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
+import com.freemotion.smashfruit.android.Misc.DominoConfig;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
 import com.freemotion.smashfruit.android.Stages.GameStage;
 
@@ -13,7 +14,7 @@ import com.freemotion.smashfruit.android.Stages.GameStage;
  */
 public class Cuboid extends DominoActor{
 
-    public Cuboid(StageConfig config) {
+    public Cuboid(DominoConfig config) {
         super(config);
         LOG_TAG = this.getClass().getSimpleName();
         setTouchable(Touchable.enabled);

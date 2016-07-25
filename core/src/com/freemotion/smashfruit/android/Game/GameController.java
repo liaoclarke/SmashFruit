@@ -12,9 +12,12 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.StringBuilder;
+import com.freemotion.smashfruit.android.Misc.DominoConfig;
 import com.freemotion.smashfruit.android.Misc.JsonConfigFactory;
 import com.freemotion.smashfruit.android.Misc.StageConfig;
+import javafx.beans.property.IntegerProperty;
 
+import java.util.Comparator;
 import java.util.HashMap;
 
 /**
@@ -33,20 +36,21 @@ public class GameController {
     private String courseFileNameSeperator;
     private String dominoLayerName;
     private String dominoTileSetName;
-    private Array<StageConfig> dominoInstances;
+    private Array<DominoConfig> dominoInstances;
 
     private GameController() {
         LOG_TAG = GameController.class.getSimpleName();
-        JsonConfigFactory.getInstance().createCourseConfigs("config/GameCourseConfig");
-        bestCourse = Integer.parseInt(JsonConfigFactory.getInstance().getCourseConfig("BestCourse").getValue());
-        firstCourse = Integer.parseInt(JsonConfigFactory.getInstance().getCourseConfig("FirstCourse").getValue());
-        courseRootDirectory = JsonConfigFactory.getInstance().getCourseConfig("CourseRootDirectory").getValue();
-        courseDirectoryPrefix = JsonConfigFactory.getInstance().getCourseConfig("CourseDirectoryPrefix").getValue();
-        courseFilePrefix = JsonConfigFactory.getInstance().getCourseConfig("CourseFilePrefix").getValue();
-        courseFilePathSeperator = JsonConfigFactory.getInstance().getCourseConfig("CourseFilePathSeperator").getValue();
-        courseFileNameSeperator = JsonConfigFactory.getInstance().getCourseConfig("CourseFileNameSeperator").getValue();
-        dominoLayerName = JsonConfigFactory.getInstance().getCourseConfig("DominoLayerName").getValue();
-        dominoTileSetName = JsonConfigFactory.getInstance().getCourseConfig("DominoTileSetName").getValue();
+        JsonConfigFactory.getInstance().createDominoConfigs("config/DominoConfig");
+        bestCourse = Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("BestCourse").getValue());
+        firstCourse = Integer.parseInt(JsonConfigFactory.getInstance().getKeyConfig("FirstCourse").getValue());
+        courseRootDirectory = JsonConfigFactory.getInstance().getKeyConfig("CourseRootDirectory").getValue();
+        courseDirectoryPrefix = JsonConfigFactory.getInstance().getKeyConfig("CourseDirectoryPrefix").getValue();
+        courseFilePrefix = JsonConfigFactory.getInstance().getKeyConfig("CourseFilePrefix").getValue();
+        courseFilePathSeperator = JsonConfigFactory.getInstance().getKeyConfig("CourseFilePathSeperator").getValue();
+        courseFileNameSeperator = JsonConfigFactory.getInstance().getKeyConfig("CourseFileNameSeperator").getValue();
+        dominoLayerName = JsonConfigFactory.getInstance().getKeyConfig("DominoLayerName").getValue();
+        dominoTileSetName = JsonConfigFactory.getInstance().getKeyConfig("DominoTileSetName").getValue();
+        dominoInstances = new Array<DominoConfig>();
     }
 
     public static GameController getInstance() {
@@ -71,9 +75,17 @@ public class GameController {
         return builder.toString();
     }
 
-    public Array<StageConfig> getDominoObjects(){
+    public Array<DominoConfig> getDominoObjects(){
         return dominoInstances;
     }
+
+    public class DominoComparator implements Comparator<DominoConfig> {
+        @Override
+        public int compare (DominoConfig sprite1, DominoConfig sprite2) {
+            return (sprite2.getIndex() - sprite1.getIndex()) > 0 ? 1 : -1;
+        }
+    }
+    private DominoComparator comparator = new DominoComparator();
 
     private void loadCourseTiledMap(String tmxPath) {
         TmxMapLoader.Parameters parameters = new TmxMapLoader.Parameters();
@@ -91,26 +103,18 @@ public class GameController {
                 //DominoInstance dominoObject = new DominoInstance();
                 MapProperties prop  = tiledObj.getProperties();
                 int gid = (Integer)prop.get("gid");
+                int index = Integer.parseInt(tiledObj.getName());
                 String direction = (String)tileset.getTile(gid).getProperties().get("Direction");
-                String shape = (String)tileset.getTile(gid).getProperties().get("Shape");
                 Rectangle rect = new Rectangle((Float)prop.get("x"), (Float)prop.get("y"), (Float)prop.get("width"), (Float)prop.get("height"));
-                StageConfig config = new StageConfig();
-                config.setPositionX((int)rect.getX());
-                config.setPositionY((int)rect.getY());
-                config.setDclass(shape);
-                config.setConfigName(direction);
-                config.setRotation(Integer.parseInt(JsonConfigFactory.getInstance().getCourseConfig(direction).getValue()));
-                // set touchable region in texture region
-                config.setOrigPositionX();
-                config.setOrigPositionX();
-                config.setWidth();
-                config.setHeight();
-                dominoInstances.add(config);
-                //dominoObject.setPosition(rect.getX(), rect.getY());
-                //dominoObject.setDirection(direction);
-                //dominoObject.setShape(shape);
-                //dominoInstances.add(dominoObject);
+                DominoConfig dc = new DominoConfig(JsonConfigFactory.getInstance().getDominoConfig(direction));
+                dc.setIndex(index);
+                dc.getTile().setTilePositionX((int)rect.x);
+                dc.getTile().setTilePositionY((int)rect.y);
+                dc.getTile().setTileWidth((int)rect.width);
+                dc.getTile().setTileHeight((int)rect.height);
+                dominoInstances.add(dc);
             }
+            dominoInstances.sort(comparator);
         } catch (Error e) {
             Gdx.app.error(LOG_TAG, "Error happend when load course tiled map file");
         }

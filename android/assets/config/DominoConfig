@@ -1,0 +1,118 @@
+{
+  "type" : "DominoConfig",
+  "name" : "DominoConfig",
+  "data" : [
+    {
+      "key" : "Right",
+      "index" : 0,
+      "degree" : 0,
+      "shape" : "Cuboid",
+      "tile": {
+        "touch_centerX" : 61,
+        "touch_centerY" : 59,
+        "touch_width" : 74,
+        "touch_height" : 74,
+        "tile_positionX" : 0,
+        "tile_positionY" : 0,
+        "tile_width" : 0,
+        "tile_height" : 0
+      }
+    },
+    {
+      "key" : "Right_Up",
+      "index" : 0,
+      "degree" : 60,
+      "shape" : "Cuboid",
+      "tile" : {
+        "touch_centerX" : 61,
+        "touch_centerY" : 59,
+        "touch_width" : 74,
+        "touch_height" : 74,
+        "tile_positionX" : 0,
+        "tile_positionY" : 0,
+        "tile_width" : 0,
+        "tile_height" : 0
+      }
+    },
+    {
+      "key" : "Left_Up",
+      "index" : 0,
+      "degree" : 120,
+      "shape" : "Cuboid",
+      "tile" : {
+        "touch_centerX" : 61,
+        "touch_centerY" : 59,
+        "touch_width" : 74,
+        "touch_height" : 74,
+        "tile_positionX" : 0,
+        "tile_positionY" : 0,
+        "tile_width" : 0,
+        "tile_height" : 0
+      }
+    },
+    {
+      "key": "Left",
+      "index" : 0,
+      "degree": 180,
+      "shape": "Cuboid",
+      "tile": {
+        "touch_centerX": 61,
+        "touch_centerY": 59,
+        "touch_width": 74,
+        "touch_height": 74,
+        "tile_positionX": 0,
+        "tile_positionY": 0,
+        "tile_width": 0,
+        "tile_height": 0
+      }
+    },
+    {
+      "key" : "Left_Down",
+      "index" : 0,
+      "degree" : 240,
+      "shape" : "Cuboid",
+      "tile" : {
+        "touch_centerX": 61,
+        "touch_centerY": 59,
+        "touch_width": 74,
+        "touch_height": 74,
+        "tile_positionX": 0,
+        "tile_positionY": 0,
+        "tile_width": 0,
+        "tile_height": 0
+      }
+    },
+    {
+      "key" : "Right_Down",
+      "index" : 0,
+      "degree" : 300,
+      "shape" : "Cuboid",
+      "tile" : {
+        "touch_centerX": 61,
+        "touch_centerY": 59,
+        "touch_width": 74,
+        "touch_height": 74,
+        "tile_positionX": 0,
+        "tile_positionY": 0,
+        "tile_width": 0,
+        "tile_height": 0
+      }
+    },
+    {
+      "key" : "Unknown",
+      "index" : 0,
+      "degree" : 300,
+      "shape" : "Cylinder",
+      "tile" : {
+        "touch_centerX": 61,
+        "touch_centerY": 59,
+        "touch_width": 74,
+        "touch_height": 74,
+        "tile_positionX": 0,
+        "tile_positionY": 0,
+        "tile_width": 0,
+        "tile_height": 0
+      }
+    }
+  ]
+}
